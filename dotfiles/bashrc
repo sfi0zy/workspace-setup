@@ -1,0 +1,85 @@
+# if not running interactively, don't do anything
+
+case $- in
+    *i*) ;;
+    *) return;;
+esac
+
+# ✓ [08:45 AM] username:hostname ~ $
+
+PS1="\$(if [[ \$? == 0 ]]; then \
+        echo \"\[\033[01;32m\]\342\234\223\"; \
+    else \
+        echo \"\[\033[01;31m\]\342\234\227\"; \
+    fi) [\@] \[\033[01;31m\]\u\[\033[01;00m\]:\[\033[01;33m\]\h\[\033[01;34m\] \w\$(if [[ -d .git ]]; then
+        echo \"\[\033[01;35m\] | git:\$(git rev-parse --abbrev-ref HEAD) $\[\033[01;33m\]\"; \
+    else \
+        echo \" $\";
+    fi) \[\033[00m\]"
+
+# see bash(1) for more options for history
+
+HISTCONTROL=ignoreboth
+HISTSIZE=1000
+HISTFILESIZE=2000
+
+# append to the history file, don't overwrite it
+
+shopt -s histappend
+
+# save and reload history after each command finishes
+
+export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+
+# use vim as default text editor
+
+export EDITOR=vim
+
+# check the window size after each command
+
+shopt -s checkwinsize
+
+# use >| instead of > for rewrite file with redirected stream
+
+set -o noclobber
+
+# alias
+
+alias ..='cd ..'
+alias ...='cd ../../'
+alias ....='cd ../../../'
+alias ls='ls --color=auto'
+alias ll='ls -lAhF'
+alias cp='cp -i'
+alias mv='mv -i'
+alias mkdir='mkdir -pv'
+alias grep='grep --color=auto'
+alias top='htop'
+alias bash-reload='source ~/.bashrc'
+alias npm-list-global-packages='npm list -g --depth=0'
+alias npm-list-global-updates='npm outdated -g --depth=0'
+alias npm-update-globals='npm update -g'
+alias apt-update-all='sudo apt update && sudo apt upgrade'
+alias apt-remove-unused='sudo apt autoremove'
+alias save-etc='sudo etckeeper commit'
+alias etc-history='cd /etc && sudo gitk && cd -'
+alias check-internet-connection='ping 8.8.8.8 -c 5'
+alias serve-this-directory='http-server'
+alias share-this-directory='http-server & ngrok http 8080 && kill $!'
+alias random-string='cat /dev/urandom | tr -cd "a-f0-9" | head -c 32'
+alias git-graph='git log --graph --full-history --all --color \
+        --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"'
+
+# archive all documents, except node_modules
+
+function backup-documents() {
+    zip -r --encrypt ~/backup_$(date '+%Y-%j').zip ~/Documents -x *node_modules* \
+    && notify-send "The backup #$(date '+%Y-%j') has been created. It's time to copy it."
+}
+
+# add ruby gems and snap packages to PATH
+
+export GEM_HOME="$HOME/gems"
+export PATH="$HOME/gems/bin:$PATH"
+export PATH="$PATH:/snap/bin"
+
