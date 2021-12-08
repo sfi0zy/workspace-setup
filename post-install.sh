@@ -19,6 +19,10 @@ sed -i 's/^OnlyShowIn.*/OnlyShowIn=Unity;GNOME;Pantheon;/' ~/.config/autostart/i
 
 cp /var/lib/snapd/desktop/applications/telegram-desktop_telegram-desktop.desktop ~/.local/share/applications/
 
+touch ~/.local/share/applications/mimeapps.list
+echo '[Default Applications]' >> ~/.local/share/applications/mimeapps.list
+echo 'x-scheme-handler/tg=telegram-desktop_telegram-desktop.desktop' >> ~/.local/share/applications/mimeapps.list
+
 # configure vim as a simple frontend ide
 
 mkdir -p ~/.vim/autoload
