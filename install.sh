@@ -57,5 +57,14 @@ sudo apt install -y firefox vim transmission libreoffice simple-scan darktable g
 
 sudo snap install telegram-desktop
 
+# clean the launcher
+
+echo 'NoDisplay=true' | sudo tee -a /usr/share/applications/debian-xterm.desktop
+echo 'NoDisplay=true' | sudo tee -a /usr/share/applications/debian-uxterm.desktop
+echo 'NoDisplay=true' | sudo tee -a /usr/share/applications/display-im6.q16.desktop
+echo 'NoDisplay=true' | sudo tee -a /usr/share/applications/org.pwmt.zathura.desktop
+
+sudo sed -i 's/^NoDisplay=false/NoDisplay=true/' /usr/share/applications/libreoffice-startcenter.desktop
+
 printf "\n\n\nRUN POST-INSTALL SCRIPT NOW (WITHOUT SUDO).\n\n\n";
 
