@@ -57,6 +57,10 @@ sudo apt install -y firefox vim transmission libreoffice simple-scan darktable g
 
 sudo snap install telegram-desktop
 
+# return compress/extract options to the context menu in files (bug?)
+
+sudo apt install -y --reinstall org.gnome.fileroller
+
 # clean the launcher
 
 echo 'NoDisplay=true' | sudo tee -a /usr/share/applications/debian-xterm.desktop
