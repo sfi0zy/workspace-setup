@@ -51,7 +51,7 @@ sudo apt install -y ./com.github.lafydev.wingpanel-indicator-ayatana_2.0.8_odin.
 
 # install packages from standard repositories
 
-sudo apt install -y firefox vim transmission libreoffice simple-scan darktable gimp inkscape audacity texlive-full gummi virtualbox steam blender vlc ruby-full ruby-bundler preload snapd
+sudo apt install -y firefox vim transmission libreoffice simple-scan darktable gimp inkscape audacity texlive-full gummi virtualbox steam blender vlc openshot ruby-full ruby-bundler preload snapd
 
 # telegram is always outdated, so install it as snap package for faster upgrades
 
