@@ -45,6 +45,11 @@ sudo apt install -y ./skypeforlinux-64.deb
 wget https://downloads.slack-edge.com/releases/linux/4.22.0/prod/x64/slack-desktop-4.22.0-amd64.deb
 sudo apt install -y ./slack-desktop-4.22.0-amd64.deb
 
+sudo apt install -y ffmpeg v4l2loopback-dkms
+sudo add-apt-repository -y ppa:obsproject/obs-studio
+sudo apt update
+sudo apt install -y obs-studio
+
 sudo apt install -y libglib2.0-dev libgranite-dev libindicator3-dev libwingpanel-dev indicator-application
 wget https://github.com/Lafydev/wingpanel-indicator-ayatana/raw/master/com.github.lafydev.wingpanel-indicator-ayatana_2.0.8_odin.deb
 sudo apt install -y ./com.github.lafydev.wingpanel-indicator-ayatana_2.0.8_odin.deb
