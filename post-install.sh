@@ -18,6 +18,7 @@ sed -i 's/^OnlyShowIn.*/OnlyShowIn=Unity;GNOME;Pantheon;/' ~/.config/autostart/i
 # add telegram (snap package) to the launcher
 
 cp /var/lib/snapd/desktop/applications/telegram-desktop_telegram-desktop.desktop ~/.local/share/applications/
+sed -i 's/telegram-desktop\/[0-9]\+\//telegram-desktop\/current\//g' ~/.local/share/applications/telegram-desktop_telegram-desktop.desktop
 
 touch ~/.local/share/applications/mimeapps.list
 echo '[Default Applications]' >> ~/.local/share/applications/mimeapps.list
