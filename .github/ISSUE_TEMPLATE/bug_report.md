@@ -25,6 +25,7 @@ If applicable, add screenshots to help explain your problem.
 
 **Environment (please complete the following information):**
  - OS version: [e.g. elementary OS 6.1]
+ - Software: [e.g. Telegram Desktop 3.4, installed as a snap package]
 
 **Additional context**
 Add any other context about the problem here.
