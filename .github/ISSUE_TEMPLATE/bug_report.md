@@ -3,7 +3,7 @@ name: Bug report
 about: Create a report to help us improve
 title: ''
 labels: bug
-assignees: ''
+assignees: sfi0zy
 
 ---
 
@@ -25,6 +25,7 @@ If applicable, add screenshots to help explain your problem.
 
 **Environment (please complete the following information):**
  - OS version: [e.g. elementary OS 6.1]
+ - Kernel: [e.g. 5.11.0-43-generic]
  - Software: [e.g. Telegram Desktop 3.4, installed as a snap package]
 
 **Additional context**
