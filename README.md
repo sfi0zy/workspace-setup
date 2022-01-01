@@ -4,6 +4,12 @@
 
 These scripts install different software, return tray icons, clean up in the launcher, configure vim as a simple frontend ide, and add visual settings for the bash and the standard terminal.
 
+## WARNINGS
+
+1. These scripts will install a lot of packages, texlive-full included, so you will need some space for all of them. If you have an empty modern SSD for 128GB, you will not notice that, but don't try to run these scripts on the old 16GB HDD or in a virtual machine with a small virtual drive.
+
+2. **BACKUP YOUR DATA**. These scripts were designed for usage inside the fresh system without any modifications of it. They don't have protections from your thoughtless actions.
+
 ## List or the software
 
 - Web:
@@ -46,7 +52,7 @@ These scripts install different software, return tray icons, clean up in the lau
 
 ```sh
 cd /tmp
-git clone git@github.com:sfi0zy/workspace-setup.git
+git clone https://github.com/sfi0zy/workspace-setup.git
 # or download the archived repository and extract it
 cd workspace-setup
 chmod +x ./install.sh
@@ -68,4 +74,10 @@ https://elementary.io/
 https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup
 
 https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
+
+## License
+
+MIT License
+
+Copyright (c) 2022 Ivan Bogachev sfi0zy@gmail.com
 
