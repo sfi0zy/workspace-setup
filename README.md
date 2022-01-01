@@ -47,6 +47,7 @@ These scripts install different software, return tray icons, clean up in the lau
 ```sh
 cd /tmp
 git clone git@github.com:sfi0zy/workspace-setup.git
+# or download the archived repository and extract it
 cd workspace-setup
 chmod +x ./install.sh
 chmod +x ./post-install.sh
