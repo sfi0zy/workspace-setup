@@ -46,7 +46,7 @@ git clone https://github.com/tikhomirov/vim-glsl.git            ~/.vim/bundle/vi
 
 mkdir -p ~/.vim/colors
 mkdir -p ~/.vim/colors/tmp
-git clone git@github.com:sfi0zy/atlantic-dark.vim.git ~/.vim/colors/tmp
+git clone https://github.com/sfi0zy/atlantic-dark.vim.git ~/.vim/colors/tmp
 cp ~/.vim/colors/tmp/colors/atlantic-dark.vim ~/.vim/colors
 rm -rf ~/.vim/colors/tmp/
 
