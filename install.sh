@@ -54,6 +54,10 @@ sudo apt install -y libglib2.0-dev libgranite-dev libindicator3-dev libwingpanel
 wget https://github.com/Lafydev/wingpanel-indicator-ayatana/raw/master/com.github.lafydev.wingpanel-indicator-ayatana_2.0.8_odin.deb
 sudo apt install -y ./com.github.lafydev.wingpanel-indicator-ayatana_2.0.8_odin.deb
 
+wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | sudo tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc
+sudo add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu focal-cran40/"
+sudo apt install -y --no-install-recommends r-base
+
 # install packages from standard repositories
 
 sudo apt install -y firefox vim transmission libreoffice simple-scan darktable gimp inkscape audacity texlive-full gummi virtualbox steam blender vlc openshot ruby-full ruby-bundler preload snapd
