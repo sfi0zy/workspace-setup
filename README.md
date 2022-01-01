@@ -2,7 +2,45 @@
 
 ![screenshot](./screenshot.jpg)
 
-These scripts install different software, return tray icons, configure vim as a simple frontend ide, and add visual settings for bash and standard terminal.
+These scripts install different software, return tray icons, clean up in the launcher, configure vim as a simple frontend ide, and add visual settings for the bash and the standard terminal.
+
+## List or the software
+
+- Web:
+    - Google Chrome
+    - Mozilla Firefox
+    - Skype
+    - Slack
+    - Telegram
+- Development:
+    - Git, Gitk
+    - VIM (configured as a frontend IDE)
+    - NodeJS + NPM + n + some global packages (server one-liners)
+    - Ruby
+    - R
+    - Docker
+    - VirtualBox
+- Writing tools:
+    - LibreOffice
+    - Gummi + full LaTeX
+- Tools for creators:
+    - Darktable
+    - GIMP
+    - Inkscape
+    - SimpleScan
+    - OBS
+    - OpenShot
+    - Blender
+    - MuseScore
+    - Audacity
+- Games:
+    - Steam
+- Others:
+    - Transmission
+    - VLC
+- System:
+    - software-properties-common, curl, snapd, preload
+    - some additional packages, required by different software
 
 ## Install
 
