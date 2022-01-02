@@ -58,7 +58,7 @@ wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | sud
 sudo add-apt-repository -y "deb https://cloud.r-project.org/bin/linux/ubuntu focal-cran40/"
 sudo apt install -y --no-install-recommends r-base
 sudo add-apt-repository -y ppa:c2d4u.team/c2d4u4.0+
-sudo apt install --no-install-recommends r-cran-tidyverse
+sudo apt install -y --no-install-recommends r-cran-tidyverse
 
 # install packages from standard repositories
 
