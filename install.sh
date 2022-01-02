@@ -55,8 +55,10 @@ wget https://github.com/Lafydev/wingpanel-indicator-ayatana/raw/master/com.githu
 sudo apt install -y ./com.github.lafydev.wingpanel-indicator-ayatana_2.0.8_odin.deb
 
 wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | sudo tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc
-sudo add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu focal-cran40/"
+sudo add-apt-repository -y "deb https://cloud.r-project.org/bin/linux/ubuntu focal-cran40/"
 sudo apt install -y --no-install-recommends r-base
+sudo add-apt-repository -y ppa:c2d4u.team/c2d4u4.0+
+sudo apt install --no-install-recommends r-cran-tidyverse
 
 # install packages from standard repositories
 
