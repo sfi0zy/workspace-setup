@@ -35,7 +35,6 @@ These scripts install different software, return tray icons, clean up in the lau
     - Inkscape
     - SimpleScan
     - OBS
-    - OpenShot
     - Blender
     - MuseScore
     - Audacity
