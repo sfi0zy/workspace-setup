@@ -76,6 +76,11 @@ sudo apt install -y linux-headers-$(uname -r)
 
 sudo snap install telegram-desktop
 
+# epiphany doesn't work from the box, the snap package is slightly outdated, but it works
+
+sudo apt purge epiphany-browser
+sudo snap install epiphany
+
 # return compress/extract options to the context menu in files (bug?)
 
 sudo apt install -y --reinstall org.gnome.fileroller

@@ -16,6 +16,7 @@ These scripts install different software, return tray icons, clean up in the lau
     - Google Chrome
     - Mozilla Firefox
     - Microsoft Edge (dev)
+    - Epiphany
     - Skype
     - Slack
     - Telegram
