@@ -60,6 +60,13 @@ sudo apt install -y --no-install-recommends r-base
 sudo add-apt-repository -y ppa:c2d4u.team/c2d4u4.0+
 sudo apt install -y --no-install-recommends r-cran-tidyverse
 
+curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+sudo install -o root -g root -m 644 microsoft.gpg /usr/share/keyrings/
+sudo sh -c 'echo "deb [arch=amd64 signed-by=/usr/share/keyrings/microsoft.gpg] https://packages.microsoft.com/repos/edge stable main" > /etc/apt/sources.list.d/microsoft-edge-dev.list'
+sudo rm microsoft.gpg
+sudo apt update
+sudo apt install microsoft-edge-dev
+
 # install packages from standard repositories
 
 sudo apt install -y firefox vim transmission libreoffice simple-scan darktable gimp inkscape audacity texlive-full gummi virtualbox steam blender vlc ruby-full ruby-bundler preload snapd
