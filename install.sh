@@ -67,9 +67,12 @@ sudo rm microsoft.gpg
 sudo apt update
 sudo apt install microsoft-edge-dev
 
+sudo add-apt-repository -y ppa:inkscape.dev/stable
+sudo apt install -y inkscape
+
 # install packages from standard repositories
 
-sudo apt install -y firefox vim transmission libreoffice simple-scan darktable gimp inkscape audacity texlive-full gummi virtualbox steam blender vlc ruby-full ruby-bundler preload snapd
+sudo apt install -y firefox vim transmission libreoffice simple-scan darktable gimp audacity texlive-full gummi virtualbox steam blender vlc ruby-full ruby-bundler preload snapd
 sudo apt install -y linux-headers-$(uname -r)
 
 # telegram is always outdated, so install it as snap package for faster upgrades
