@@ -45,6 +45,9 @@ sudo apt install -y ./skypeforlinux-64.deb
 wget https://downloads.slack-edge.com/releases/linux/4.22.0/prod/x64/slack-desktop-4.22.0-amd64.deb
 sudo apt install -y ./slack-desktop-4.22.0-amd64.deb
 
+wget -O ./discord.deb "https://discord.com/api/download?platform=linux&format=deb"
+sudo apt install -y ./discord.deb
+
 sudo apt install -y ffmpeg v4l2loopback-dkms
 sudo add-apt-repository -y ppa:obsproject/obs-studio
 sudo apt update

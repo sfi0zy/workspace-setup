@@ -20,6 +20,7 @@ These scripts install different software, return tray icons, clean up in the lau
     - Skype
     - Slack
     - Telegram
+    - Discord
 - Development:
     - Git, Gitk
     - VIM (configured as a frontend IDE)
