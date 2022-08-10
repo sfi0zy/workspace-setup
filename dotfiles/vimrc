@@ -138,6 +138,6 @@ let g:airline#extensions#syntastic#enabled = 1
 
 " disable indentLine for json files and show the quotes in them.
 
-let g:vim_json_syntax_conceal = 0
+autocmd Filetype json let g:vim_json_syntax_conceal = 0
 autocmd Filetype json let g:indentLine_enabled = 0
 
