@@ -2,7 +2,7 @@
 
 # change the default settings for the terminal
 
-gsettings set io.elementary.terminal.settings palette         "#121212:#ff005f:#00af5f:#ffd787:#0087ff:#ff005f:#0087ff:#e4e4e4:#1c1c1c:#ff005f:#00ad5f:#ffd787:#0087ff:#ff005f:#0087ff:#00875f"
+gsettings set io.elementary.terminal.settings palette         "#121212:#ff005f:#00af5f:#ffd787:#0087ff:#ff00ff:#00d4ff:#e4e4e4:#1c1c1c:#ff005f:#00ad5f:#ffd787:#0087ff:#ff00ff:#00d4ff:#00875f"
 gsettings set io.elementary.terminal.settings foreground      "#e4e4e4"
 gsettings set io.elementary.terminal.settings background      "#121212"
 gsettings set io.elementary.terminal.settings cursor-color    "#e4e4e4"
