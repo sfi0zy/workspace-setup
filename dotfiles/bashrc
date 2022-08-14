@@ -70,16 +70,115 @@ alias random-string='cat /dev/urandom | tr -cd "a-f0-9" | head -c 32'
 alias git-graph='git log --graph --full-history --all --color \
         --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"'
 
-# archive all documents, except node_modules
-
-function backup-documents() {
-    zip -r --encrypt ~/backup_$(date '+%Y-%j').zip ~/Documents -x *node_modules* \
-    && notify-send "The backup #$(date '+%Y-%j') has been created. It's time to copy it."
-}
-
 # add ruby gems and snap packages to PATH
 
 export GEM_HOME="$HOME/gems"
 export PATH="$HOME/gems/bin:$PATH"
 export PATH="$PATH:/snap/bin"
+
+# archive all documents, except node_modules
+
+function backup-documents() {
+    set -e
+
+    documents_folder_size=$(du -bs ~/Documents/ | cut -f1)
+    space_needed=$((2 * $documents_folder_size))
+    free_space=$(df --output=avail -B 1 . | tail -n 1)
+
+    echo "Documents folder size: $(numfmt --to iec $documents_folder_size)"
+    echo "Space needed: $(numfmt --to iec $space_needed)"
+    echo "Free space: $(numfmt --to iec $free_space)"
+
+    if (( space_needed > free_space )); then
+        echo "You need more free space to perform this."
+        return 1
+    fi
+
+    echo "Enter password:"
+    read -s password_for_archive
+    echo "Enter the same password second time:"
+    read -s password_for_archive_copy
+
+    if [[ $password_for_archive != $password_for_archive_copy ]]; then
+        echo "Two entered passwords are different. It'll be safer to try again."
+        return 1
+    fi
+
+    echo "OK"
+    current_date=$(date '+%Y-%j')
+    archive_filename="backup_${current_date}"
+    echo "Archive name will be ${archive_filename}"
+    echo "Archiving (this may take some time)..."
+    zip -r "${archive_filename}.zip" ~/Documents/ -x *node_modules*
+    echo "OK"
+
+    echo "Testing archive..."
+    unzip -t "${archive_filename}.zip"
+    echo "OK"
+
+    echo "Encrypting archive (this may take some time)..."
+    gpg --pinentry-mode=loopback --yes \
+        --passphrase $password_for_archive \
+        --output "${archive_filename}.gpg" \
+        --symmetric "${archive_filename}.zip"
+    echo "OK"
+
+    echo "Removing unencrypted archive..."
+    rm "${archive_filename}.zip"
+    echo "OK"
+
+    echo "Splitting archive (this may take some time)..."
+    split --bytes=500M "${archive_filename}.gpg"
+    mkdir -p $archive_filename
+    mv x* $archive_filename
+    echo "OK"
+
+    echo "Removing unsplitted archive..."
+    rm "${archive_filename}.gpg"
+    echo "OK"
+
+    echo "Encrypted and splitted archive is in ${archive_filename} directory"
+
+    echo "The backup has been created. It's time to copy it."
+    notify-send "The backup has been created. It's time to copy it."
+}
+
+# extract archived documents
+
+function extract-backup() {
+    set -e
+
+    echo "Enter password:"
+    read -s password_for_archive
+    echo "OK"
+
+    echo "Concatting files (this may take some time)..."
+    cat x* > backup.gpg
+    echo "OK"
+
+    echo "Removing splitted archive..."
+    rm x*
+    echo "OK"
+
+    echo "Decrypting archive (this may take some time)..."
+    gpg --pinentry-mode=loopback --yes \
+        --passphrase $password_for_archive \
+        --output backup.zip \
+        --decrypt backup.gpg
+    echo "OK"
+
+    echo "Removing encrypted archive..."
+    rm backup.gpg
+    echo "OK"
+
+    echo "Extracing archive (this may take some time)..."
+    unzip backup.zip
+    echo "OK"
+
+    echo "Removing archive..."
+    rm backup.zip
+    echo "OK"
+
+    echo "Finished."
+}
 
