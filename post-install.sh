@@ -8,6 +8,7 @@ gsettings set io.elementary.terminal.settings background      "#121212"
 gsettings set io.elementary.terminal.settings cursor-color    "#e4e4e4"
 gsettings set io.elementary.terminal.settings cursor-shape    "I-Beam"
 gsettings set io.elementary.terminal.settings follow-last-tab "true"
+gsettings set io.elementary.terminal.settings theme           "custom"
 
 # add icons to tray
 
