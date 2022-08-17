@@ -6,9 +6,11 @@ These scripts install different software, return tray icons, clean up in the lau
 
 ## WARNINGS
 
-1. These scripts will install a lot of packages, texlive-full included, so you will need some space for all of them. If you have an empty modern SSD for 128GB, you will not notice that, but don't try to run these scripts on the old 16GB HDD or in a virtual machine with a small virtual drive.
+1. These scripts can install a lot of packages, texlive-full included, so you will need around 25G to install everything. It's not a problem for modern SSD, but remember about that if you want to install this configuration on some old laptop.
 
 2. **BACKUP YOUR DATA**. These scripts were designed for usage inside the fresh system without any modifications of it. They don't have protections from your thoughtless actions.
+
+3. You'll need some time and a stable internet connection.
 
 ## List or the software
 
@@ -52,22 +54,18 @@ These scripts install different software, return tray icons, clean up in the lau
 
 ## Install
 
+Download this repository as an archive, extract it (default browser and archive manager should be already installed in the fresh system).
+
 ```sh
-cd /tmp
-git clone https://github.com/sfi0zy/workspace-setup.git
-# or download the archived repository and extract it
 cd workspace-setup
-chmod +x ./install.sh
-chmod +x ./post-install.sh
-
-# this will install software
-sudo ./install.sh
-
-# this will download files to home directory, no sudo here!
-./post-install.sh
+./main.sh
 ```
 
-After install and post-install scripts add SSH keys, log in into your accounts, and restart the computer.
+You'll be asked for a password (for sudo). Minimal gui will show some additional information and help you to select software from the list.
+
+![screenshot](./screenshot-install.jpg)
+
+Installation will take some time. Then restart your computer, add SSH keys if needed, log in into your web accounts and you're ready.
 
 ## Useful links
 
