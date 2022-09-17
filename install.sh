@@ -552,6 +552,19 @@ install_tex() {
 #   None
 #######################################
 install_darktable() {
+    # Darktable package is really outdated in ubuntu, so we install newer
+    # version from opensuse repository.
+    local repo="download.opensuse.org/repositories/graphics"
+    local name="darktable"
+    local os="xUbuntu_20.04"
+
+    echo "deb http://${repo}:/${name}/${os}/ /" \
+        | sudo tee /etc/apt/sources.list.d/graphics:darktable.list
+    curl -fsSL "https://${repo}:${name}/${os}/Release.key" \
+        | gpg --dearmor \
+        | sudo tee /etc/apt/trusted.gpg.d/graphics_darktable.gpg > /dev/null
+
+    sudo apt-get update
     sudo apt-get install -y darktable
 }
 
