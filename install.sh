@@ -110,7 +110,6 @@ request_additional_software_list() {
         "google-chrome" "Google Chrome" ON \
         "firefox" "Firefox browser" OFF \
         "edge" "Microsoft Edge (dev)" OFF \
-        "epiphany" "Epiphany browser" OFF \
         "skype" "Skype" OFF \
         "slack" "Slack" OFF \
         "telegram" "Telegram-desktop" ON \
@@ -272,20 +271,6 @@ install_edge() {
     sudo sh -c "echo \"${info}\" > ${sources_list_file}"
     sudo apt-get update
     sudo apt-get install -y microsoft-edge-dev
-}
-
-
-#######################################
-# Install Epiphany Browser
-# Arguments:
-#   None
-#######################################
-install_epiphany() {
-    # Epiphany is a really unstable browser. Especially when it works next
-    # to Chrome. Snap package seems to be more predictable. Not the best
-    # fix, but it works.
-    sudo apt-get purge epiphany-browser
-    sudo snap install epiphany
 }
 
 
@@ -708,7 +693,6 @@ install_software() {
                 "google-chrome") install_google_chrome ;;
                 "firefox") install_firefox ;;
                 "edge") install_edge ;;
-                "epiphany") install_epiphany ;;
                 "skype") install_skype ;;
                 "slack") install_slack ;;
                 "telegram") install_telegram ;;
