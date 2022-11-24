@@ -8,15 +8,57 @@ esac
 
 # ✓ [08:45 AM] username:hostname ~ $
 
-PS1="\$(if [[ \$? == 0 ]]; then \
-        echo \"\[\033[01;32m\]\342\234\223\"; \
-    else \
-        echo \"\[\033[01;31m\]\342\234\227\"; \
-    fi) [\@] \[\033[01;31m\]\u\[\033[01;00m\]:\[\033[01;33m\]\h\[\033[01;34m\] \w\$(if [[ -d .git ]]; then
-        echo \"\[\033[01;35m\] | git:\$(git rev-parse --abbrev-ref HEAD) $\[\033[01;33m\]\"; \
-    else \
-        echo \" $\";
-    fi) \[\033[00m\]"
+set_bash_prompt() {
+    local green="\[\033[01;32m\]";
+    local red="\[\033[01;31m\]";
+    local white="\[\033[01;00m\]";
+    local yellow="\[\033[01;33m\]";
+    local blue="\[\033[01;34m\]";
+    local pink="\[\033[01;35m\]";
+    local reset_color="\[\033[00m\]";
+
+    local ok_mark="\342\234\223";
+    local not_ok_mark="\342\234\227";
+    local last_command_time="[\@]";
+    local user_name="\u";
+    local host_name="\h";
+    local working_directory="\w";
+
+    PS1=""
+
+    if [[ $? == 0 ]]; then
+        PS1+="${green}${ok_mark} "
+    else
+        PS1+="${red}${not_ok_mark} "
+    fi
+
+    PS1+="${last_command_time} "
+    PS1+="${red}${user_name}";
+    PS1+="${white}:"
+    PS1+="${yellow}${host_name} "
+    PS1+="${blue}${working_directory}"
+
+    if [[ -d .git ]]; then
+        PS1+="${pink} | git"
+
+        local commits_count=$(git rev-list --all --count)
+
+        if [[ "${commits_count}" == "0" ]]; then
+            PS1+=":NO COMMITS HERE"
+        else
+            local git_info=$(git rev-parse --abbrev-ref HEAD)
+            PS1+=":${git_info}"
+        fi
+
+        PS1+=" $"
+    else
+        PS1+=" $"
+    fi
+
+    PS1+=" ${reset_color}"
+}
+
+PROMPT_COMMAND=set_bash_prompt
 
 
 # see bash(1) for more options for history
