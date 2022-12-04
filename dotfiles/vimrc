@@ -49,7 +49,7 @@ syntax on
 " disable highlighting on long lines (improves performance, can cause
 " wrong highlighting in the next lines)
 
-set synmaxcol=1024
+set synmaxcol=120
 
 
 " apply colorscheme
