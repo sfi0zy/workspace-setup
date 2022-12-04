@@ -48,7 +48,7 @@ These scripts install different software, return tray icons, clean up in the lau
     - Transmission
     - VLC
 - System:
-    - software-properties-common, curl, snapd, preload
+    - software-properties-common, curl, snapd, preload, inotify-tools
     - some additional packages, required by different software
 
 ## Install

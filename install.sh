@@ -85,6 +85,7 @@ say_about_required_software() {
         `"snapd\n"`
         `"preload\n"`
         `"wingpanel-indicator\n"`
+        `"inotify-tools\n"`
         `"git\n"`
         `"gitk\n"`
         `"vim (configured as frontend IDE)\n\n"`
@@ -780,7 +781,7 @@ main() {
     make_sure_backup_is_created
     say_about_required_software
 
-    required_list="system-utils git wingpanel-indicator vim"
+    required_list="system-utils git wingpanel-indicator inotify-tools vim"
     additional_list=$(request_additional_software_list)
     all_software_list="${required_list} ${additional_list}"
 
