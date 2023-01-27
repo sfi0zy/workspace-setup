@@ -116,7 +116,6 @@ request_additional_software_list() {
         "telegram" "Telegram-desktop" ON \
         "discord" "Discord" OFF \
         "node" "Node.js (n + Node.js + NPM + http-server + ngrok)" ON \
-        "r" "R language + tidyverse" OFF \
         "ruby" "Ruby language (ruby-full + ruby-bundler)" OFF \
         "docker" "Docker" OFF \
         "virtualbox" "VirtualBox" OFF \
@@ -453,24 +452,6 @@ install_node() {
 
 
 #######################################
-# Install R + Tidyverse
-# Arguments:
-#   None
-#######################################
-install_r() {
-    local url="https://cloud.r-project.org/bin/linux/ubuntu"
-
-    wget -qO- "${url}/marutter_pubkey.asc" \
-        | sudo tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc
-
-    sudo add-apt-repository -y "deb ${url} focal-cran40/"
-    sudo apt-get install -y --no-install-recommends r-base
-    sudo add-apt-repository -y ppa:c2d4u.team/c2d4u4.0+
-    sudo apt-get install -y --no-install-recommends r-cran-tidyverse
-}
-
-
-#######################################
 # Install Ruby
 # Arguments:
 #   None
@@ -700,7 +681,6 @@ install_software() {
                 "discord") install_discord ;;
                 "vim") install_vim ;;
                 "node") install_node ;;
-                "r") install_r ;;
                 "ruby") install_ruby ;;
                 "docker") install_docker ;;
                 "virtualbox") install_virtualbox ;;

@@ -26,7 +26,6 @@ These scripts install different software, return tray icons, clean up in the lau
     - Git, Gitk
     - VIM (configured as a frontend IDE)
     - NodeJS + NPM + n + some global packages (server one-liners)
-    - R + Tidyverse
     - Ruby
     - Docker
     - VirtualBox
