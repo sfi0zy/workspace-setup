@@ -732,7 +732,8 @@ main() {
     all_software_list="${required_list} ${additional_list}"
 
     update_everything
-    install_software "${all_software_list}"
+    # shellcheck disable=2086
+    install_software $all_software_list
 
     clean_launcher
     replace_bashrc
