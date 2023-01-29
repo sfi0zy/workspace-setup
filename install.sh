@@ -82,7 +82,8 @@ say_about_required_software() {
         `"inotify-tools\n"`
         `"git\n"`
         `"gitk\n"`
-        `"vim (configured as frontend IDE)\n\n"`
+        `"vim (configured as frontend IDE)\n"`
+        `"shellcheck\n\n"`
         `"You'll be able to select additional software in the next step." \
         40 100 3>&1 1>&2 2>&3
 }
