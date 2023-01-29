@@ -368,6 +368,7 @@ install_vim() {
     local colors_dir="${USER_HOME}/.vim/colors"
 
     sudo apt-get install -y vim
+    sudo apt-get install -y shellcheck
 
     sudo -u $SUDO_USER rm -rf "${USER_HOME}/.vim/autoload/"
     sudo -u $SUDO_USER mkdir -p "${USER_HOME}/.vim/autoload"
