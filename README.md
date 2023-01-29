@@ -71,8 +71,6 @@ cd workspace-setup-main
 
 You'll be asked for a password (for sudo). Minimal gui will show some additional information and help you to select software from the list.
 
-![screenshot](./screenshot-install.jpg)
-
 Installation will take some time. Then restart your computer, add SSH keys if needed, log in into your web accounts and you're ready.
 
 ## Useful links
