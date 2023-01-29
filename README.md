@@ -59,10 +59,13 @@ sudo apt update
 sudo apt upgrade
 ```
 
-Then download this repository as an archive, extract it (default browser and archive manager should be already there).
+Then download this repository as an archive, extract it and run main script.
 
 ```sh
-cd workspace-setup
+cd /tmp
+wget https://github.com/sfi0zy/workspace-setup/archive/refs/heads/main.zip
+unzip main.zip
+cd workspace-setup-main
 ./main.sh
 ```
 
