@@ -52,7 +52,14 @@ These scripts install different software, return tray icons, clean up in the lau
 
 ## Install
 
-Download this repository as an archive, extract it (default browser and archive manager should be already installed in the fresh system).
+It'll be a good idea to update everything in advance. The fresh system can have hundreds of outdated packages and this process will probably take some time. If you want to play with this setup in a virtual machine, you may also want to take a snapshot of its state after that.
+
+```sh
+sudo apt update
+sudo apt upgrade
+```
+
+Then download this repository as an archive, extract it (default browser and archive manager should be already there).
 
 ```sh
 cd workspace-setup
@@ -77,4 +84,4 @@ https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generati
 
 MIT License
 
-Copyright (c) 2022 Ivan Bogachev sfi0zy@gmail.com
+Copyright (c) 2023 Ivan Bogachev sfi0zy@gmail.com
