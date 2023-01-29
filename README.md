@@ -78,4 +78,3 @@ https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generati
 MIT License
 
 Copyright (c) 2022 Ivan Bogachev sfi0zy@gmail.com
-

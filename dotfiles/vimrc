@@ -10,7 +10,6 @@ function FindSessionDirectory() abort
     return getcwd()
 endfunction!
 
-
 " set fallback settings for tabs and line endings (before editorconfig)
 
 set tabstop=4
@@ -19,61 +18,50 @@ set expandtab
 autocmd BufWritePre * set ff=unix
 autocmd BufWritePre * %s/\s\+$//e
 
-
 " set color for vertical lines (indentations)
 
 let g:indentLine_color_term = 236
 
-
 " show line numbers by default
 
 set nu
-
 
 " open NERDTree automatically when vim starts up
 
 autocmd vimenter * NERDTree
 let NERDTreeShowHidden = 1
 
-
 " set the current directory to skip %:h/ in the commands
 
 :set autochdir
 
-
 " enable syntax highlighting by default
 
 syntax on
-
 
 " disable highlighting on long lines (improves performance, can cause
 " wrong highlighting in the next lines)
 
 set synmaxcol=120
 
-
 " apply colorscheme
 
 colorscheme atlantic-dark
 let g:airline_theme='term'
-
 
 " highlight 80 and 120 columns
 
 highlight ColorColumn ctermbg=232 guibg=#060606
 let &colorcolumn="80,".join(range(120,999),",")
 
-
 " highlight search results
 
 set hlsearch
 set incsearch
 
-
 " highlight parens
 
 set showmatch
-
 
 " highlight ES6 template strings
 
@@ -81,11 +69,9 @@ hi link javaScriptTemplateDelim  String
 hi link javaScriptTemplateVar    Text
 hi link javaScriptTemplateString String
 
-
 " now hyphens are part of identifiers
 
 au! FileType css,less,html setl iskeyword+=-
-
 
 " enable code completion
 
@@ -93,7 +79,6 @@ filetype plugin on
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType html       set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType css        set omnifunc=csscomplete#CompleteCSS
-
 
 " activate omni on Tab
 
@@ -107,21 +92,17 @@ endfunction
 
 inoremap <Tab> <C-R>=TabOrComplete()<CR>
 
-
 " activate wildmenu
 
 set wildmenu
-
 
 " change default trigger key for emmet
 
 let g:user_emmet_leader_key = '<C-Z>'
 
-
 " disable auto comments
 
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-
 
 " add settings for syntastic (recommended)
 
@@ -134,14 +115,12 @@ let g:syntastic_auto_loc_list            = 1
 let g:syntastic_check_on_open            = 0
 let g:syntastic_check_on_wq              = 0
 
-
 " eslint
 
 let g:syntastic_javascript_checkers    = ['eslint']
 let g:syntastic_javascript_eslint_exe  = 'npx --no-install eslint'
 let g:syntastic_javascript_eslint_exec = '/bin/ls'
 let g:syntastic_javascript_eslint_args = '--config ' . FindSessionDirectory() . '/.eslintrc'
-
 
 " stylelint
 
@@ -157,9 +136,7 @@ let g:syntastic_less_stylelint_args = '--config ' . FindSessionDirectory() . '/.
 
 let g:airline#extensions#syntastic#enabled = 1
 
-
 " disable crazy syntax highlighting for json and markdown files
 
 autocmd FileType json     setlocal syntax=off nospell
 autocmd FileType markdown setlocal syntax=off nospell
-

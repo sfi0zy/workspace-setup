@@ -5,9 +5,9 @@ case $- in
     *) return;;
 esac
 
-
 # ✓ [08:45 AM] username:hostname ~ $
-
+# And we disable the warning about checking exit code of a previous command
+# shellcheck disable=2181
 set_bash_prompt() {
     local green="\[\033[01;32m\]";
     local red="\[\033[01;31m\]";
@@ -23,6 +23,9 @@ set_bash_prompt() {
     local user_name="\u";
     local host_name="\h";
     local working_directory="\w";
+
+    local commits_count
+    local git_info
 
     PS1=""
 
@@ -41,12 +44,12 @@ set_bash_prompt() {
     if [[ -d .git ]]; then
         PS1+="${pink} | git"
 
-        local commits_count=$(git rev-list --all --count)
+        commits_count=$(git rev-list --all --count)
 
         if [[ "${commits_count}" == "0" ]]; then
             PS1+=":NO COMMITS HERE"
         else
-            local git_info=$(git rev-parse --abbrev-ref HEAD)
+            git_info=$(git rev-parse --abbrev-ref HEAD)
             PS1+=":${git_info}"
         fi
 
@@ -60,38 +63,27 @@ set_bash_prompt() {
 
 PROMPT_COMMAND=set_bash_prompt
 
-
 # see bash(1) for more options for history
 
 HISTCONTROL=ignoreboth
 HISTSIZE=1000
 HISTFILESIZE=2000
 
-
 # append to the history file, don't overwrite it
 
 shopt -s histappend
-
 
 # save and reload history after each command finishes
 
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
-
 # use vim as default text editor
 
 export EDITOR=vim
 
-
 # check the window size after each command
 
 shopt -s checkwinsize
-
-
-# use >| instead of > for rewrite file with redirected stream
-
-set -o noclobber
-
 
 # various alias
 
@@ -123,16 +115,14 @@ alias share-this-directory='http-server -c-1 & ngrok http 8080 && kill $!'
 
 alias random-string='cat /dev/urandom | tr -cd "a-f0-9" | head -c 32'
 
-alias git-graph='git log --graph --full-history --all --color \
-        --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"'
-
+alias git-graph='git log --graph --full-history --all --color' \
+        '--pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"'
 
 # add ruby gems and snap packages to PATH
 
 export GEM_HOME="$HOME/gems"
 export PATH="$HOME/gems/bin:$PATH"
 export PATH="$PATH:/snap/bin"
-
 
 #######################################
 # Archive all documents, except node_modules, encrypt and split it
@@ -142,13 +132,23 @@ export PATH="$PATH:/snap/bin"
 backup-documents() {
     set -e
 
-    documents_folder_size=$(du -bs ~/Documents/ | cut -f1)
-    space_needed=$((2 * $documents_folder_size))
-    free_space=$(df --output=avail -B 1 . | tail -n 1)
+    local documents_folder_size
+    local documents_folder_size_h
+    local space_needed
+    local space_needed_h
+    local free_space
+    local free_space_h
 
-    echo "Documents folder size: $(numfmt --to iec $documents_folder_size)"
-    echo "Space needed: $(numfmt --to iec $space_needed)"
-    echo "Free space: $(numfmt --to iec $free_space)"
+    documents_folder_size=$(du -bs ~/Documents/ | cut -f1)
+    documents_folder_size_h=$(numfmt --to iec "${documents_folder_size}")
+    space_needed=$((2 * documents_folder_size))
+    space_needed_h=$(numfmt --to iec "${space_needed}")
+    free_space=$(df --output=avail -B 1 . | tail -n 1)
+    free_space_h=$(numfmt --to iec "${free_space}")
+
+    echo "Documents folder size: ${documents_folder_size_h}"
+    echo "Space needed: ${space_needed_h}"
+    echo "Free space: ${free_space_h}"
 
     if (( space_needed > free_space )); then
         echo "You need more free space to perform this."
@@ -156,11 +156,11 @@ backup-documents() {
     fi
 
     echo "Enter password:"
-    read -s password_for_archive
+    read -r -s password_for_archive
     echo "Enter the same password second time:"
-    read -s password_for_archive_copy
+    read -r -s password_for_archive_copy
 
-    if [[ $password_for_archive != $password_for_archive_copy ]]; then
+    if [[ "${password_for_archive}" != "${password_for_archive_copy}" ]]; then
         echo "Two entered passwords are different. It'll be safer to try again."
         return 1
     fi
@@ -170,7 +170,7 @@ backup-documents() {
     archive_filename="backup_${current_date}"
     echo "Archive name will be ${archive_filename}"
     echo "Archiving (this may take some time)..."
-    zip -r "${archive_filename}.zip" ~/Documents/ -x *node_modules*
+    zip -r "${archive_filename}.zip" ~/Documents/ -x -- *node_modules*
     echo "OK"
 
     echo "Testing archive..."
@@ -179,7 +179,7 @@ backup-documents() {
 
     echo "Encrypting archive (this may take some time)..."
     gpg --pinentry-mode=loopback --yes \
-        --passphrase $password_for_archive \
+        --passphrase "${password_for_archive}" \
         --output "${archive_filename}.gpg" \
         --symmetric "${archive_filename}.zip"
     echo "OK"
@@ -190,8 +190,8 @@ backup-documents() {
 
     echo "Splitting archive (this may take some time)..."
     split --bytes=500M "${archive_filename}.gpg"
-    mkdir -p $archive_filename
-    mv x* $archive_filename
+    mkdir -p "${archive_filename}"
+    mv x* "${archive_filename}"
     echo "OK"
 
     echo "Removing unsplitted archive..."
@@ -204,7 +204,6 @@ backup-documents() {
     notify-send "The backup has been created. It's time to copy it."
 }
 
-
 #######################################
 # Concat, decrypt and extract backup created with backup-documents()
 # Arguments:
@@ -214,7 +213,7 @@ extract-backup() {
     set -e
 
     echo "Enter password:"
-    read -s password_for_archive
+    read -r -s password_for_archive
     echo "OK"
 
     echo "Concatting files (this may take some time)..."
@@ -227,7 +226,7 @@ extract-backup() {
 
     echo "Decrypting archive (this may take some time)..."
     gpg --pinentry-mode=loopback --yes \
-        --passphrase $password_for_archive \
+        --passphrase "${password_for_archive}" \
         --output backup.zip \
         --decrypt backup.gpg
     echo "OK"
@@ -246,4 +245,3 @@ extract-backup() {
 
     echo "Finished."
 }
-

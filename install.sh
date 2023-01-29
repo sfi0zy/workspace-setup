@@ -3,7 +3,6 @@
 # This is the main install script. It shows UI, updates packages,
 # installs packages from the list and replaces configuration files for user.
 
-
 set -e
 
 if [ "$EUID" -ne 0 ]; then
@@ -12,7 +11,6 @@ if [ "$EUID" -ne 0 ]; then
 fi
 
 readonly USER_HOME="/home/${SUDO_USER}"
-
 
 #######################################
 # Check for available space
@@ -38,8 +36,6 @@ is_space_available() {
     return 0
 }
 
-
-
 #######################################
 # Show UI: the welcome message
 # Arguments:
@@ -55,7 +51,6 @@ say_welcome() {
         40 100 3>&1 1>&2 2>&3
 }
 
-
 #######################################
 # Show UI: yes/no option about data backup
 # Arguments:
@@ -68,7 +63,6 @@ make_sure_backup_is_created() {
         `"It's recommended to run this in a clean elementary OS 6.1 system." \
         40 100 3>&1 1>&2 2>&3
 }
-
 
 #######################################
 # Show UI: message about required software
@@ -92,7 +86,6 @@ say_about_required_software() {
         `"You'll be able to select additional software in the next step." \
         40 100 3>&1 1>&2 2>&3
 }
-
 
 #######################################
 # Show UI: checkboxes for additional software
@@ -135,9 +128,8 @@ request_additional_software_list() {
         --separate-output \
         3>&1 1>&2 2>&3)
 
-    echo $additional_software_list
+    echo "${additional_software_list}"
 }
-
 
 #######################################
 # Show UI: update everything
@@ -166,7 +158,6 @@ update_everything() {
         6 100 0 3>&1 1>&2 2>&3
 }
 
-
 #######################################
 # Install system utils
 # Arguments:
@@ -185,7 +176,6 @@ install_system_utils() {
     sudo apt-get install -y --reinstall org.gnome.fileroller
 }
 
-
 #######################################
 # Install git
 # Arguments:
@@ -195,7 +185,6 @@ install_git() {
     sudo apt-get install -y git
     sudo apt-get install -y gitk
 }
-
 
 #######################################
 # Install wingpanel indicator
@@ -220,14 +209,13 @@ install_wingpanel_indicator() {
         libindicator3-dev libwingpanel-dev indicator-application
     wget -q "${url}/${package}"
     sudo apt-get install -y "./${package}"
-    sudo -u $SUDO_USER mkdir -p $user_autostart_dir
-    sudo -u $SUDO_USER \
-        cp "/etc/xdg/autostart/${desktop_file}" $user_autostart_dir
-    sudo -u $SUDO_USER \
+    sudo -u "${SUDO_USER}" mkdir -p "${user_autostart_dir}"
+    sudo -u "${SUDO_USER}" \
+        cp "/etc/xdg/autostart/${desktop_file}" "${user_autostart_dir}"
+    sudo -u "${SUDO_USER}" \
         sed -i 's/^OnlyShowIn.*/OnlyShowIn=Unity;GNOME;Pantheon;/' \
             "${user_autostart_dir}/${desktop_file}"
 }
-
 
 #######################################
 # Install Google Chrome
@@ -242,7 +230,6 @@ install_google_chrome() {
     sudo apt-get install -y "./${package}"
 }
 
-
 #######################################
 # Install Mozilla Firefox
 # Arguments:
@@ -251,7 +238,6 @@ install_google_chrome() {
 install_firefox() {
     sudo apt-get install -y firefox
 }
-
 
 #######################################
 # Install Microsoft Edge
@@ -273,7 +259,6 @@ install_edge() {
     sudo apt-get install -y microsoft-edge-dev
 }
 
-
 #######################################
 # Install Skype
 # Arguments:
@@ -286,7 +271,6 @@ install_skype() {
     wget -q "${url}/${package}"
     sudo apt-get install -y "./${package}"
 }
-
 
 #######################################
 # Install Slack
@@ -302,7 +286,6 @@ install_slack() {
     wget -q "${url}/${package}"
     sudo apt-get install -y "./${package}"
 }
-
 
 #######################################
 # Install Telegram Desktop
@@ -322,21 +305,22 @@ install_telegram() {
     sudo snap install telegram-desktop
 
     # We change desktop files to keep icon in the dock after automatic updates
-    sudo -u $SUDO_USER \
+    sudo -u "${SUDO_USER}" \
         cp "/var/lib/snapd/desktop/applications/${desktop_file}" \
             "${USER_HOME}/${applications}/"
-    sudo -u $SUDO_USER \
+    sudo -u "${SUDO_USER}" \
         sed -i 's/telegram-desktop\/[0-9]\+\//telegram-desktop\/current\//g' \
             "${USER_HOME}/${applications}/${desktop_file}"
-    sudo -u $SUDO_USER touch "${USER_HOME}/${applications}/mimeapps.list"
-    sudo -u $SUDO_USER \
-        echo "[Default Applications]" \
-            >> "${USER_HOME}/${applications}/mimeapps.list"
-    sudo -u $SUDO_USER \
-        echo "x-scheme-handler/tg=${desktop_file}" \
-            >> "${USER_HOME}/${applications}/mimeapps.list"
-}
+    sudo -u "${SUDO_USER}" touch "${USER_HOME}/${applications}/mimeapps.list"
 
+    echo "[Default Applications]" \
+        | sudo -u "${SUDO_USER}" \
+            tee -a "${USER_HOME}/${applications}/mimeapps.list"
+
+    echo "x-scheme-handler/tg=${desktop_file}" \
+        | sudo -u "${SUDO_USER}" \
+            tee -a "${USER_HOME}/${applications}/mimeapps.list"
+}
 
 #######################################
 # Install Discord
@@ -348,10 +332,9 @@ install_discord() {
     local url="https://discord.com/api/download?platform=linux&format=deb"
     local package="discord.deb"
 
-    wget -q -O "./$package" $url
+    wget -q -O "./$package" "${url}"
     sudo apt-get install -y "./$package"
 }
-
 
 #######################################
 # Install VIM with frontend tools
@@ -366,69 +349,69 @@ install_vim() {
     local to="${USER_HOME}/.vim/bundle"
     local raw_from="https://raw.githubusercontent.com"
     local colors_dir="${USER_HOME}/.vim/colors"
+    local theme="atlantic-dark"
 
     sudo apt-get install -y vim
     sudo apt-get install -y shellcheck
 
-    sudo -u $SUDO_USER rm -rf "${USER_HOME}/.vim/autoload/"
-    sudo -u $SUDO_USER mkdir -p "${USER_HOME}/.vim/autoload"
-    sudo -u $SUDO_USER rm -rf "${USER_HOME}/.vim/bundle/"
-    sudo -u $SUDO_USER mkdir -p "${USER_HOME}/.vim/bundle"
-    sudo -u $SUDO_USER \
+    sudo -u "${SUDO_USER}" rm -rf "${USER_HOME}/.vim/autoload/"
+    sudo -u "${SUDO_USER}" mkdir -p "${USER_HOME}/.vim/autoload"
+    sudo -u "${SUDO_USER}" rm -rf "${USER_HOME}/.vim/bundle/"
+    sudo -u "${SUDO_USER}" mkdir -p "${USER_HOME}/.vim/bundle"
+    sudo -u "${SUDO_USER}" \
         curl -LSso "${USER_HOME}/.vim/autoload/pathogen.vim" \
             https://tpo.pe/pathogen.vim
 
     # It looks like git outputs a lot of stuff to everywhere, including stderr
     # and console UI becomes a mess. So we silent it.
-    sudo -u $SUDO_USER git clone --quiet \
+    sudo -u "${SUDO_USER}" git clone --quiet \
         "${from}/editorconfig/editorconfig-vim.git" \
         "${to}/editorconfig-vim" &>/dev/null
-    sudo -u $SUDO_USER git clone --quiet \
+    sudo -u "${SUDO_USER}" git clone --quiet \
         "${from}/mattn/emmet-vim.git" \
         "${to}/emmet-vim" &>/dev/null
-    sudo -u $SUDO_USER git clone --quiet \
+    sudo -u "${SUDO_USER}" git clone --quiet \
         "${from}/scrooloose/nerdtree.git" \
         "${to}/nerdtree" &>/dev/null
-    sudo -u $SUDO_USER git clone --quiet \
+    sudo -u "${SUDO_USER}" git clone --quiet \
         "${from}/vim-syntastic/syntastic.git" \
         "${to}/syntastic" &>/dev/null
-    sudo -u $SUDO_USER git clone --quiet \
+    sudo -u "${SUDO_USER}" git clone --quiet \
         "${from}/Yggdroot/indentLine.git" \
         "${to}/indentLine" &>/dev/null
-    sudo -u $SUDO_USER git clone --quiet \
+    sudo -u "${SUDO_USER}" git clone --quiet \
         "${from}/terryma/vim-multiple-cursors.git" \
         "${to}/vim-multiple-cursors" &>/dev/null
-    sudo -u $SUDO_USER git clone --quiet \
+    sudo -u "${SUDO_USER}" git clone --quiet \
         "${from}/vim-airline/vim-airline.git" \
         "${to}/vim-airline" &>/dev/null
-    sudo -u $SUDO_USER git clone --quiet \
+    sudo -u "${SUDO_USER}" git clone --quiet \
         "${from}/vim-airline/vim-airline-themes.git" \
         "${to}/vim-airline-themes" &>/dev/null
-    sudo -u $SUDO_USER git clone --quiet \
+    sudo -u "${SUDO_USER}" git clone --quiet \
         "${from}/pangloss/vim-javascript.git" \
         "${to}/vim-javascript" &>/dev/null
-    sudo -u $SUDO_USER git clone --quiet \
+    sudo -u "${SUDO_USER}" git clone --quiet \
         "${from}/groenewege/vim-less.git" \
         "${to}/vim-less" &>/dev/null
-    sudo -u $SUDO_USER git clone --quiet \
+    sudo -u "${SUDO_USER}" git clone --quiet \
         "${from}/digitaltoad/vim-pug.git" \
         "${to}/vim-pug" &>/dev/null
-    sudo -u $SUDO_USER git clone --quiet \
+    sudo -u "${SUDO_USER}" git clone --quiet \
         "${from}/tpope/vim-liquid.git" \
         "${to}/vim-liquid" &>/dev/null
-    sudo -u $SUDO_USER git clone --quiet \
+    sudo -u "${SUDO_USER}" git clone --quiet \
         "${from}/tikhomirov/vim-glsl.git" \
         "${to}/vim-glsl" &>/dev/null
 
-    sudo -u $SUDO_USER rm -rf "${colors_dir}"
-    sudo -u $SUDO_USER mkdir -p "${colors_dir}"
-    sudo -u $SUDO_USER wget -q \
-        "${raw_from}/sfi0zy/atlantic-dark.vim/master/colors/atlantic-dark.vim" \
+    sudo -u "${SUDO_USER}" rm -rf "${colors_dir}"
+    sudo -u "${SUDO_USER}" mkdir -p "${colors_dir}"
+    sudo -u "${SUDO_USER}" wget -q \
+        "${raw_from}/sfi0zy/${theme}.vim/master/colors/${theme}.vim" \
         -P "${colors_dir}"
 
-    sudo -u $SUDO_USER cp ./dotfiles/vimrc "${USER_HOME}/.vimrc"
+    sudo -u "${SUDO_USER}" cp ./dotfiles/vimrc "${USER_HOME}/.vimrc"
 }
-
 
 #######################################
 # Install Node.js with tools
@@ -451,7 +434,6 @@ install_node() {
     sudo npm i -g ngrok &>/dev/null
 }
 
-
 #######################################
 # Install Ruby
 # Arguments:
@@ -462,7 +444,6 @@ install_ruby() {
     sudo apt-get install -y ruby-bundler
 }
 
-
 #######################################
 # Install Docker
 # Arguments:
@@ -472,7 +453,6 @@ install_docker() {
     curl -fsSL https://get.docker.com -o get-docker.sh
     sudo sh ./get-docker.sh &>/dev/null
 }
-
 
 #######################################
 # Install Virtualbox
@@ -485,9 +465,9 @@ install_virtualbox() {
     # Known issue: something is wrong with virtualbox updates in elementary OS 6
     # It keep failing with errors like "kernels drivers not installed".
     # Installing linux-headers-* fixes this problem.
-    sudo apt-get install -y linux-headers-$(uname -r)
+    name=$(uname -r)
+    sudo apt-get install -y "linux-headers-${name}"
 }
-
 
 #######################################
 # Install LibreOffice
@@ -500,7 +480,6 @@ install_libreoffice() {
         /usr/share/applications/libreoffice-startcenter.desktop
 }
 
-
 #######################################
 # Install TeX
 # Arguments:
@@ -512,7 +491,6 @@ install_tex() {
     sudo apt-get install -y texlive-full
     sudo apt-get install -y gummy
 }
-
 
 #######################################
 # Install Darktable
@@ -536,7 +514,6 @@ install_darktable() {
     sudo apt-get install -y darktable
 }
 
-
 #######################################
 # Install Gimp
 # Arguments:
@@ -545,7 +522,6 @@ install_darktable() {
 install_gimp() {
     sudo apt-get install -y gimp
 }
-
 
 #######################################
 # Install Inkscape
@@ -559,7 +535,6 @@ install_inkscape() {
     sudo apt-get install -y inkscape
 }
 
-
 #######################################
 # Install Simple Scan
 # Arguments:
@@ -568,7 +543,6 @@ install_inkscape() {
 install_simple_scan() {
     sudo apt-get install -y simple-scan
 }
-
 
 #######################################
 # Install OBS
@@ -582,7 +556,6 @@ install_obs() {
     sudo apt-get install -y obs-studio
 }
 
-
 #######################################
 # Install Blender
 # Arguments:
@@ -591,7 +564,6 @@ install_obs() {
 install_blender() {
     sudo apt-get install -y blender
 }
-
 
 #######################################
 # Install Musescore
@@ -604,7 +576,6 @@ install_musescore() {
     sudo apt-get install -y musescore3
 }
 
-
 #######################################
 # Install Audacity
 # Arguments:
@@ -613,7 +584,6 @@ install_musescore() {
 install_audacity() {
     sudo apt-get install -y audacity
 }
-
 
 #######################################
 # Install Steam + required i386 architecture
@@ -628,7 +598,6 @@ install_steam() {
     sudo apt-get install -y steam
 }
 
-
 #######################################
 # Install Transmission
 # Arguments:
@@ -638,7 +607,6 @@ install_transmission() {
     sudo apt-get install -y transmission
 }
 
-
 #######################################
 # Install VLC
 # Arguments:
@@ -647,7 +615,6 @@ install_transmission() {
 install_vlc() {
   sudo apt-get install -y vlc
 }
-
 
 #######################################
 # Install software based on the software list
@@ -659,7 +626,7 @@ install_software() {
     local software_list=("$@")
     local percents=0
     local total_steps=${#software_list[@]}
-    local step=$((100 / $total_steps))
+    local step=$((100 / total_steps))
     local software
 
     {
@@ -700,14 +667,13 @@ install_software() {
                 "vlc") install_vlc ;;
             esac
 
-            percents=$(($percents + $step))
+            percents=$((percents + step))
         done
     } | whiptail \
         --title "Installing software (this may take some time)" \
         --gauge "Please wait..." \
         6 100 0 3>&1 1>&2 2>&3
 }
-
 
 #######################################
 # Remove unnecessary items from launcher
@@ -725,7 +691,6 @@ clean_launcher() {
         | sudo tee -a /usr/share/applications/org.pwmt.zathura.desktop
 }
 
-
 #######################################
 # Replace .bashrc for user
 # Globals:
@@ -735,11 +700,10 @@ clean_launcher() {
 #   None
 #######################################
 replace_bashrc() {
-    sudo -u $SUDO_USER cp "${USER_HOME}/.bashrc" "${USER_HOME}/.bashrc-original"
-    sudo -u $SUDO_USER rm "${USER_HOME}/.bashrc"
-    sudo -u $SUDO_USER cp ./dotfiles/bashrc "${USER_HOME}/.bashrc"
+    sudo -u "${SUDO_USER}" cp "${USER_HOME}/.bashrc" "${USER_HOME}/.bashrc-original"
+    sudo -u "${SUDO_USER}" rm "${USER_HOME}/.bashrc"
+    sudo -u "${SUDO_USER}" cp ./dotfiles/bashrc "${USER_HOME}/.bashrc"
 }
-
 
 #######################################
 # Start the installation
@@ -767,12 +731,10 @@ main() {
     all_software_list="${required_list} ${additional_list}"
 
     update_everything
-    install_software $all_software_list
+    install_software "${all_software_list}"
 
     clean_launcher
     replace_bashrc
 }
 
-
 main
-
