@@ -4,6 +4,8 @@
 #
 # Tested with elementary OS 6.1 Jólnir
 
+set -e
+
 palette1="#121212:#ff005f:#00af5f:#ffd787:#0087ff:#ff00ff:#00d4ff:#e4e4e4"
 palette2="#1c1c1c:#ff005f:#00ad5f:#ffd787:#0087ff:#ff00ff:#00d4ff:#00875f"
 
