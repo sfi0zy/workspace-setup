@@ -157,7 +157,7 @@ backup-documents() {
 
     echo "Enter password:"
     read -r -s password_for_archive
-    echo "Enter the same password second time:"
+    echo "Repeat password:"
     read -r -s password_for_archive_copy
 
     if [[ "${password_for_archive}" != "${password_for_archive_copy}" ]]; then
@@ -188,7 +188,7 @@ backup-documents() {
     rm "${archive_filename}.zip"
     echo "OK"
 
-    echo "Splitting archive (this may take some time)..."
+    echo "Splitting archive into chunks (this may take some time)..."
     split --bytes=500M "${archive_filename}.gpg"
     mkdir -p "${archive_filename}"
     mv x* "${archive_filename}"
@@ -216,7 +216,7 @@ extract-backup() {
     read -r -s password_for_archive
     echo "OK"
 
-    echo "Concatting files (this may take some time)..."
+    echo "Making a single archive file from chunks (this may take some time)..."
     cat x* > backup.gpg
     echo "OK"
 
@@ -239,7 +239,7 @@ extract-backup() {
     unzip backup.zip
     echo "OK"
 
-    echo "Removing archive..."
+    echo "Removing archive file..."
     rm backup.zip
     echo "OK"
 
