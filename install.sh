@@ -537,7 +537,7 @@ install_audacity() {
 install_steam() {
     # Steam requires another architecture. So we are going to multiverse.
     yes | sudo dpkg --add-architecture i386
-    sudo add-apt-repository multiverse
+    sudo add-apt-repository -y multiverse
     sudo apt-get update
     sudo apt-get install -y steam
 }
