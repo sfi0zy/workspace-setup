@@ -98,28 +98,28 @@ request_additional_software_list() {
         --title "Select additional software" \
         --checklist "Use space to select multiple." \
         40 100 27 \
-        "google-chrome" "Google Chrome" ON \
+        "google-chrome" "Google Chrome" OFF \
         "firefox" "Firefox browser" OFF \
         "edge" "Microsoft Edge (dev)" OFF \
         "skype" "Skype" OFF \
         "slack" "Slack" OFF \
-        "telegram" "Telegram-desktop" ON \
+        "telegram" "Telegram" OFF \
         "discord" "Discord" OFF \
-        "node" "Node.js (n + Node.js + NPM + http-server + ngrok)" ON \
+        "node" "Node.js (n + Node.js + NPM + http-server + ngrok)" OFF \
         "ruby" "Ruby language (ruby-full + ruby-bundler)" OFF \
         "virtualbox" "VirtualBox" OFF \
-        "libreoffice" "Full LibreOffice" ON \
-        "tex" "TEX + Gummy (about 10G disk space usage)" OFF \
-        "darktable" "Darktable" ON \
-        "gimp" "GIMP" ON \
-        "inkscape" "Inkscape" ON \
+        "libreoffice" "Full LibreOffice" OFF \
+        "tex" "TeX Live (full) + Gummy" OFF \
+        "darktable" "Darktable" OFF \
+        "gimp" "GIMP" OFF \
+        "inkscape" "Inkscape" OFF \
         "simple-scan" "Simple Scan" OFF \
         "obs" "OBS" OFF \
         "blender" "Blender" OFF \
-        "musescore" "Musescore 3" OFF \
+        "musescore" "Musescore" OFF \
         "audacity" "Audacity" OFF \
         "steam" "Steam" OFF \
-        "transmission" "Torrent client" OFF \
+        "transmission" "Transmission" OFF \
         "vlc" "VLC" OFF \
         --separate-output \
         3>&1 1>&2 2>&3)
