@@ -49,10 +49,10 @@ set synmaxcol=120
 colorscheme atlantic-dark
 let g:airline_theme='term'
 
-" highlight 80 and 120 columns
+" fill columns 80+ (saving join here for future tests)
 
 highlight ColorColumn ctermbg=232 guibg=#060606
-let &colorcolumn="80,".join(range(120,999),",")
+let &colorcolumn="80,".join(range(81,999),",")
 
 " highlight search results
 
