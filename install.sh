@@ -333,8 +333,6 @@ install_vim() {
     sudo -u "${SUDO_USER}" mkdir -p "${USER_HOME}/.vim/autoload"
     sudo -u "${SUDO_USER}" rm -rf "${USER_HOME}/.vim/bundle/"
     sudo -u "${SUDO_USER}" mkdir -p "${USER_HOME}/.vim/bundle"
-    sudo -u "${SUDO_USER}" rm -rf "${USER_HOME}/.vim/pack/"
-    sudo -u "${SUDO_USER}" mkdir -p "${USER_HOME}/.vim/pack"
     sudo -u "${SUDO_USER}" \
         curl -LSso "${USER_HOME}/.vim/autoload/pathogen.vim" \
             https://tpo.pe/pathogen.vim
@@ -375,10 +373,9 @@ install_vim() {
     sudo -u "${SUDO_USER}" git clone \
         "${from}/tikhomirov/vim-glsl.git" \
         "${to}/vim-glsl"
-
-    sudo -u "${SUDO_USER}" git clone --depth=1 \
-        "${from}/dense-analysis/ale.git" \
-        "${USER_HOME}/.vim/pack/plugins/start/ale"
+    sudo -u "${SUDO_USER}" git clone \
+        "${from}/dense-analysis/ale.git"
+        "${to}/ale"
 
     sudo -u "${SUDO_USER}" rm -rf "${colors_dir}"
     sudo -u "${SUDO_USER}" mkdir -p "${colors_dir}"
