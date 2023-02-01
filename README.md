@@ -63,7 +63,7 @@ cd /tmp
 wget https://github.com/sfi0zy/workspace-setup/archive/refs/heads/elementary-os-7.zip
 unzip elementary-os-7.zip
 cd workspace-setup-elementary-os-7
-make install
+./main.sh
 ```
 
 You'll be asked for a password (for sudo). Minimal gui will show some additional information and help you to select software from the list.
