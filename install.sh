@@ -347,9 +347,6 @@ install_vim() {
         "${from}/scrooloose/nerdtree.git" \
         "${to}/nerdtree"
     sudo -u "${SUDO_USER}" git clone \
-        "${from}/vim-syntastic/syntastic.git" \
-        "${to}/syntastic"
-    sudo -u "${SUDO_USER}" git clone \
         "${from}/Yggdroot/indentLine.git" \
         "${to}/indentLine"
     sudo -u "${SUDO_USER}" git clone \
@@ -376,6 +373,10 @@ install_vim() {
     sudo -u "${SUDO_USER}" git clone \
         "${from}/tikhomirov/vim-glsl.git" \
         "${to}/vim-glsl"
+
+    sudo -u "${SUDO_USER}" git clone --depth=1 \
+        "${from}/dense-analysis/ale.git" \
+        "${USER_HOME}/.vim/pack/plugins/start/ale"
 
     sudo -u "${SUDO_USER}" rm -rf "${colors_dir}"
     sudo -u "${SUDO_USER}" mkdir -p "${colors_dir}"
@@ -420,7 +421,7 @@ install_ruby() {
 install_virtualbox() {
     sudo apt-get install -y virtualbox
 
-    # Known issue: something is wrong with virtualbox updates in elementary OS 6
+    # Known issue: something is wrong with virtualbox updates in elementary OS
     # It keep failing with errors like "kernels drivers not installed".
     # Installing linux-headers-* fixes this problem.
     name=$(uname -r)
@@ -629,7 +630,8 @@ clean_launcher() {
 #   None
 #######################################
 replace_bashrc() {
-    sudo -u "${SUDO_USER}" cp "${USER_HOME}/.bashrc" "${USER_HOME}/.bashrc-original"
+    sudo -u "${SUDO_USER}" cp "${USER_HOME}/.bashrc" \
+        "${USER_HOME}/.bashrc-original"
     sudo -u "${SUDO_USER}" rm "${USER_HOME}/.bashrc"
     sudo -u "${SUDO_USER}" cp ./dotfiles/bashrc "${USER_HOME}/.bashrc"
 }
