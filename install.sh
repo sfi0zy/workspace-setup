@@ -149,12 +149,6 @@ install_system_utils() {
     sudo apt-get install -y preload
     sudo apt-get install -y snapd
     sudo apt-get install -y inotify-tools
-
-    # Fileroller options were hidden after a recent upgrade (bug?)
-    # Reinstalling helps to get them back.
-    # It's hard to say if the problem was resolved or not,
-    # but it's safer to keep this fix here.
-    sudo apt-get install -y --reinstall org.gnome.fileroller
 }
 
 #######################################
