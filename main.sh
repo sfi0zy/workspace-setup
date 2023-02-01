@@ -19,12 +19,11 @@ set_terminal_visual_settings() {
     gsettings set io.elementary.terminal.settings theme "custom"
 }
 
+# shellcheck disable=2181
 main() {
-    local is_ok
+    sudo ./install.sh
 
-    is_ok=$(sudo ./install.sh)
-
-    if [[ $is_ok -ne 0 ]]; then
+    if [[ $? -ne 0 ]]; then
         echo "Something gone wrong. Check the log above."
         exit 1
     fi
