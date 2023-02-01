@@ -333,6 +333,8 @@ install_vim() {
     sudo -u "${SUDO_USER}" mkdir -p "${USER_HOME}/.vim/autoload"
     sudo -u "${SUDO_USER}" rm -rf "${USER_HOME}/.vim/bundle/"
     sudo -u "${SUDO_USER}" mkdir -p "${USER_HOME}/.vim/bundle"
+    sudo -u "${SUDO_USER}" rm -rf "${USER_HOME}/.vim/pack/"
+    sudo -u "${SUDO_USER}" mkdir -p "${USER_HOME}/.vim/pack"
     sudo -u "${SUDO_USER}" \
         curl -LSso "${USER_HOME}/.vim/autoload/pathogen.vim" \
             https://tpo.pe/pathogen.vim
