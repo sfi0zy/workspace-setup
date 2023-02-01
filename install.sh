@@ -76,16 +76,10 @@ say_about_required_software() {
         --title "Software" \
         --msgbox \
         "The following packages will be installed:\n\n"`
-        `"curl\n"`
-        `"software-properties-common\n"`
-        `"snapd\n"`
-        `"preload\n"`
+        `"curl, software-properties-common, snapd, preload, inotify-tools\n"`
         `"wingpanel-indicator\n"`
-        `"inotify-tools\n"`
-        `"git\n"`
-        `"gitk\n"`
-        `"vim (configured as frontend IDE)\n"`
-        `"shellcheck\n\n"`
+        `"git + gitk\n"`
+        `"vim + shellcheck\n\n"`
         `"You'll be able to select additional software in the next step." \
         40 100 3>&1 1>&2 2>&3
 }
