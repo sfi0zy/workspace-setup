@@ -343,43 +343,43 @@ install_vim() {
         curl -LSso "${USER_HOME}/.vim/autoload/pathogen.vim" \
             https://tpo.pe/pathogen.vim
 
-    sudo -u "${SUDO_USER}" git clone --quiet \
+    sudo -u "${SUDO_USER}" git clone \
         "${from}/editorconfig/editorconfig-vim.git" \
         "${to}/editorconfig-vim"
-    sudo -u "${SUDO_USER}" git clone --quiet \
+    sudo -u "${SUDO_USER}" git clone \
         "${from}/mattn/emmet-vim.git" \
         "${to}/emmet-vim"
-    sudo -u "${SUDO_USER}" git clone --quiet \
+    sudo -u "${SUDO_USER}" git clone \
         "${from}/scrooloose/nerdtree.git" \
         "${to}/nerdtree"
-    sudo -u "${SUDO_USER}" git clone --quiet \
+    sudo -u "${SUDO_USER}" git clone \
         "${from}/vim-syntastic/syntastic.git" \
         "${to}/syntastic"
-    sudo -u "${SUDO_USER}" git clone --quiet \
+    sudo -u "${SUDO_USER}" git clone \
         "${from}/Yggdroot/indentLine.git" \
         "${to}/indentLine"
-    sudo -u "${SUDO_USER}" git clone --quiet \
+    sudo -u "${SUDO_USER}" git clone \
         "${from}/terryma/vim-multiple-cursors.git" \
         "${to}/vim-multiple-cursors"
-    sudo -u "${SUDO_USER}" git clone --quiet \
+    sudo -u "${SUDO_USER}" git clone \
         "${from}/vim-airline/vim-airline.git" \
         "${to}/vim-airline"
-    sudo -u "${SUDO_USER}" git clone --quiet \
+    sudo -u "${SUDO_USER}" git clone \
         "${from}/vim-airline/vim-airline-themes.git" \
         "${to}/vim-airline-themes"
-    sudo -u "${SUDO_USER}" git clone --quiet \
+    sudo -u "${SUDO_USER}" git clone \
         "${from}/pangloss/vim-javascript.git" \
         "${to}/vim-javascript"
-    sudo -u "${SUDO_USER}" git clone --quiet \
+    sudo -u "${SUDO_USER}" git clone \
         "${from}/groenewege/vim-less.git" \
         "${to}/vim-less"
-    sudo -u "${SUDO_USER}" git clone --quiet \
+    sudo -u "${SUDO_USER}" git clone \
         "${from}/digitaltoad/vim-pug.git" \
         "${to}/vim-pug"
-    sudo -u "${SUDO_USER}" git clone --quiet \
+    sudo -u "${SUDO_USER}" git clone \
         "${from}/tpope/vim-liquid.git" \
         "${to}/vim-liquid"
-    sudo -u "${SUDO_USER}" git clone --quiet \
+    sudo -u "${SUDO_USER}" git clone \
         "${from}/tikhomirov/vim-glsl.git" \
         "${to}/vim-glsl"
 
