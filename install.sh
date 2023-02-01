@@ -133,30 +133,13 @@ request_additional_software_list() {
 }
 
 #######################################
-# Show UI: update everything
+# Update everything
 # Arguments:
 #   None
 #######################################
 update_everything() {
-    local updates_available
-
-    {
-        sudo apt-get update
-
-        updates_available=$(apt-get upgrade -s \
-            | grep -P '^\d+ upgraded' \
-            | cut -d " " -f1)
-
-        echo "XXX"
-        echo "1"
-        echo "Updating ${updates_available} packages. This may take some time."
-        echo "XXX"
-
-        sudo apt-get -y upgrade
-    } | whiptail \
-        --title "Updating packages" \
-        --gauge "Preparing..." \
-        6 100 0 3>&1 1>&2 2>&3
+    sudo apt-get update
+    sudo apt-get -y upgrade
 }
 
 #######################################
@@ -364,47 +347,45 @@ install_vim() {
         curl -LSso "${USER_HOME}/.vim/autoload/pathogen.vim" \
             https://tpo.pe/pathogen.vim
 
-    # It looks like git outputs a lot of stuff to everywhere, including stderr
-    # and console UI becomes a mess. So we silent it.
     sudo -u "${SUDO_USER}" git clone --quiet \
         "${from}/editorconfig/editorconfig-vim.git" \
-        "${to}/editorconfig-vim" &>/dev/null
+        "${to}/editorconfig-vim"
     sudo -u "${SUDO_USER}" git clone --quiet \
         "${from}/mattn/emmet-vim.git" \
-        "${to}/emmet-vim" &>/dev/null
+        "${to}/emmet-vim"
     sudo -u "${SUDO_USER}" git clone --quiet \
         "${from}/scrooloose/nerdtree.git" \
-        "${to}/nerdtree" &>/dev/null
+        "${to}/nerdtree"
     sudo -u "${SUDO_USER}" git clone --quiet \
         "${from}/vim-syntastic/syntastic.git" \
-        "${to}/syntastic" &>/dev/null
+        "${to}/syntastic"
     sudo -u "${SUDO_USER}" git clone --quiet \
         "${from}/Yggdroot/indentLine.git" \
-        "${to}/indentLine" &>/dev/null
+        "${to}/indentLine"
     sudo -u "${SUDO_USER}" git clone --quiet \
         "${from}/terryma/vim-multiple-cursors.git" \
-        "${to}/vim-multiple-cursors" &>/dev/null
+        "${to}/vim-multiple-cursors"
     sudo -u "${SUDO_USER}" git clone --quiet \
         "${from}/vim-airline/vim-airline.git" \
-        "${to}/vim-airline" &>/dev/null
+        "${to}/vim-airline"
     sudo -u "${SUDO_USER}" git clone --quiet \
         "${from}/vim-airline/vim-airline-themes.git" \
-        "${to}/vim-airline-themes" &>/dev/null
+        "${to}/vim-airline-themes"
     sudo -u "${SUDO_USER}" git clone --quiet \
         "${from}/pangloss/vim-javascript.git" \
-        "${to}/vim-javascript" &>/dev/null
+        "${to}/vim-javascript"
     sudo -u "${SUDO_USER}" git clone --quiet \
         "${from}/groenewege/vim-less.git" \
-        "${to}/vim-less" &>/dev/null
+        "${to}/vim-less"
     sudo -u "${SUDO_USER}" git clone --quiet \
         "${from}/digitaltoad/vim-pug.git" \
-        "${to}/vim-pug" &>/dev/null
+        "${to}/vim-pug"
     sudo -u "${SUDO_USER}" git clone --quiet \
         "${from}/tpope/vim-liquid.git" \
-        "${to}/vim-liquid" &>/dev/null
+        "${to}/vim-liquid"
     sudo -u "${SUDO_USER}" git clone --quiet \
         "${from}/tikhomirov/vim-glsl.git" \
-        "${to}/vim-glsl" &>/dev/null
+        "${to}/vim-glsl"
 
     sudo -u "${SUDO_USER}" rm -rf "${colors_dir}"
     sudo -u "${SUDO_USER}" mkdir -p "${colors_dir}"
@@ -422,18 +403,13 @@ install_vim() {
 #######################################
 install_node() {
     sudo apt-get install -y nodejs npm
-
-    # npm outputs a lot of stuff and makes or UI look like mess.
-    # --quiet and --silent flags doesn't really work.
-    # So we silent it in a rude way.
-    sudo npm install -g n &>/dev/null
-
+    sudo npm install -g n
     sudo n latest
 
     # http-server and ngrok are used in .bashrc to create server one-liners
     # called serve-this-directory and share-this-directory.
-    sudo npm i -g http-server &>/dev/null
-    sudo npm i -g ngrok &>/dev/null
+    sudo npm i -g http-server
+    sudo npm i -g ngrok
 }
 
 #######################################
@@ -453,7 +429,7 @@ install_ruby() {
 #######################################
 install_docker() {
     curl -fsSL https://get.docker.com -o get-docker.sh
-    sudo sh ./get-docker.sh &>/dev/null
+    sudo sh ./get-docker.sh
 }
 
 #######################################
@@ -510,7 +486,7 @@ install_darktable() {
         | sudo tee /etc/apt/sources.list.d/graphics:darktable.list
     curl -fsSL "https://${repo}:${name}/${os}/Release.key" \
         | gpg --dearmor \
-        | sudo tee /etc/apt/trusted.gpg.d/graphics_darktable.gpg > /dev/null
+        | sudo tee /etc/apt/trusted.gpg.d/graphics_darktable.gpg
 
     sudo apt-get update
     sudo apt-get install -y darktable
@@ -626,55 +602,40 @@ install_vlc() {
 #######################################
 install_software() {
     local software_list=("$@")
-    local percents=0
-    local total_steps=${#software_list[@]}
-    local step=$((100 / total_steps))
     local software
 
-    {
-        for software in "${software_list[@]}"; do
-            echo "XXX"
-            echo "${percents}"
-            echo "Installing ${software}..."
-            echo "XXX"
-
-            case "${software}" in
-                "system-utils") install_system_utils ;;
-                "git") install_git ;;
-                "wingpanel-indicator") install_wingpanel_indicator ;;
-                "google-chrome") install_google_chrome ;;
-                "firefox") install_firefox ;;
-                "edge") install_edge ;;
-                "skype") install_skype ;;
-                "slack") install_slack ;;
-                "telegram") install_telegram ;;
-                "discord") install_discord ;;
-                "vim") install_vim ;;
-                "node") install_node ;;
-                "ruby") install_ruby ;;
-                "docker") install_docker ;;
-                "virtualbox") install_virtualbox ;;
-                "libreoffice") install_libreoffice ;;
-                "tex") install_tex ;;
-                "darktable") install_darktable ;;
-                "gimp") install_gimp ;;
-                "inkscape") install_inkscape ;;
-                "simple-scan") install_simple_scan ;;
-                "obs") install_obs ;;
-                "blender") install_blender ;;
-                "musescore") install_musescore ;;
-                "audacity") install_audacity ;;
-                "steam") install_steam ;;
-                "transmission") install_transmission ;;
-                "vlc") install_vlc ;;
-            esac
-
-            percents=$((percents + step))
-        done
-    } | whiptail \
-        --title "Installing software (this may take some time)" \
-        --gauge "Please wait..." \
-        6 100 0 3>&1 1>&2 2>&3
+    for software in "${software_list[@]}"; do
+        case "${software}" in
+            "system-utils") install_system_utils ;;
+            "git") install_git ;;
+            "wingpanel-indicator") install_wingpanel_indicator ;;
+            "google-chrome") install_google_chrome ;;
+            "firefox") install_firefox ;;
+            "edge") install_edge ;;
+            "skype") install_skype ;;
+            "slack") install_slack ;;
+            "telegram") install_telegram ;;
+            "discord") install_discord ;;
+            "vim") install_vim ;;
+            "node") install_node ;;
+            "ruby") install_ruby ;;
+            "docker") install_docker ;;
+            "virtualbox") install_virtualbox ;;
+            "libreoffice") install_libreoffice ;;
+            "tex") install_tex ;;
+            "darktable") install_darktable ;;
+            "gimp") install_gimp ;;
+            "inkscape") install_inkscape ;;
+            "simple-scan") install_simple_scan ;;
+            "obs") install_obs ;;
+            "blender") install_blender ;;
+            "musescore") install_musescore ;;
+            "audacity") install_audacity ;;
+            "steam") install_steam ;;
+            "transmission") install_transmission ;;
+            "vlc") install_vlc ;;
+        esac
+    done
 }
 
 #######################################
