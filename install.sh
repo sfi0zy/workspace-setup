@@ -76,8 +76,8 @@ say_about_required_software() {
         --title "Software" \
         --msgbox \
         "The following packages will be installed:\n\n"`
-        `"curl, software-properties-common, snapd, preload, inotify-tools\n"`
-        `"wingpanel-indicator\n"`
+        `"curl, software-properties-common, snapd, build-essential\n"`
+        `"inotify-tools, preload, wingpanel-indicator\n"`
         `"git + gitk\n"`
         `"vim + shellcheck\n\n"`
         `"You'll be able to select additional software in the next step." \
@@ -148,6 +148,7 @@ install_system_utils() {
     sudo apt-get install -y preload
     sudo apt-get install -y snapd
     sudo apt-get install -y inotify-tools
+    sudo apt-get install -y build-essential
 }
 
 #######################################
