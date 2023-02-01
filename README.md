@@ -63,9 +63,9 @@ Then download this repository as an archive, extract it and start the process.
 
 ```sh
 cd /tmp
-wget https://github.com/sfi0zy/workspace-setup/archive/refs/heads/main.zip
-unzip main.zip
-cd workspace-setup-main
+wget https://github.com/sfi0zy/workspace-setup/archive/refs/heads/v7.zip
+unzip v7.zip
+cd workspace-setup-7
 make install
 ```
 
