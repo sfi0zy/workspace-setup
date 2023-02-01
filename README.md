@@ -59,14 +59,14 @@ sudo apt update
 sudo apt upgrade
 ```
 
-Then download this repository as an archive, extract it and run main script.
+Then download this repository as an archive, extract it and start the process.
 
 ```sh
 cd /tmp
 wget https://github.com/sfi0zy/workspace-setup/archive/refs/heads/main.zip
 unzip main.zip
 cd workspace-setup-main
-./main.sh
+make install
 ```
 
 You'll be asked for a password (for sudo). Minimal gui will show some additional information and help you to select software from the list.
