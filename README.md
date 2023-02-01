@@ -1,7 +1,5 @@
 # Workspace setup for elementary OS 7
 
-![screenshot](./screenshot.jpg)
-
 These scripts install different software, return tray icons, clean up in the launcher, configure vim as a simple frontend ide, and add visual settings for the bash and the standard terminal.
 
 ## WARNINGS
