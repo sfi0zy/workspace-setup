@@ -107,7 +107,6 @@ request_additional_software_list() {
         "discord" "Discord" OFF \
         "node" "Node.js (n + Node.js + NPM + http-server + ngrok)" ON \
         "ruby" "Ruby language (ruby-full + ruby-bundler)" OFF \
-        "docker" "Docker" OFF \
         "virtualbox" "VirtualBox" OFF \
         "libreoffice" "Full LibreOffice" ON \
         "tex" "TEX + Gummy (about 10G disk space usage)" OFF \
@@ -413,16 +412,6 @@ install_ruby() {
 }
 
 #######################################
-# Install Docker
-# Arguments:
-#   None
-#######################################
-install_docker() {
-    curl -fsSL https://get.docker.com -o get-docker.sh
-    sudo sh ./get-docker.sh
-}
-
-#######################################
 # Install Virtualbox
 # Arguments:
 #   None
@@ -596,7 +585,6 @@ install_software() {
             "vim") install_vim ;;
             "node") install_node ;;
             "ruby") install_ruby ;;
-            "docker") install_docker ;;
             "virtualbox") install_virtualbox ;;
             "libreoffice") install_libreoffice ;;
             "tex") install_tex ;;

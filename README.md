@@ -27,7 +27,6 @@ These scripts install different software, return tray icons, clean up in the lau
     - VIM (configured as a frontend IDE) + ShellCheck
     - NodeJS + NPM + n + some global packages (server one-liners)
     - Ruby
-    - Docker
     - VirtualBox
 - Writing tools:
     - LibreOffice
