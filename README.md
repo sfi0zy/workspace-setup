@@ -1,4 +1,4 @@
-# Workspace setup for elementary OS 6
+# Workspace setup for elementary OS 7
 
 ![screenshot](./screenshot.jpg)
 

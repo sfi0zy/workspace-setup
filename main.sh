@@ -2,7 +2,7 @@
 #
 # Re-create my workspace with selected software.
 #
-# Tested with elementary OS 6.1 Jólnir
+# Created for elementary OS 7
 
 set -e
 

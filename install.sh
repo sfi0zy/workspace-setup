@@ -2,6 +2,8 @@
 #
 # This is the main install script. It shows UI, updates packages,
 # installs packages from the list and replaces configuration files for user.
+#
+# Created for elementary OS 7
 
 set -e
 
