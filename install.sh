@@ -62,7 +62,7 @@ make_sure_backup_is_created() {
     whiptail \
         --title "Are you sure?" \
         --yesno "Did you make full backup of your data?\n"`
-        `"It's recommended to run this in a clean elementary OS 6.1 system." \
+        `"It's recommended to run this in a clean elementary OS 7 system." \
         40 100 3>&1 1>&2 2>&3
 }
 
