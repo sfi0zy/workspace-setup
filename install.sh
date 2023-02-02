@@ -454,7 +454,7 @@ install_tex() {
     # We install texlive-full to get ability to open every *.tex document
     # and it will be compiled. We don't need to think. It just works.
     sudo apt-get install -y texlive-full
-    sudo apt-get install -y gummy
+    sudo apt-get install -y gummi
 }
 
 #######################################
