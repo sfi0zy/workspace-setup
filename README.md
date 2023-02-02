@@ -72,9 +72,15 @@ Installation will take some time. Then restart your computer, add SSH keys if ne
 
 ## Useful links
 
+**elementary OS website:**
+
 https://elementary.io/
 
+**First time Git setup:**
+
 https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup
+
+**How to generate SSH keys and add them to GitHub account:**
 
 https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
 
