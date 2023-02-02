@@ -374,7 +374,7 @@ install_vim() {
         "${from}/tikhomirov/vim-glsl.git" \
         "${to}/vim-glsl"
     sudo -u "${SUDO_USER}" git clone \
-        "${from}/dense-analysis/ale.git"
+        "${from}/dense-analysis/ale.git" \
         "${to}/ale"
 
     sudo -u "${SUDO_USER}" rm -rf "${colors_dir}"
