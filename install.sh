@@ -78,8 +78,8 @@ say_about_required_software() {
         `"vim + shellcheck + some vim plugins\n"`
         `"git + gitk\n"`
         `"wingpanel-indicator (tray icons will be back)\n"`
-        `"snapd (+ some additional software will be installed from snap)\n"`
-        `"curl + build-essential (get curl and make back!)\n\n"`
+        `"snapd (+ some additional software in the next step will use it)\n"`
+        `"curl + build-essential (get curl and make back!)\n"`
         `"preload (makes system a bit faster)\n"`
         `"software-properties-common (we need them sometimes, don't we?)\n"`
         `"inotify-tools (for watching files in some projects)\n"`
@@ -102,7 +102,7 @@ request_additional_software_list() {
     local additional_software_list
 
     additional_software_list=$(whiptail \
-        --title "What do you want to install?" \
+        --title "What else do you want to install?" \
         --checklist "Use space to select multiple items." \
         40 100 27 \
         "google-chrome" "Google Chrome" OFF \
