@@ -45,10 +45,10 @@ is_space_available() {
 #######################################
 say_welcome() {
     whiptail \
-        --title "Welcome to workspace setup" \
+        --title "Welcome to workspace setup!" \
         --msgbox \
         "This script will re-create my workspace.\n\n"`
-        `"You need stable internet connection to download all packages.\n\n"`
+        `"You'll need stable internet connection to download software.\n\n"`
         `"Press OK to continue." \
         40 100 3>&1 1>&2 2>&3
 }
@@ -61,8 +61,7 @@ say_welcome() {
 make_sure_backup_is_created() {
     whiptail \
         --title "Are you sure?" \
-        --yesno "Did you make full backup of your data?\n"`
-        `"It's recommended to run this in a clean elementary OS 7 system." \
+        --yesno "Did you make full backup of your data?\n" \
         40 100 3>&1 1>&2 2>&3
 }
 
@@ -73,13 +72,21 @@ make_sure_backup_is_created() {
 #######################################
 say_about_required_software() {
     whiptail \
-        --title "Software" \
+        --title "What to expect?" \
         --msgbox \
         "The following packages will be installed:\n\n"`
-        `"curl, software-properties-common, snapd, build-essential\n"`
-        `"inotify-tools, preload, wingpanel-indicator\n"`
+        `"vim + shellcheck + some vim plugins\n"`
         `"git + gitk\n"`
-        `"vim + shellcheck\n\n"`
+        `"wingpanel-indicator (tray icons will be back)\n"`
+        `"snapd (+ some additional software will be installed from snap)\n"`
+        `"curl + build-essential (get curl and make back!)\n\n"`
+        `"preload (makes system a bit faster)\n"`
+        `"software-properties-common (we need them sometimes, don't we?)\n"`
+        `"inotify-tools (for watching files in some projects)\n"`
+        `"Also:\n"`
+        `".bashrc will be replaced.\n"`
+        `"Some 'wtf is this?' icons will be hidden from launcher.\n"`
+        `"Terminal visual settings will be changed.\n\n"`
         `"You'll be able to select additional software in the next step." \
         40 100 3>&1 1>&2 2>&3
 }
@@ -95,8 +102,8 @@ request_additional_software_list() {
     local additional_software_list
 
     additional_software_list=$(whiptail \
-        --title "Select additional software" \
-        --checklist "Use space to select multiple." \
+        --title "What do you want to install?" \
+        --checklist "Use space to select multiple items." \
         40 100 27 \
         "google-chrome" "Google Chrome" OFF \
         "firefox" "Firefox browser" OFF \
