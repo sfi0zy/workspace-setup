@@ -625,6 +625,12 @@ clean_launcher() {
         | sudo tee -a /usr/share/applications/display-im6.q16.desktop
     echo 'NoDisplay=true' \
         | sudo tee -a /usr/share/applications/org.pwmt.zathura.desktop
+    echo 'NoDisplay=true' \
+        | sudo tee -a /usr/share/applications/xpdf.desktop
+    echo 'NoDisplay=true' \
+        | sudo tee -a /usr/share/applications/vprerex.desktop
+    echo 'NoDisplay=true' \
+        | sudo tee -a /usr/share/applications/org.fcitx.Fcitx5.desktop
 }
 
 #######################################
