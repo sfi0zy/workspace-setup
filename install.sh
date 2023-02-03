@@ -463,6 +463,17 @@ install_tex() {
 #   None
 #######################################
 install_darktable() {
+    # The darktable version in the standard repository is really outdated.
+    # We install the latest possible version for ubuntu 22.04.
+    local url="http://download.opensuse.org/repositories"
+    local repo_url="${url}/graphics:/darktable/xUbuntu_22.04"
+
+    echo "deb ${repo_url}/ /" \
+        | sudo tee /etc/apt/sources.list.d/graphics:darktable.list
+    curl -fsSL "${repo_url}/Release.key" \
+        | gpg --dearmor \
+        | sudo tee /etc/apt/trusted.gpg.d/graphics_darktable.gpg > /dev/null
+    sudo apt-get update
     sudo apt-get install -y darktable
 }
 
