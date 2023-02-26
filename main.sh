@@ -1,8 +1,8 @@
 #!/bin/bash
 #
-# Re-create my workspace with selected software.
+# Re-create my workspace with the selected software.
 #
-# Created for elementary OS 7
+# Created for the elementary OS 7
 
 set -e
 

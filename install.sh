@@ -1,9 +1,9 @@
 #!/bin/bash
 #
-# This is the main install script. It shows UI, updates packages,
-# installs packages from the list and replaces configuration files for user.
+# This is the main install script. It shows the UI, updates the packages,
+# installs packages from the list and replaces the configuration files.
 #
-# Created for elementary OS 7
+# Created for the elementary OS 7
 
 set -e
 
@@ -15,7 +15,7 @@ fi
 readonly USER_HOME="/home/${SUDO_USER}"
 
 #######################################
-# Check for available space
+# Check for the available space
 # Arguments:
 #   None
 # Outputs:
@@ -48,25 +48,25 @@ say_welcome() {
         --title "Welcome to workspace setup!" \
         --msgbox \
         "This script will re-create my workspace.\n\n"`
-        `"You'll need stable internet connection to download software.\n\n"`
+        `"You'll need a stable internet connection to download the software.\n\n"`
         `"Press OK to continue." \
         40 100 3>&1 1>&2 2>&3
 }
 
 #######################################
-# Show UI: yes/no option about data backup
+# Show UI: yes/no option about the data backup
 # Arguments:
 #   None
 #######################################
 make_sure_backup_is_created() {
     whiptail \
         --title "Are you sure?" \
-        --yesno "Did you make full backup of your data?\n" \
+        --yesno "Did you make the backup of your data?\n" \
         40 100 3>&1 1>&2 2>&3
 }
 
 #######################################
-# Show UI: message about required software
+# Show UI: the message about the required software
 # Arguments:
 #   None
 #######################################
@@ -77,22 +77,22 @@ say_about_required_software() {
         "The following packages will be installed:\n\n"`
         `"vim + shellcheck + some vim plugins\n"`
         `"git + gitk\n"`
-        `"wingpanel-indicator (tray icons will be back)\n"`
+        `"wingpanel-indicator (old tray icons will be back)\n"`
         `"snapd (+ some additional software in the next step will use it)\n"`
         `"curl + build-essential (get curl and make back!)\n"`
-        `"preload (makes system a bit faster)\n"`
+        `"preload (makes the system a bit faster)\n"`
         `"software-properties-common (we need them sometimes, don't we?)\n"`
         `"inotify-tools (for watching files in some projects)\n"`
         `"Also:\n"`
         `".bashrc will be replaced.\n"`
         `"Some 'wtf is this?' icons will be hidden from launcher.\n"`
         `"Terminal visual settings will be changed.\n\n"`
-        `"You'll be able to select additional software in the next step." \
+        `"You'll be able to select the additional software in the next step." \
         40 100 3>&1 1>&2 2>&3
 }
 
 #######################################
-# Show UI: checkboxes for additional software
+# Show UI: the checkboxes for the additional software
 # Arguments:
 #   None
 # Outputs:
@@ -103,7 +103,7 @@ request_additional_software_list() {
 
     additional_software_list=$(whiptail \
         --title "What else do you want to install?" \
-        --checklist "Use space to select multiple items." \
+        --checklist "Use the space to select multiple items." \
         40 100 27 \
         "google-chrome" "Google Chrome" OFF \
         "firefox" "Firefox browser" OFF \
@@ -260,7 +260,7 @@ install_skype() {
 #   None
 #######################################
 install_slack() {
-    # Slack doesn't have "current" or "latest" url (at least now).
+    # Slack doesn't have the "current" or "latest" url (at least for now).
     # So we install a little outdated version. It'll update itself later.
     local url="https://downloads.slack-edge.com/releases/linux/4.22.0/prod/x64"
     local package="slack-desktop-4.22.0-amd64.deb"
@@ -282,11 +282,11 @@ install_telegram() {
     local applications=".local/share/applications"
 
     # There is a telegram-desktop package in the official repository,
-    # but is almost always outdated and sometimes works in strange ways.
+    # but is's almost always outdated and sometimes it works in strange ways.
     # Snap package is much more stable.
     sudo snap install telegram-desktop
 
-    # We change desktop files to keep icon in the dock after automatic updates
+    # We change desktop files to keep icon in the dock after the automatic updates
     sudo -u "${SUDO_USER}" \
         cp "/var/lib/snapd/desktop/applications/${desktop_file}" \
             "${USER_HOME}/${applications}/"
@@ -310,7 +310,7 @@ install_telegram() {
 #   None
 #######################################
 install_discord() {
-    # It doesn't have direct link to *.deb
+    # It doesn't have direct link to the *.deb
     local url="https://discord.com/api/download?platform=linux&format=deb"
     local package="discord.deb"
 
@@ -403,7 +403,7 @@ install_node() {
     sudo npm install -g n
     sudo n latest
 
-    # http-server and ngrok are used in .bashrc to create server one-liners
+    # http-server and ngrok are used in .bashrc to create the server one-liners
     # called serve-this-directory and share-this-directory.
     sudo npm i -g http-server
     sudo npm i -g ngrok
@@ -427,9 +427,9 @@ install_ruby() {
 install_virtualbox() {
     sudo apt-get install -y virtualbox
 
-    # Known issue: something is wrong with virtualbox updates in elementary OS
+    # Known issue: something is wrong with the virtualbox updates.
     # It keep failing with errors like "kernels drivers not installed".
-    # Installing linux-headers-* fixes this problem.
+    # Installing the linux-headers-* fixes this problem.
     name=$(uname -r)
     sudo apt-get install -y "linux-headers-${name}"
 }
@@ -451,7 +451,7 @@ install_libreoffice() {
 #   None
 #######################################
 install_tex() {
-    # We install texlive-full to get ability to open every *.tex document
+    # We install texlive-full to get the ability to open every *.tex document
     # and it will be compiled. We don't need to think. It just works.
     sudo apt-get install -y texlive-full
     sudo apt-get install -y gummi
@@ -581,7 +581,6 @@ install_vlc() {
 
 #######################################
 # Install software based on the software list
-# Show UI: progress bar
 # Arguments:
 #   Software list, names, separated with spaces
 #######################################

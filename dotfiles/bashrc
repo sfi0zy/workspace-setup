@@ -63,7 +63,7 @@ set_bash_prompt() {
 
 PROMPT_COMMAND=set_bash_prompt
 
-# see bash(1) for more options for history
+# see bash(1) for more options for the history
 
 HISTCONTROL=ignoreboth
 HISTSIZE=1000
@@ -73,11 +73,11 @@ HISTFILESIZE=2000
 
 shopt -s histappend
 
-# save and reload history after each command finishes
+# save and reload the history after each command
 
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
-# use vim as default text editor
+# use vim as the default text editor
 
 export EDITOR=vim
 
@@ -165,44 +165,44 @@ backup-documents() {
     echo "OK"
     current_date=$(date '+%Y-%j')
     archive_filename="backup_${current_date}"
-    echo "Archive name will be ${archive_filename}"
+    echo "The archive name will be ${archive_filename}"
     echo "Archiving (this may take some time)..."
     zip -r "${archive_filename}.zip" ~/Documents/ -x -- *node_modules*
     echo "OK"
 
-    echo "Testing archive..."
+    echo "Testing the archive..."
     unzip -t "${archive_filename}.zip"
     echo "OK"
 
-    echo "Encrypting archive (this may take some time)..."
+    echo "Encrypting the archive (this may take some time)..."
     gpg --pinentry-mode=loopback --yes \
         --passphrase "${password_for_archive}" \
         --output "${archive_filename}.gpg" \
         --symmetric "${archive_filename}.zip"
     echo "OK"
 
-    echo "Removing unencrypted archive..."
+    echo "Removing the unencrypted archive..."
     rm "${archive_filename}.zip"
     echo "OK"
 
-    echo "Splitting archive into chunks (this may take some time)..."
+    echo "Splitting the archive into the chunks (this may take some time)..."
     split --bytes=500M "${archive_filename}.gpg"
     mkdir -p "${archive_filename}"
     mv x* "${archive_filename}"
     echo "OK"
 
-    echo "Removing unsplitted archive..."
+    echo "Removing the unsplitted archive..."
     rm "${archive_filename}.gpg"
     echo "OK"
 
-    echo "Encrypted and splitted archive is in ${archive_filename} directory"
+    echo "The encrypted and splitted archive is in the ${archive_filename} directory"
 
     echo "The backup has been created. It's time to copy it."
     notify-send "The backup has been created. It's time to copy it."
 }
 
 #######################################
-# Concat, decrypt and extract backup created with backup-documents()
+# Concat, decrypt and extract the backup created with backup-documents()
 # Arguments:
 #   None
 #######################################
@@ -213,30 +213,30 @@ extract-backup() {
     read -r -s password_for_archive
     echo "OK"
 
-    echo "Making a single archive file from chunks (this may take some time)..."
+    echo "Making a single archive file from the chunks (this may take some time)..."
     cat x* > backup.gpg
     echo "OK"
 
-    echo "Removing splitted archive..."
+    echo "Removing the splitted archive..."
     rm x*
     echo "OK"
 
-    echo "Decrypting archive (this may take some time)..."
+    echo "Decrypting the archive (this may take some time)..."
     gpg --pinentry-mode=loopback --yes \
         --passphrase "${password_for_archive}" \
         --output backup.zip \
         --decrypt backup.gpg
     echo "OK"
 
-    echo "Removing encrypted archive..."
+    echo "Removing the encrypted archive..."
     rm backup.gpg
     echo "OK"
 
-    echo "Extracing archive (this may take some time)..."
+    echo "Extracing the archive (this may take some time)..."
     unzip backup.zip
     echo "OK"
 
-    echo "Removing archive file..."
+    echo "Removing the archive file..."
     rm backup.zip
     echo "OK"
 

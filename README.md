@@ -1,6 +1,6 @@
 # Workspace setup for elementary OS 7
 
-These scripts install different software, return tray icons, clean up in the launcher, configure vim as a simple frontend ide, and add visual settings for the bash and the standard terminal.
+These scripts install different software, return tray icons, clean up in the launcher, configure the vim as a simple frontend ide, and add visual settings for the bash and the standard terminal.
 
 ## WARNINGS
 
@@ -66,7 +66,7 @@ cd workspace-setup-elementary-os-7
 ./main.sh
 ```
 
-You'll be asked for a password (for sudo). Minimal gui will show some additional information and help you to select software from the list.
+You'll be asked for a password (for sudo). Minimal gui will show some additional information and help you to select the software from the list.
 
 Installation will take some time. Then restart your computer, add SSH keys if needed, log in into your web accounts and you're ready.
 
