@@ -2,13 +2,8 @@
 
 These scripts install different software, return tray icons, clean up in the launcher, configure the vim as a simple frontend ide, and add visual settings for the bash and the standard terminal.
 
-## WARNINGS
+![](./screenshot.jpg)
 
-1. These scripts can install a lot of packages, texlive-full included, so you will need around 25G to install everything. It's not a problem for modern SSD, but remember about that if you want to install this configuration on some old laptop.
-
-2. **BACKUP YOUR DATA**. These scripts were designed for usage inside the fresh system without any modifications of it. They don't have protections from your thoughtless actions.
-
-3. You'll need some time and a stable internet connection.
 
 ## List or the software
 
@@ -47,7 +42,20 @@ These scripts install different software, return tray icons, clean up in the lau
     - software-properties-common, curl, snapd, preload, inotify-tools, build-essential, wingpanel-indicator
     - some additional packages, required by different software
 
+
 ## Install
+
+Before you start:
+
+### WARNINGS
+
+1. These scripts can install a lot of packages, texlive-full included, so you will need around 25G to install everything. It's not a problem for modern SSD, but remember about that if you want to install this configuration on some old laptop.
+
+2. **BACKUP YOUR DATA**. These scripts were designed for usage inside the fresh system without any modifications of it. They don't have protections from your thoughtless actions.
+
+3. You'll need some time and a stable internet connection.
+
+### How to use it
 
 It'll be a good idea to update everything in advance. The fresh system can have hundreds of outdated packages and this process will probably take some time. If you want to play with this setup in a virtual machine, you may also want to take a snapshot of its state after that.
 
@@ -70,6 +78,7 @@ You'll be asked for a password (for sudo). Minimal gui will show some additional
 
 Installation will take some time. Then restart your computer, add SSH keys if needed, log in into your web accounts and you're ready.
 
+
 ## Useful links
 
 **elementary OS website:**
@@ -83,6 +92,7 @@ https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup
 **How to generate SSH keys and add them to GitHub account:**
 
 https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
+
 
 ## License
 
