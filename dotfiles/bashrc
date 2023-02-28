@@ -99,7 +99,7 @@ alias mkdir='mkdir -pv'
 alias grep='grep --color=auto'
 alias top='htop'
 
-alias bash-reload='source ~/.bashrc'
+alias reload-bash='source ~/.bashrc'
 
 alias npm-list-global-packages='npm list -g --depth=0'
 alias npm-list-global-updates='npm outdated -g --depth=0'
