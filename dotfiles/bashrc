@@ -121,6 +121,28 @@ export GEM_HOME="$HOME/gems"
 export PATH="$HOME/gems/bin:$PATH"
 export PATH="$PATH:/snap/bin"
 
+
+#######################################
+# Create new front-end sketch
+# Arguments:
+#   Name (directory name)
+#######################################
+
+new-sketch() {
+    local sketch_name="$1"
+
+    if [ -z "$sketch_name" ]; then
+        local r=$(cat /dev/urandom | tr -cd "a-f0-9" | head -c 8);
+
+        sketch_name="sketch-$r"
+    fi
+
+    git clone git@github.com:sfi0zy/sketch.git "$sketch_name"
+    cd "$sketch_name"
+    make install
+}
+
+
 #######################################
 # Archive all documents, except node_modules, encrypt and split it
 # Arguments:
