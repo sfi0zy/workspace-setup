@@ -128,11 +128,14 @@ export PATH="$PATH:/snap/bin"
 #   Name (directory name)
 #######################################
 
+# shellcheck disable=2002
 new-sketch() {
     local sketch_name="$1"
 
     if [ -z "$sketch_name" ]; then
-        local r=$(cat /dev/urandom | tr -cd "a-f0-9" | head -c 8);
+        local r
+
+        r=$(cat /dev/urandom | tr -cd "a-f0-9" | head -c 8);
 
         sketch_name="sketch-$r"
     fi
