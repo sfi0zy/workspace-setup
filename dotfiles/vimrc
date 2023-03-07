@@ -96,9 +96,15 @@ inoremap <Tab> <C-R>=TabOrComplete()<CR>
 
 set wildmenu
 
-" change the default trigger key for the emmet
+" change some emmet settings
 
 let g:user_emmet_leader_key = '<C-Z>'
+
+let g:user_emmet_settings = {
+    \  'html' : {
+    \    'quote_char': "'",
+    \  },
+    \}
 
 " disable the auto comments
 
