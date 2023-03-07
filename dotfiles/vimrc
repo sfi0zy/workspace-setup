@@ -121,9 +121,11 @@ let g:ale_linters = {
 \}
 let g:ale_linters_explicit = 1
 
-let g:ale_echo_msg_error_str = 'Error'
-let g:ale_echo_msg_warning_str = 'Warning'
-let g:ale_echo_msg_format = '[%severity%][%linter%] %s'
+let g:ale_echo_msg_error_str = 'error'
+let g:ale_echo_msg_warning_str = 'warning'
+let g:ale_echo_msg_info_str = 'info'
+let g:ale_echo_msg_log_str = 'log'
+let g:ale_echo_msg_format = '[%severity%][%linter%] %s [%code%]'
 
 let g:ale_sign_column_always = 1
 let g:ale_set_highlights = 0
