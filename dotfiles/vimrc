@@ -118,6 +118,7 @@ let g:ale_linters = {
 \   'css': ['stylelint'],
 \   'less': ['stylelint'],
 \   'javascript': ['eslint'],
+\   'sh': ['shellcheck'],
 \}
 let g:ale_linters_explicit = 1
 
