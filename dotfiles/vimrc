@@ -26,6 +26,10 @@ let g:indentLine_color_term = 236
 
 set nu
 
+" show 5 lines before/after the cursor if it's possible
+
+set scrolloff=5
+
 " open the NERDTree automatically when the vim starts up
 
 autocmd vimenter * NERDTree
