@@ -1,11 +1,22 @@
 #!/bin/bash
+
+###############################################################################
 #
 # Re-create my workspace with the selected software.
 #
 # Created for the elementary OS 7
+#
+###############################################################################
+
 
 set -e
 
+
+#######################################
+# Set the visual setings for the terminal
+# Arguments:
+#   None
+#######################################
 set_terminal_visual_settings() {
     palette1="#121212:#ff005f:#00af5f:#ffd787:#0087ff:#ff00ff:#00d4ff:#e4e4e4"
     palette2="#1c1c1c:#ff005f:#00ad5f:#ffd787:#0087ff:#ff00ff:#00d4ff:#00875f"
@@ -19,6 +30,12 @@ set_terminal_visual_settings() {
     gsettings set io.elementary.terminal.settings theme "custom"
 }
 
+
+#######################################
+# Run the installation
+# Arguments:
+#   None
+#######################################
 # shellcheck disable=2181
 main() {
     sudo ./install.sh
@@ -33,5 +50,6 @@ main() {
     echo "Restart your computer to finish workspace setup"
     notify-send "Restart your computer to finish workspace setup"
 }
+
 
 main

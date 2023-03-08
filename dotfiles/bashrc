@@ -1,6 +1,12 @@
 ###############################################################################
-# Start
+#
+# ~/.bashrc
+#
+# This file is a part of the workspace setup
+# https://github.com/sfi0zy/workspace-setup/tree/elementary-os-7
+#
 ###############################################################################
+
 
 # if not running interactively, don't do anything
 

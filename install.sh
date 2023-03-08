@@ -1,9 +1,16 @@
 #!/bin/bash
+
+###############################################################################
 #
-# This is the main install script. It shows the UI, updates the packages,
-# installs packages from the list and replaces the configuration files.
+# This is the installation script. It shows the UI, updates the packages,
+# installs the packages from the list and replaces the configuration files.
+#
+# See also: ./main.sh
 #
 # Created for the elementary OS 7
+#
+###############################################################################
+
 
 set -e
 
@@ -13,6 +20,7 @@ if [ "$EUID" -ne 0 ]; then
 fi
 
 readonly USER_HOME="/home/${SUDO_USER}"
+
 
 #######################################
 # Check for the available space
@@ -38,6 +46,7 @@ is_space_available() {
     return 0
 }
 
+
 #######################################
 # Show UI: the welcome message
 # Arguments:
@@ -53,6 +62,7 @@ say_welcome() {
         40 100 3>&1 1>&2 2>&3
 }
 
+
 #######################################
 # Show UI: yes/no option about the data backup
 # Arguments:
@@ -64,6 +74,7 @@ make_sure_backup_is_created() {
         --yesno "Did you make the backup of your data?\n" \
         40 100 3>&1 1>&2 2>&3
 }
+
 
 #######################################
 # Show UI: the message about the required software
@@ -90,6 +101,7 @@ say_about_required_software() {
         `"You'll be able to select the additional software in the next step." \
         40 100 3>&1 1>&2 2>&3
 }
+
 
 #######################################
 # Show UI: the checkboxes for the additional software
@@ -134,6 +146,7 @@ request_additional_software_list() {
     echo "${additional_software_list}"
 }
 
+
 #######################################
 # Update everything
 # Arguments:
@@ -143,6 +156,7 @@ update_everything() {
     sudo apt-get update
     sudo apt-get -y upgrade
 }
+
 
 #######################################
 # Install system utils
@@ -158,6 +172,7 @@ install_system_utils() {
     sudo apt-get install -y build-essential
 }
 
+
 #######################################
 # Install git
 # Arguments:
@@ -167,6 +182,7 @@ install_git() {
     sudo apt-get install -y git
     sudo apt-get install -y gitk
 }
+
 
 #######################################
 # Install wingpanel indicator
@@ -199,6 +215,7 @@ install_wingpanel_indicator() {
             "${user_autostart_dir}/${desktop_file}"
 }
 
+
 #######################################
 # Install Google Chrome
 # Arguments:
@@ -212,6 +229,7 @@ install_google_chrome() {
     sudo apt-get install -y "./${package}"
 }
 
+
 #######################################
 # Install Mozilla Firefox
 # Arguments:
@@ -220,6 +238,7 @@ install_google_chrome() {
 install_firefox() {
     sudo apt-get install -y firefox
 }
+
 
 #######################################
 # Install Microsoft Edge
@@ -241,6 +260,7 @@ install_edge() {
     sudo apt-get install -y microsoft-edge-dev
 }
 
+
 #######################################
 # Install Skype
 # Arguments:
@@ -253,6 +273,7 @@ install_skype() {
     wget -q "${url}/${package}"
     sudo apt-get install -y "./${package}"
 }
+
 
 #######################################
 # Install Slack
@@ -268,6 +289,7 @@ install_slack() {
     wget -q "${url}/${package}"
     sudo apt-get install -y "./${package}"
 }
+
 
 #######################################
 # Install Telegram Desktop
@@ -304,6 +326,7 @@ install_telegram() {
             tee -a "${USER_HOME}/${applications}/mimeapps.list"
 }
 
+
 #######################################
 # Install Discord
 # Arguments:
@@ -317,6 +340,7 @@ install_discord() {
     wget -q -O "./$package" "${url}"
     sudo apt-get install -y "./$package"
 }
+
 
 #######################################
 # Install VIM with frontend tools
@@ -393,6 +417,7 @@ install_vim() {
     sudo -u "${SUDO_USER}" cp ./dotfiles/vimrc "${USER_HOME}/.vimrc"
 }
 
+
 #######################################
 # Install Node.js with tools
 # Arguments:
@@ -409,6 +434,7 @@ install_node() {
     sudo npm i -g ngrok
 }
 
+
 #######################################
 # Install Ruby
 # Arguments:
@@ -418,6 +444,7 @@ install_ruby() {
     sudo apt-get install -y ruby-full
     sudo apt-get install -y ruby-bundler
 }
+
 
 #######################################
 # Install Virtualbox
@@ -434,6 +461,7 @@ install_virtualbox() {
     sudo apt-get install -y "linux-headers-${name}"
 }
 
+
 #######################################
 # Install LibreOffice
 # Arguments:
@@ -444,6 +472,7 @@ install_libreoffice() {
     sudo sed -i 's/^NoDisplay=false/NoDisplay=true/' \
         /usr/share/applications/libreoffice-startcenter.desktop
 }
+
 
 #######################################
 # Install TeX
@@ -456,6 +485,7 @@ install_tex() {
     sudo apt-get install -y texlive-full
     sudo apt-get install -y gummi
 }
+
 
 #######################################
 # Install Darktable
@@ -477,6 +507,7 @@ install_darktable() {
     sudo apt-get install -y darktable
 }
 
+
 #######################################
 # Install Gimp
 # Arguments:
@@ -485,6 +516,7 @@ install_darktable() {
 install_gimp() {
     sudo apt-get install -y gimp
 }
+
 
 #######################################
 # Install Inkscape
@@ -498,6 +530,7 @@ install_inkscape() {
     sudo apt-get install -y inkscape
 }
 
+
 #######################################
 # Install Simple Scan
 # Arguments:
@@ -506,6 +539,7 @@ install_inkscape() {
 install_simple_scan() {
     sudo apt-get install -y simple-scan
 }
+
 
 #######################################
 # Install OBS
@@ -519,6 +553,7 @@ install_obs() {
     sudo apt-get install -y obs-studio
 }
 
+
 #######################################
 # Install Blender
 # Arguments:
@@ -527,6 +562,7 @@ install_obs() {
 install_blender() {
     sudo apt-get install -y blender
 }
+
 
 #######################################
 # Install Musescore
@@ -539,6 +575,7 @@ install_musescore() {
     sudo apt-get install -y musescore3
 }
 
+
 #######################################
 # Install Audacity
 # Arguments:
@@ -547,6 +584,7 @@ install_musescore() {
 install_audacity() {
     sudo apt-get install -y audacity
 }
+
 
 #######################################
 # Install Steam + required i386 architecture
@@ -561,6 +599,7 @@ install_steam() {
     sudo apt-get install -y steam
 }
 
+
 #######################################
 # Install Transmission
 # Arguments:
@@ -570,6 +609,7 @@ install_transmission() {
     sudo apt-get install -y transmission
 }
 
+
 #######################################
 # Install VLC
 # Arguments:
@@ -578,6 +618,7 @@ install_transmission() {
 install_vlc() {
   sudo apt-get install -y vlc
 }
+
 
 #######################################
 # Install software based on the software list
@@ -621,6 +662,7 @@ install_software() {
     done
 }
 
+
 #######################################
 # Remove unnecessary items from launcher
 # Arguments:
@@ -643,6 +685,7 @@ clean_launcher() {
         | sudo tee -a /usr/share/applications/org.fcitx.Fcitx5.desktop
 }
 
+
 #######################################
 # Replace .bashrc for user
 # Globals:
@@ -657,6 +700,7 @@ replace_bashrc() {
     sudo -u "${SUDO_USER}" rm "${USER_HOME}/.bashrc"
     sudo -u "${SUDO_USER}" cp ./dotfiles/bashrc "${USER_HOME}/.bashrc"
 }
+
 
 #######################################
 # Start the installation
@@ -690,5 +734,6 @@ main() {
     clean_launcher
     replace_bashrc
 }
+
 
 main

@@ -1,6 +1,12 @@
 " -----------------------------------------------------------------------------
-" Startup
+"
+" ~/.vimrc
+"
+" This file is a part of the workspace setup
+" https://github.com/sfi0zy/workspace-setup/tree/elementary-os-7
+"
 " -----------------------------------------------------------------------------
+
 
 " start the pathogen
 
