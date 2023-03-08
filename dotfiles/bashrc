@@ -1,3 +1,7 @@
+###############################################################################
+# Start
+###############################################################################
+
 # if not running interactively, don't do anything
 
 case $- in
@@ -5,8 +9,21 @@ case $- in
     *) return;;
 esac
 
-# ✓ [08:45 AM] username:hostname ~ $
-# And we disable the warning about checking exit code of a previous command
+# check the window size after each command in the future
+
+shopt -s checkwinsize
+
+
+###############################################################################
+# Custom prompt
+###############################################################################
+
+#######################################
+# Create custom prompt like this:
+# ✓ [08:45 AM] username:hostname /path | git:branch $
+# Arguments:
+#   None
+#######################################
 # shellcheck disable=2181
 set_bash_prompt() {
     local green="\[\033[01;32m\]";
@@ -63,6 +80,26 @@ set_bash_prompt() {
 
 PROMPT_COMMAND=set_bash_prompt
 
+
+###############################################################################
+# Environment
+###############################################################################
+
+# use the vim as the default text editor
+
+export EDITOR=vim
+
+# add ruby gems and snap packages to PATH
+
+export GEM_HOME="$HOME/gems"
+export PATH="$HOME/gems/bin:$PATH"
+export PATH="$PATH:/snap/bin"
+
+
+###############################################################################
+# History settings
+###############################################################################
+
 # see bash(1) for more options for the history
 
 HISTCONTROL=ignoreboth
@@ -77,15 +114,10 @@ shopt -s histappend
 
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
-# use vim as the default text editor
 
-export EDITOR=vim
-
-# check the window size after each command
-
-shopt -s checkwinsize
-
-# various alias
+###############################################################################
+# Alias
+###############################################################################
 
 alias ..='cd ..'
 alias ...='cd ../../'
@@ -115,19 +147,16 @@ alias share-this-directory='http-server -c-1 & ngrok http 8080 && kill $!'
 
 alias random-string='cat /dev/urandom | tr -cd "a-f0-9" | head -c 32'
 
-# add ruby gems and snap packages to PATH
 
-export GEM_HOME="$HOME/gems"
-export PATH="$HOME/gems/bin:$PATH"
-export PATH="$PATH:/snap/bin"
-
+###############################################################################
+# Functions
+###############################################################################
 
 #######################################
 # Create new front-end sketch
 # Arguments:
 #   Name (directory name)
 #######################################
-
 # shellcheck disable=2002
 new-sketch() {
     local sketch_name="$1"
@@ -173,13 +202,13 @@ backup-documents() {
     echo "Free space: ${free_space_h}"
 
     if (( space_needed > free_space )); then
-        echo "You need more free space to perform this."
+        echo "You will need more free space to perform this."
         return 1
     fi
 
-    echo "Enter password:"
+    echo "Enter the password:"
     read -r -s password_for_archive
-    echo "Repeat password:"
+    echo "Repeat the password:"
     read -r -s password_for_archive_copy
 
     if [[ "${password_for_archive}" != "${password_for_archive_copy}" ]]; then
@@ -226,6 +255,7 @@ backup-documents() {
     notify-send "The backup has been created. It's time to copy it."
 }
 
+
 #######################################
 # Concat, decrypt and extract the backup created with backup-documents()
 # Arguments:
@@ -234,7 +264,7 @@ backup-documents() {
 extract-backup() {
     set -e
 
-    echo "Enter password:"
+    echo "Enter the password:"
     read -r -s password_for_archive
     echo "OK"
 
