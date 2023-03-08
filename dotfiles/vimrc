@@ -1,19 +1,39 @@
-" start pathogen
+" -----------------------------------------------------------------------------
+" Startup
+" -----------------------------------------------------------------------------
+
+" start the pathogen
 
 execute pathogen#infect()
 call pathogen#helptags()
 
-" set fallback settings for the tabs and line endings (before editorconfig)
+" open the NERDTree automatically when the vim starts up
 
-set tabstop=4
-set shiftwidth=4
-set expandtab
-autocmd BufWritePre * set ff=unix
-autocmd BufWritePre * %s/\s\+$//e
+autocmd vimenter * NERDTree
+let NERDTreeShowHidden = 1
 
-" set color for the vertical lines (indentations)
+" set the current directory
 
-let g:indentLine_color_term = 236
+set autochdir
+
+" activate the wildmenu
+
+set wildmenu
+
+" activate the filetype plugin for the future commands
+
+filetype plugin on
+
+
+" -----------------------------------------------------------------------------
+" Visual settings
+" -----------------------------------------------------------------------------
+
+" apply the colorscheme
+" https://github.com/sfi0zy/atlantic-dark.vim
+
+colorscheme atlantic-dark
+let g:airline_theme='term'
 
 " show the line numbers by default
 
@@ -23,32 +43,12 @@ set nu
 
 set scrolloff=5
 
-" open the NERDTree automatically when the vim starts up
+" set the color for the vertical lines (indentations)
 
-autocmd vimenter * NERDTree
-let NERDTreeShowHidden = 1
+let g:indentLine_color_term = 236
 
-" set the current directory to skip %:h/ in the commands
-
-:set autochdir
-
-" enable syntax highlighting by default
-
-syntax on
-
-" disable highlighting on the long lines (improves performance, can cause
-" wrong highlighting in the next lines)
-
-set synmaxcol=120
-
-" apply the colorscheme
-" https://github.com/sfi0zy/atlantic-dark.vim
-
-colorscheme atlantic-dark
-let g:airline_theme='term'
-
-" fill the columns 80+ (`join` is not necessary, we're saving it here
-" for the future tests)
+" fill the columns 80+
+" (`join` is not necessary, we're saving it here for the future tests)
 
 highlight ColorColumn ctermbg=232 guibg=#060606
 let &colorcolumn="80,".join(range(81,999),",")
@@ -62,25 +62,78 @@ set incsearch
 
 set showmatch
 
-" highlight the ES6 template strings (they're not highlighting properly
-" by default)
+
+" -----------------------------------------------------------------------------
+" Text editing
+" -----------------------------------------------------------------------------
+
+" set the fallback settings for the tabs and the line endings
+" (editorconfig will rewrite all these settings for the particular projects)
+
+set tabstop=4
+set shiftwidth=4
+set expandtab
+autocmd BufWritePre * set ff=unix
+autocmd BufWritePre * %s/\s\+$//e
+
+" disable the auto comments
+
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+
+" -----------------------------------------------------------------------------
+" Syntax highlighting
+" -----------------------------------------------------------------------------
+
+" enable the syntax highlighting by default
+
+syntax on
+
+" disable the highlighting on the long lines
+" (improves the performance, can cause wrong highlighting in the next lines)
+
+set synmaxcol=120
+
+" disable that crazy syntax highlighting for the json and markdown files
+
+autocmd FileType json     setlocal syntax=off nospell
+autocmd FileType markdown setlocal syntax=off nospell
+
+" highlight the ES6 template strings
+" (they're not highlighting properly by default)
 
 hi link javaScriptTemplateDelim  String
 hi link javaScriptTemplateVar    Text
 hi link javaScriptTemplateString String
 
-" now hyphens are the part of the identifiers (helps with the highlighting)
+" now hyphens are the part of the identifiers (it helps with the highlighting)
 
 au! FileType css,less,html setl iskeyword+=-
 
-" enable the code completion
 
-filetype plugin on
-autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+" -----------------------------------------------------------------------------
+" Code completion
+" -----------------------------------------------------------------------------
+
+" set the emmet leader key
+
+let g:user_emmet_leader_key = '<C-Z>'
+
+" Set the default quote char for the emmet
+
+let g:user_emmet_settings = {
+    \  'html' : {
+    \    'quote_char': "'",
+    \  },
+    \}
+
+" enable the native vim code completion
+
 autocmd FileType html       set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType css        set omnifunc=csscomplete#CompleteCSS
+autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 
-" activate omni on Tab
+" activate the omni popup on `Tab`
 
 function! TabOrComplete()
     if col('.')>1 && strpart( getline('.'), col('.')-2, 3 ) =~ '^\w'
@@ -92,47 +145,32 @@ endfunction
 
 inoremap <Tab> <C-R>=TabOrComplete()<CR>
 
-" activate the wildmenu
 
-set wildmenu
+" -----------------------------------------------------------------------------
+" Linters
+" -----------------------------------------------------------------------------
 
-" change some emmet settings
+" choose the linters
 
-let g:user_emmet_leader_key = '<C-Z>'
+let g:ale_linters = {
+\   'sh': ['shellcheck'],
+\   'css': ['stylelint'],
+\   'less': ['stylelint'],
+\   'javascript': ['eslint'],
+\}
 
-let g:user_emmet_settings = {
-    \  'html' : {
-    \    'quote_char': "'",
-    \  },
-    \}
-
-" disable the auto comments
-
-autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-
-" disable that crazy syntax highlighting for the json and markdown files
-
-autocmd FileType json     setlocal syntax=off nospell
-autocmd FileType markdown setlocal syntax=off nospell
-
-" settings for ALE
+" choose when to lint
 
 let g:ale_lint_on_enter = 1
 let g:ale_lint_on_save = 1
 
-let g:ale_linters = {
-\   'css': ['stylelint'],
-\   'less': ['stylelint'],
-\   'javascript': ['eslint'],
-\   'sh': ['shellcheck'],
-\}
-let g:ale_linters_explicit = 1
+" more visual settings for the ALE
 
+let g:ale_linters_explicit = 1
 let g:ale_echo_msg_error_str = 'error'
 let g:ale_echo_msg_warning_str = 'warning'
 let g:ale_echo_msg_info_str = 'info'
 let g:ale_echo_msg_log_str = 'log'
 let g:ale_echo_msg_format = '[%severity%][%linter%] %s [%code%]'
-
 let g:ale_sign_column_always = 1
 let g:ale_set_highlights = 0
