@@ -3,13 +3,6 @@
 execute pathogen#infect()
 call pathogen#helptags()
 
-function FindSessionDirectory() abort
-    if len(argv()) > 0
-        return fnamemodify(argv()[0], ':p:h')
-    endif
-    return getcwd()
-endfunction!
-
 " set fallback settings for the tabs and line endings (before editorconfig)
 
 set tabstop=4
