@@ -49,11 +49,13 @@ syntax on
 set synmaxcol=120
 
 " apply the colorscheme
+" https://github.com/sfi0zy/atlantic-dark.vim
 
 colorscheme atlantic-dark
 let g:airline_theme='term'
 
-" fill the columns 80+ (saving join here for future tests)
+" fill the columns 80+ (`join` is not necessary, we're saving it here
+" for the future tests)
 
 highlight ColorColumn ctermbg=232 guibg=#060606
 let &colorcolumn="80,".join(range(81,999),",")
@@ -67,13 +69,14 @@ set incsearch
 
 set showmatch
 
-" highlight the ES6 template strings
+" highlight the ES6 template strings (they're not highlighting properly
+" by default)
 
 hi link javaScriptTemplateDelim  String
 hi link javaScriptTemplateVar    Text
 hi link javaScriptTemplateString String
 
-" now hyphens are the part of the identifiers
+" now hyphens are the part of the identifiers (helps with the highlighting)
 
 au! FileType css,less,html setl iskeyword+=-
 
