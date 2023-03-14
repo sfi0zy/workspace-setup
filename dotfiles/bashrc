@@ -153,6 +153,8 @@ alias share-this-directory='http-server -c-1 & ngrok http 8080 && kill $!'
 
 alias random-string='cat /dev/urandom | tr -cd "a-f0-9" | head -c 32'
 
+alias search-for='grep -R --exclude-dir=node_modules -B 2 -A 2 --ignore-case'
+
 
 ###############################################################################
 # Functions
