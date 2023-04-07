@@ -184,6 +184,31 @@ new-sketch() {
 
 
 #######################################
+# Cut the video and downscale it from 4k to 1080p
+# Arguments:
+#   Input video filename
+#   Start time
+#   End time
+#######################################
+video-cut-and-downscale() {
+    local input="$1"
+    local filename="${input%.*}"
+    local extension="${input##*.}"
+    local start_time="$2"
+    local end_time="$3"
+    local output="${filename}_cut_1080.${extension}"
+
+    ffmpeg \
+        -i "$input" \
+        -ss "$start_time" \
+        -to "$end_time" \
+        -vf scale=1920:1080 -crf 20 -preset slow \
+        -c:a copy \
+        "$output"
+}
+
+
+#######################################
 # Archive all documents, except node_modules, encrypt and split it
 # Arguments:
 #   None
