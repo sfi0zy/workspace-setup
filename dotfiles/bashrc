@@ -196,13 +196,42 @@ video-cut-and-downscale() {
     local extension="${input##*.}"
     local start_time="$2"
     local end_time="$3"
-    local output="${filename}_cut_1080.${extension}"
+    local output="${filename}_1080p.${extension}"
 
     ffmpeg \
         -i "$input" \
         -ss "$start_time" \
         -to "$end_time" \
         -vf scale=1920:1080 -crf 20 -preset slow \
+        -c:a copy \
+        "$output"
+}
+
+
+#######################################
+# Cut the video and crop a 1080p frame from 4k
+# Arguments:
+#   Input video filename
+#   Start time
+#   End time
+#   X coordinate of the 1080p frame
+#   Y coordinate of the 1080p frame
+#######################################
+video-cut-and-crop() {
+    local input="$1"
+    local filename="${input%.*}"
+    local extension="${input##*.}"
+    local start_time="$2"
+    local end_time="$3"
+    local x="$4"
+    local y="$5"
+    local output="${filename}_1080p.${extension}"
+
+    ffmpeg \
+        -i "$input" \
+        -ss "$start_time" \
+        -to "$end_time" \
+        -vf "crop=1920:1080:${x}:${y},unsharp=3:3:1.25" -crf 20 -preset slow \
         -c:a copy \
         "$output"
 }
