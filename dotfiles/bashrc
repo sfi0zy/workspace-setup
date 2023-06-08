@@ -182,60 +182,118 @@ new-sketch() {
     make install
 }
 
-
 #######################################
-# Cut the video and downscale it from 4k to 1080p
+# Cut the video
 # Arguments:
 #   Input video filename
 #   Start time
 #   End time
 #######################################
-video-cut-and-downscale() {
+
+video-cut() {
     local input="$1"
     local filename="${input%.*}"
     local extension="${input##*.}"
     local start_time="$2"
     local end_time="$3"
-    local output="${filename}_1080p.${extension}"
+    local output="${filename}-cut.${extension}"
 
     ffmpeg \
         -i "$input" \
         -ss "$start_time" \
         -to "$end_time" \
-        -vf scale=1920:1080 -crf 20 -preset slow \
+        -crf 18 \
+        -preset slow \
         -c:a copy \
+        -y \
         "$output"
+
+    echo ">>> $output"
 }
 
-
 #######################################
-# Cut the video and crop a 1080p frame from 4k
+# Stabilize the video
 # Arguments:
 #   Input video filename
-#   Start time
-#   End time
-#   X coordinate of the 1080p frame
-#   Y coordinate of the 1080p frame
 #######################################
-video-cut-and-crop() {
+
+video-stabilize() {
     local input="$1"
     local filename="${input%.*}"
     local extension="${input##*.}"
-    local start_time="$2"
-    local end_time="$3"
-    local x="$4"
-    local y="$5"
-    local output="${filename}_1080p.${extension}"
+    local transforms="${filename}.trf"
+    local output="${filename}-stabilized.${extension}"
 
     ffmpeg \
         -i "$input" \
-        -ss "$start_time" \
-        -to "$end_time" \
-        -vf "crop=1920:1080:${x}:${y},unsharp=3:3:1.25" -crf 20 -preset slow \
+        -vf "vidstabdetect=result=${transforms}:shakiness=10" \
+        -f null -
+
+    ffmpeg \
+        -i "$input" \
+        -vf "vidstabtransform=input=${transforms},unsharp=5:5:0.8:3:3:0.4" \
+        -crf 18 \
+        -preset slow \
         -c:a copy \
+        -y \
         "$output"
+
+    rm "$transforms"
+
+    echo ">>> $output"
 }
 
+#######################################
+# Downscale the video from 4k to 1080p
+# Arguments:
+#   Input video filename
+#######################################
+
+video-downscale-4k-to-1080p() {
+    local input="$1"
+    local filename="${input%.*}"
+    local extension="${input##*.}"
+    local output="${filename}-1080p.${extension}"
+
+    ffmpeg \
+        -i "$input" \
+        -vf scale=1920:1080 \
+        -crf 20 \
+        -preset slow \
+        -c:a copy \
+        -y \
+        "$output"
+
+    echo ">>> $output"
+}
+
+#######################################
+# Crop the 1080p video from the 4k video
+# Arguments:
+#   Input video filename
+#   X coordinate of the frame
+#   Y coordinate of the frame
+#######################################
+
+video-crop-1080p() {
+    local input="$1"
+    local filename="${input%.*}"
+    local extension="${input##*.}"
+    local x="$2"
+    local y="$3"
+    local output="${filename}-crop-1080p.${extension}"
+
+    ffmpeg \
+        -i "$input" \
+        -vf "crop=1920:1080:${x}:${y},unsharp=3:3:1.25" \
+        -crf 20 \
+        -preset slow \
+        -c:a copy \
+        -y \
+        "$output"
+
+    echo ">>> $output"
+}
 
 #######################################
 # Archive all documents, except node_modules, encrypt and split it
