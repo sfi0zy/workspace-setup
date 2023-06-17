@@ -1,6 +1,6 @@
 # Workspace setup for elementary OS 7
 
-These scripts install different software, return tray icons, clean up in the launcher, configure the vim as a simple frontend ide, and add visual settings for the bash and the standard terminal.
+These scripts install different software, clean up in the launcher, configure the vim as a simple frontend ide, and add visual settings for the bash and the standard terminal.
 
 ![](./screenshot.jpg)
 
@@ -12,7 +12,6 @@ These scripts install different software, return tray icons, clean up in the lau
     - Mozilla Firefox
     - Microsoft Edge (dev)
     - Skype
-    - Slack
     - Telegram
     - Discord
 - Development:
@@ -39,7 +38,7 @@ These scripts install different software, return tray icons, clean up in the lau
     - Transmission
     - VLC
 - System:
-    - software-properties-common, curl, snapd, preload, inotify-tools, build-essential, wingpanel-indicator
+    - software-properties-common, curl, snapd, preload, inotify-tools, build-essential
     - some additional packages, required by different software
 
 

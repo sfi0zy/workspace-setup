@@ -88,7 +88,6 @@ say_about_required_software() {
         "The following packages will be installed:\n\n"`
         `"vim + shellcheck + some vim plugins\n"`
         `"git + gitk\n"`
-        `"wingpanel-indicator (old tray icons will be back)\n"`
         `"snapd (+ some additional software in the next step will use it)\n"`
         `"curl + build-essential (get curl and make back!)\n"`
         `"preload (makes the system a bit faster)\n"`
@@ -121,7 +120,6 @@ request_additional_software_list() {
         "firefox" "Firefox browser" OFF \
         "edge" "Microsoft Edge (dev)" OFF \
         "skype" "Skype" OFF \
-        "slack" "Slack" OFF \
         "telegram" "Telegram" OFF \
         "discord" "Discord" OFF \
         "node" "Node.js (n + Node.js + NPM + http-server + ngrok)" OFF \
@@ -185,38 +183,6 @@ install_git() {
 
 
 #######################################
-# Install wingpanel indicator
-# Globals:
-#   SUDO_USER
-#   USER_HOME
-# Arguments:
-#   None
-# Info:
-#   Wingpanel indicators were removed in this version of elementary OS.
-#   We return them. They are cool. Telegram, skype, slack, discord and steam
-#   can use them to show their status and notifications.
-#######################################
-install_wingpanel_indicator() {
-    local name="wingpanel-indicator-ayatana"
-    local url="https://github.com/Lafydev/${name}/raw/master"
-    local package="com.github.lafydev.${name}_2.0.8_odin.deb"
-    local user_autostart_dir="${USER_HOME}/.config/autostart"
-    local desktop_file="indicator-application.desktop"
-
-    sudo apt-get install -y libglib2.0-dev libgranite-dev \
-        libindicator3-dev libwingpanel-dev indicator-application
-    wget -q "${url}/${package}"
-    sudo apt-get install -y "./${package}"
-    sudo -u "${SUDO_USER}" mkdir -p "${user_autostart_dir}"
-    sudo -u "${SUDO_USER}" \
-        cp "/etc/xdg/autostart/${desktop_file}" "${user_autostart_dir}"
-    sudo -u "${SUDO_USER}" \
-        sed -i 's/^OnlyShowIn.*/OnlyShowIn=Unity;GNOME;Pantheon;/' \
-            "${user_autostart_dir}/${desktop_file}"
-}
-
-
-#######################################
 # Install Google Chrome
 # Arguments:
 #   None
@@ -269,22 +235,6 @@ install_edge() {
 install_skype() {
     local url="https://go.skype.com"
     local package="skypeforlinux-64.deb"
-
-    wget -q "${url}/${package}"
-    sudo apt-get install -y "./${package}"
-}
-
-
-#######################################
-# Install Slack
-# Arguments:
-#   None
-#######################################
-install_slack() {
-    # Slack doesn't have the "current" or "latest" url (at least for now).
-    # So we install a little outdated version. It'll update itself later.
-    local url="https://downloads.slack-edge.com/releases/linux/4.22.0/prod/x64"
-    local package="slack-desktop-4.22.0-amd64.deb"
 
     wget -q "${url}/${package}"
     sudo apt-get install -y "./${package}"
@@ -633,12 +583,10 @@ install_software() {
         case "${software}" in
             "system-utils") install_system_utils ;;
             "git") install_git ;;
-            "wingpanel-indicator") install_wingpanel_indicator ;;
             "google-chrome") install_google_chrome ;;
             "firefox") install_firefox ;;
             "edge") install_edge ;;
             "skype") install_skype ;;
-            "slack") install_slack ;;
             "telegram") install_telegram ;;
             "discord") install_discord ;;
             "vim") install_vim ;;
@@ -723,7 +671,7 @@ main() {
     make_sure_backup_is_created
     say_about_required_software
 
-    required_list="system-utils git wingpanel-indicator vim"
+    required_list="system-utils git vim"
     additional_list=$(request_additional_software_list)
     all_software_list="${required_list} ${additional_list}"
 
