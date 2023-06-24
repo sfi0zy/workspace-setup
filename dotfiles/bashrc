@@ -141,7 +141,7 @@ alias reload-bash='source ~/.bashrc'
 
 alias npm-list-global-packages='npm list -g --depth=0'
 alias npm-list-global-updates='npm outdated -g --depth=0'
-alias npm-update-globals='npm update -g'
+alias npm-update-globals='sudo npm update -g'
 
 alias apt-update-all='sudo apt update && sudo apt upgrade'
 alias apt-remove-unused='sudo apt autoremove'
