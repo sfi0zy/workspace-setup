@@ -162,6 +162,7 @@ let g:ale_linters = {
 \   'sh': ['shellcheck'],
 \   'css': ['stylelint'],
 \   'less': ['stylelint'],
+\   'sass': ['stylelint'],
 \   'javascript': ['eslint'],
 \   'typescript': ['eslint'],
 \   'typescriptreact': ['eslint'],
