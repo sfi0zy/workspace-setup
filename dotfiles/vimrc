@@ -163,6 +163,8 @@ let g:ale_linters = {
 \   'css': ['stylelint'],
 \   'less': ['stylelint'],
 \   'javascript': ['eslint'],
+\   'typescript': ['eslint'],
+\   'typescriptreact': ['eslint'],
 \}
 
 " choose when to lint
