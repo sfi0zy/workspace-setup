@@ -47,8 +47,11 @@ set_bash_prompt() {
     local host_name="\h";
     local working_directory="\w";
 
+    local my_ip
     local commits_count
     local git_info
+
+    my_ip=$(hostname -I | xargs)
 
     PS1=""
 
@@ -61,7 +64,9 @@ set_bash_prompt() {
     PS1+="${last_command_time} "
     PS1+="${red}${user_name}";
     PS1+="${white}:"
-    PS1+="${yellow}${host_name} "
+    PS1+="${yellow}${host_name}"
+    PS1+="${white}:"
+    PS1+="${yellow}${my_ip} "
     PS1+="${blue}${working_directory}"
 
     if [[ -d .git ]]; then
