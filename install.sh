@@ -138,6 +138,7 @@ request_additional_software_list() {
         "steam" "Steam" OFF \
         "transmission" "Transmission" OFF \
         "vlc" "VLC" OFF \
+        "openssh-server" "SSH server" OFF \
         --separate-output \
         3>&1 1>&2 2>&3)
 
@@ -571,6 +572,15 @@ install_vlc() {
 
 
 #######################################
+# Install SSH server
+# Arguments:
+#   None
+#######################################
+install_ssh_server() {
+  sudo apt-get install -y openssh-server
+}
+
+#######################################
 # Install software based on the software list
 # Arguments:
 #   Software list, names, separated with spaces
@@ -606,6 +616,7 @@ install_software() {
             "steam") install_steam ;;
             "transmission") install_transmission ;;
             "vlc") install_vlc ;;
+            "openssh-server") install_ssh_server ;;
         esac
     done
 }

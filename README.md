@@ -39,6 +39,7 @@ These scripts install different software, clean up in the launcher, configure th
     - VLC
 - System:
     - software-properties-common, curl, snapd, preload, inotify-tools, build-essential
+    - openssh-server (optional)
     - some additional packages, required by different software
 
 
