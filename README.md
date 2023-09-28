@@ -48,6 +48,7 @@ You'll be asked for a password (for sudo). Minimal gui will show some additional
 - Development:
     - Git, Gitk
     - VIM (configured as a frontend IDE) + ShellCheck
+    - Visual Studio Code
     - NodeJS + NPM + n + some global packages (server one-liners)
     - Ruby
     - VirtualBox

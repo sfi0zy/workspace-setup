@@ -94,7 +94,7 @@ say_about_required_software() {
         `"software-properties-common (we need them sometimes, don't we?)\n"`
         `"inotify-tools (for watching files in some projects)\n"`
         `"Also:\n"`
-        `".bashrc will be replaced.\n"`
+        `".bashrc will be replaced (cool prompt + some alias and settings).\n"`
         `"Some 'wtf is this?' icons will be hidden from launcher.\n"`
         `"Terminal visual settings will be changed.\n\n"`
         `"You'll be able to select the additional software in the next step." \
@@ -124,6 +124,7 @@ request_additional_software_list() {
         "discord" "Discord" OFF \
         "node" "Node.js (n + Node.js + NPM + http-server + ngrok)" ON \
         "ruby" "Ruby language (ruby-full + ruby-bundler)" ON \
+        "vscode" "Visual Studio Code" OFF \
         "virtualbox" "VirtualBox" OFF \
         "libreoffice" "Full LibreOffice" ON \
         "tex" "TeX Live (full) + Gummy" OFF \
@@ -259,7 +260,8 @@ install_telegram() {
     # Snap package is much more stable.
     sudo snap install telegram-desktop
 
-    # We change desktop files to keep icon in the dock after the automatic updates
+    # We change the desktop files to keep the icon in the dock
+    # after the automatic updates
     sudo -u "${SUDO_USER}" \
         cp "/var/lib/snapd/desktop/applications/${desktop_file}" \
             "${USER_HOME}/${applications}/"
@@ -284,7 +286,7 @@ install_telegram() {
 #   None
 #######################################
 install_discord() {
-    # It doesn't have direct link to the *.deb
+    # It doesn't have a direct link to the *.deb
     local url="https://discord.com/api/download?platform=linux&format=deb"
     local package="discord.deb"
 
@@ -379,8 +381,8 @@ install_node() {
     sudo npm install -g n
     sudo n latest
 
-    # http-server and ngrok are used in .bashrc to create the server one-liners
-    # called serve-this-directory and share-this-directory.
+    # http-server and ngrok are used in .bashrc to create the server
+    # one-liners called serve-this-directory and share-this-directory.
     sudo npm i -g http-server
     sudo npm i -g ngrok
 }
@@ -398,6 +400,16 @@ install_ruby() {
 
 
 #######################################
+# Install Visual Studio Code
+# Arguments:
+#   None
+#######################################
+install_vscode() {
+    sudo snap install --classic code
+}
+
+
+#######################################
 # Install Virtualbox
 # Arguments:
 #   None
@@ -407,7 +419,7 @@ install_virtualbox() {
 
     # Known issue: something is wrong with the virtualbox updates.
     # It keep failing with errors like "kernels drivers not installed".
-    # Installing the linux-headers-* fixes this problem.
+    # Installing the linux-headers-* fixes (?) this problem.
     name=$(uname -r)
     sudo apt-get install -y "linux-headers-${name}"
 }
@@ -445,7 +457,7 @@ install_tex() {
 #######################################
 install_darktable() {
     # The darktable version in the standard repository is really outdated.
-    # We install the latest possible version for ubuntu 22.04.
+    # We install the latest possible version for the ubuntu 22.04.
     local url="http://download.opensuse.org/repositories"
     local repo_url="${url}/graphics:/darktable/xUbuntu_22.04"
 
@@ -602,6 +614,7 @@ install_software() {
             "vim") install_vim ;;
             "node") install_node ;;
             "ruby") install_ruby ;;
+            "vscode") install_vscode ;;
             "virtualbox") install_virtualbox ;;
             "libreoffice") install_libreoffice ;;
             "tex") install_tex ;;
