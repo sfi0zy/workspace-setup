@@ -98,7 +98,7 @@ set_bash_prompt() {
     PS1+="${blue}${working_directory}"
 
     if [[ -d .git ]]; then
-        PS1+="${white} >> git"
+        PS1+="${green} >> git"
 
         commits_count=$(git rev-list --all --count)
 
