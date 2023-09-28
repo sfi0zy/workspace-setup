@@ -116,28 +116,28 @@ request_additional_software_list() {
         --title "What else do you want to install?" \
         --checklist "Use the space to select multiple items." \
         40 100 27 \
-        "google-chrome" "Google Chrome" OFF \
+        "google-chrome" "Google Chrome" ON \
         "firefox" "Firefox browser" OFF \
         "edge" "Microsoft Edge (dev)" OFF \
         "skype" "Skype" OFF \
-        "telegram" "Telegram" OFF \
+        "telegram" "Telegram" ON \
         "discord" "Discord" OFF \
-        "node" "Node.js (n + Node.js + NPM + http-server + ngrok)" OFF \
-        "ruby" "Ruby language (ruby-full + ruby-bundler)" OFF \
+        "node" "Node.js (n + Node.js + NPM + http-server + ngrok)" ON \
+        "ruby" "Ruby language (ruby-full + ruby-bundler)" ON \
         "virtualbox" "VirtualBox" OFF \
-        "libreoffice" "Full LibreOffice" OFF \
+        "libreoffice" "Full LibreOffice" ON \
         "tex" "TeX Live (full) + Gummy" OFF \
-        "darktable" "Darktable" OFF \
-        "gimp" "GIMP" OFF \
-        "inkscape" "Inkscape" OFF \
+        "darktable" "Darktable" ON \
+        "gimp" "GIMP" ON \
+        "inkscape" "Inkscape" ON \
         "simple-scan" "Simple Scan" OFF \
         "obs" "OBS" OFF \
         "blender" "Blender" OFF \
         "musescore" "Musescore" OFF \
         "audacity" "Audacity" OFF \
         "steam" "Steam" OFF \
-        "transmission" "Transmission" OFF \
-        "vlc" "VLC" OFF \
+        "transmission" "Transmission" ON \
+        "vlc" "VLC" ON \
         "openssh-server" "SSH server" OFF \
         --separate-output \
         3>&1 1>&2 2>&3)
