@@ -49,8 +49,8 @@ set_bash_prompt() {
     local my_ip
     local ram_usage
     local number_of_cpu_cores
-    local cpu_usage_avg
-    local cpu_usage
+    local load_avg
+    local load
     local disk_usage
     local commits_count
     local git_info
@@ -60,9 +60,9 @@ set_bash_prompt() {
     ram_usage=$(free \
         | grep Mem | awk '{print $3/$2 * 100.0}' | cut -d "." -f 1)
     number_of_cpu_cores=$(nproc --all)
-    cpu_usage_avg=$(uptime \
+    load_avg=$(uptime \
         | awk '{ print $8 }' | tr -d ',' | awk '{ print $1 * 100 }')
-    cpu_usage=$((cpu_usage_avg / number_of_cpu_cores))
+    load=$((load_avg / number_of_cpu_cores))
     disk_usage=$(df --output=pcent / | tr -dc '0-9')
     jobs_info=$(if [ -n "$(jobs -p)" ]; then echo "[\j] "; fi)
 
@@ -83,8 +83,8 @@ set_bash_prompt() {
         PS1+="${white}:${yellow}${my_ip}${white} "
     fi
 
-    if (( cpu_usage > 80 )); then
-        PS1+="${red}!CPU ${cpu_usage}% "
+    if (( load > 80 )); then
+        PS1+="${red}!Load(CPU+I/O) ${load}% "
     fi
 
     if (( ram_usage > 80 )); then
