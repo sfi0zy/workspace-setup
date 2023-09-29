@@ -360,6 +360,9 @@ install_vim() {
     sudo -u "${SUDO_USER}" git clone \
         "${from}/dense-analysis/ale.git" \
         "${to}/ale"
+    sudo -u "${SUDO_USER}" git clone \
+        "${from}/APZelos/blamer.nvim.git" \
+        "${to}/blamer.nvim"
 
     sudo -u "${SUDO_USER}" rm -rf "${colors_dir}"
     sudo -u "${SUDO_USER}" mkdir -p "${colors_dir}"

@@ -165,3 +165,15 @@ let g:ale_echo_msg_log_str = 'log'
 let g:ale_echo_msg_format = '[%severity%][%linter%] %s [%code%]'
 let g:ale_sign_column_always = 1
 let g:ale_set_highlights = 0
+
+
+" -----------------------------------------------------------------------------
+" Git
+" -----------------------------------------------------------------------------
+
+let g:blamer_enabled = 1
+let g:blamer_delay = 500
+let g:blamer_show_in_insert_modes = 0
+let g:blamer_prefix = ' > '
+let g:blamer_template = '<committer>, <committer-time> (<commit-short>) <summary>'
+let g:blamer_relative_time = 1
