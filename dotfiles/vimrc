@@ -133,6 +133,14 @@ let g:user_emmet_settings = {
     \  },
     \}
 
+let g:coc_global_extensions = [
+    \ 'coc-html',
+    \ 'coc-xml',
+    \ 'coc-svg',
+    \ 'coc-css',
+    \ 'coc-tsserver',
+    \ 'coc-sh']
+
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
     \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
