@@ -1,6 +1,6 @@
 # Workspace setup for elementary OS 7
 
-These scripts install different software, clean up in the launcher, configure the vim as a simple frontend ide, and add visual settings for the terminal.
+These scripts install different software, clean up in the launcher, configure the vim as a frontend ide, and add visual settings for the terminal.
 
 ![](./screenshot.jpg)
 
@@ -36,21 +36,17 @@ cd workspace-setup-elementary-os-7
 ./main.sh
 ```
 
-You'll be asked for a password (for sudo).
+You'll be asked for a password (for sudo). Then minimal gui will help you to select the software to install.
 
-Then minimal gui will show some additional information.
-
-This software will be prepared to install:
+This software will be installed by default:
 
 - Google Chrome
-- Git, Gitk
-- NodeJS, NPM, n, some global npm packages (server one-liners)
-- VIM (configured as a frontend IDE) + ShellCheck
+- git, gitk
+- node.js, npm, n, http-server, ngrok
+- vim (configured as a frontend IDE) + shellcheck
 - software-properties-common, curl, snapd, preload, inotify-tools, build-essential
 
-The additional packages, required by different software will be also installed without any additional questions.
-
-Then minimal gui will help you to select the additional software from the list:
+You'll be able to choose the additional software from the list:
 
 - Web:
     - Mozilla Firefox
@@ -80,7 +76,9 @@ Then minimal gui will help you to select the additional software from the list:
     - Transmission
     - VLC
 - System:
-    - openssh-server
+    - OpenSSH Server
+
+The additional packages, required by different software will be also installed without any additional questions.
 
 Installation will take some time. Then restart your computer, add SSH keys if needed, log in into your web accounts and you're ready.
 
