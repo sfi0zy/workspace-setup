@@ -133,24 +133,6 @@ let g:user_emmet_settings = {
     \  },
     \}
 
-" enable the native vim code completion
-
-autocmd FileType html       set omnifunc=htmlcomplete#CompleteTags
-autocmd FileType css        set omnifunc=csscomplete#CompleteCSS
-autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-
-" activate the omni popup on `Tab`
-
-function! TabOrComplete()
-    if col('.')>1 && strpart( getline('.'), col('.')-2, 3 ) =~ '^\w'
-        return "\<C-X>\<C-O>"
-    else
-        return "\<Tab>"
-    endif
-endfunction
-
-inoremap <Tab> <C-R>=TabOrComplete()<CR>
-
 
 " -----------------------------------------------------------------------------
 " Linters
