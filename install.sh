@@ -87,14 +87,14 @@ say_about_required_software() {
         --msgbox \
         "The following packages will be installed:\n\n"`
         `"Google Chrome\n"`
-        `"node.js (n + node.js + npm + http-server + ngrok)\n"`
-        `"vim + shellcheck + plugins to make it a frontend IDE\n"`
-        `"git + gitk\n"`
-        `"snapd, curl, build-essential, preload, software-properties-common, inotify-tools\n"`
+        `"node.js, n, npm, http-server, ngrok\n"`
+        `"vim, shellcheck, some plugins to make it a frontend IDE\n"`
+        `"git, gitk\n"`
+        `"snapd, curl, build-essential, preload, software-properties-common, inotify-tools\n\n"`
         `"Also:\n"`
         `".bashrc will be replaced (cool prompt + some alias and settings).\n"`
         `"Some 'wtf is this?' icons will be hidden from launcher.\n"`
-        `"Terminal visual settings will be changed.\n\n"`
+        `"Visual settings for the terminal will be changed.\n\n"`
         `"You'll be able to select the additional software in the next step." \
         40 100 3>&1 1>&2 2>&3
 }

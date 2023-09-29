@@ -36,20 +36,30 @@ cd workspace-setup-elementary-os-7
 ./main.sh
 ```
 
-You'll be asked for a password (for sudo). Minimal gui will show some additional information and help you to select the software from the list:
+You'll be asked for a password (for sudo).
+
+Then minimal gui will show some additional information.
+
+This software will be prepared to install:
+
+- Google Chrome
+- Git, Gitk
+- NodeJS, NPM, n, some global npm packages (server one-liners)
+- VIM (configured as a frontend IDE) + ShellCheck
+- software-properties-common, curl, snapd, preload, inotify-tools, build-essential
+
+The additional packages, required by different software will be also installed without any additional questions.
+
+Then minimal gui will help you to select the additional software from the list:
 
 - Web:
-    - Google Chrome
     - Mozilla Firefox
     - Microsoft Edge (dev)
     - Skype
     - Telegram
     - Discord
 - Development:
-    - Git, Gitk
-    - VIM (configured as a frontend IDE) + ShellCheck
     - Visual Studio Code
-    - NodeJS + NPM + n + some global packages (server one-liners)
     - Ruby
     - VirtualBox
 - Writing tools:
@@ -71,10 +81,6 @@ You'll be asked for a password (for sudo). Minimal gui will show some additional
     - VLC
 - System:
     - openssh-server
-
-Some utils such as software-properties-common, curl, snapd, preload, inotify-tools and build-essential will be installed as well.
-
-The additional packages, required by different software will be installed without any additional questions.
 
 Installation will take some time. Then restart your computer, add SSH keys if needed, log in into your web accounts and you're ready.
 
