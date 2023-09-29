@@ -86,13 +86,11 @@ say_about_required_software() {
         --title "What to expect?" \
         --msgbox \
         "The following packages will be installed:\n\n"`
-        `"vim + shellcheck + some vim plugins\n"`
+        `"Google Chrome\n"`
+        `"node.js (n + node.js + npm + http-server + ngrok)\n"`
+        `"vim + shellcheck + plugins to make it a frontend IDE\n"`
         `"git + gitk\n"`
-        `"snapd (+ some additional software in the next step will use it)\n"`
-        `"curl + build-essential (get curl and make back!)\n"`
-        `"preload (makes the system a bit faster)\n"`
-        `"software-properties-common (we need them sometimes, don't we?)\n"`
-        `"inotify-tools (for watching files in some projects)\n"`
+        `"snapd, curl, build-essential, preload, software-properties-common, inotify-tools\n"`
         `"Also:\n"`
         `".bashrc will be replaced (cool prompt + some alias and settings).\n"`
         `"Some 'wtf is this?' icons will be hidden from launcher.\n"`
@@ -116,13 +114,11 @@ request_additional_software_list() {
         --title "What else do you want to install?" \
         --checklist "Use the space to select multiple items." \
         40 100 27 \
-        "google-chrome" "Google Chrome" ON \
         "firefox" "Firefox browser" OFF \
         "edge" "Microsoft Edge (dev)" OFF \
         "skype" "Skype" OFF \
         "telegram" "Telegram" ON \
         "discord" "Discord" OFF \
-        "node" "Node.js (n + Node.js + NPM + http-server + ngrok)" ON \
         "ruby" "Ruby language (ruby-full + ruby-bundler)" ON \
         "vscode" "Visual Studio Code" OFF \
         "virtualbox" "VirtualBox" OFF \
@@ -701,7 +697,7 @@ main() {
     make_sure_backup_is_created
     say_about_required_software
 
-    required_list="system-utils git vim"
+    required_list="system-utils git node vim google-chrome"
     additional_list=$(request_additional_software_list)
     all_software_list="${required_list} ${additional_list}"
 
