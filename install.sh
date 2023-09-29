@@ -370,6 +370,8 @@ install_vim() {
         -P "${colors_dir}"
 
     sudo -u "${SUDO_USER}" cp ./dotfiles/vimrc "${USER_HOME}/.vimrc"
+    sudo -u "${SUDO_USER}" cp ./dotfiles/coc-settings.json \
+        "${USER_HOME}/.vim/coc-settings.json"
 }
 
 
