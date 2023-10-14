@@ -144,6 +144,9 @@ let g:coc_global_extensions = [
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
     \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
+command CE CocEnable
+command CD CocDisable
+
 
 " -----------------------------------------------------------------------------
 " Linters
