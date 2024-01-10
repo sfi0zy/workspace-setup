@@ -159,6 +159,7 @@ let g:ale_linters = {
 \   'css': ['stylelint'],
 \   'less': ['stylelint'],
 \   'sass': ['stylelint'],
+\   'scss': ['stylelint'],
 \   'javascript': ['eslint'],
 \   'typescript': ['eslint'],
 \   'typescriptreact': ['eslint'],
