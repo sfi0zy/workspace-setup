@@ -103,4 +103,4 @@ https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generati
 
 MIT License
 
-Copyright (c) 2023 Ivan Bogachev sfi0zy@gmail.com
+Copyright (c) 2024 Ivan Bogachev sfi0zy@gmail.com
