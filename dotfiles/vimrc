@@ -98,7 +98,7 @@ syntax on
 " disable the highlighting on the long lines
 " (improves the performance, can cause wrong highlighting in the next lines)
 
-set synmaxcol=120
+set synmaxcol=240
 
 " disable that crazy syntax highlighting for the json and markdown files
 
