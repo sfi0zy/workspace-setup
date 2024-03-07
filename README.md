@@ -57,7 +57,6 @@ You'll be able to choose the additional software from the list:
 - Development:
     - Visual Studio Code
     - Ruby
-    - VirtualBox
 - Writing tools:
     - LibreOffice
     - Gummi + full LaTeX

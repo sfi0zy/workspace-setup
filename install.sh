@@ -121,7 +121,6 @@ request_additional_software_list() {
         "discord" "Discord" OFF \
         "ruby" "Ruby language (ruby-full + ruby-bundler)" ON \
         "vscode" "Visual Studio Code" OFF \
-        "virtualbox" "VirtualBox" OFF \
         "libreoffice" "Full LibreOffice" ON \
         "tex" "TeX Live (full) + Gummy" OFF \
         "darktable" "Darktable" ON \
@@ -415,22 +414,6 @@ install_vscode() {
 
 
 #######################################
-# Install Virtualbox
-# Arguments:
-#   None
-#######################################
-install_virtualbox() {
-    sudo apt-get install -y virtualbox
-
-    # Known issue: something is wrong with the virtualbox updates.
-    # It keep failing with errors like "kernels drivers not installed".
-    # Installing the linux-headers-* fixes (?) this problem.
-    name=$(uname -r)
-    sudo apt-get install -y "linux-headers-${name}"
-}
-
-
-#######################################
 # Install LibreOffice
 # Arguments:
 #   None
@@ -630,7 +613,6 @@ install_software() {
             "node") install_node ;;
             "ruby") install_ruby ;;
             "vscode") install_vscode ;;
-            "virtualbox") install_virtualbox ;;
             "libreoffice") install_libreoffice ;;
             "tex") install_tex ;;
             "darktable") install_darktable ;;
