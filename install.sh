@@ -121,6 +121,7 @@ request_additional_software_list() {
         "discord" "Discord" OFF \
         "ruby" "Ruby language (ruby-full + ruby-bundler)" ON \
         "vscode" "Visual Studio Code" OFF \
+        "docker" "Docker" OFF \
         "libreoffice" "Full LibreOffice" ON \
         "tex" "TeX Live (full) + Gummy" OFF \
         "darktable" "Darktable" ON \
@@ -414,6 +415,17 @@ install_vscode() {
 
 
 #######################################
+# Install Docker
+# Arguments:
+#   None
+#######################################
+install_docker() {
+    curl -fsSL https://get.docker.com -o get-docker.sh
+    sudo sh get-docker.sh
+}
+
+
+#######################################
 # Install LibreOffice
 # Arguments:
 #   None
@@ -613,6 +625,7 @@ install_software() {
             "node") install_node ;;
             "ruby") install_ruby ;;
             "vscode") install_vscode ;;
+            "docker") install_docker ;;
             "libreoffice") install_libreoffice ;;
             "tex") install_tex ;;
             "darktable") install_darktable ;;
