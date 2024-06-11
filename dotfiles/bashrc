@@ -41,7 +41,7 @@ set_bash_prompt() {
 
     local ok_mark="OK"
     local not_ok_mark="ERR"
-    local current_time="[\A]"
+    local current_time="| \A |"
     local user_name="\u"
     local host_name="\H"
     local working_directory="\w"
@@ -76,8 +76,8 @@ set_bash_prompt() {
 
     PS1+="${green}${current_time} ${jobs_info}"
     PS1+="${blue}${user_name}"
-    PS1+="${white}:"
-    PS1+="${yellow}${host_name}"
+    PS1+="${white}"
+    PS1+="${yellow} | ${host_name}"
 
     if [ -n "${my_ip}" ]; then
         PS1+=" | ${yellow}${my_ip} | ${white}"
