@@ -64,7 +64,7 @@ set_bash_prompt() {
         | awk '{ print $8 }' | tr -d ',' | awk '{ print $1 * 100 }')
     load=$((load_avg / number_of_cpu_cores))
     disk_usage=$(df --output=pcent / | tr -dc '0-9')
-    jobs_info=$(if [ -n "$(jobs -p)" ]; then echo "[\j] "; fi)
+    jobs_info=$(if [ -n "$(jobs -p)" ]; then echo "\j | "; fi)
 
     PS1=""
 
