@@ -363,6 +363,9 @@ install_vim() {
     sudo -u "${SUDO_USER}" git clone -b release \
         "${from}/neoclide/coc.nvim.git" \
         "${to}/coc.nvim"
+    sudo -u "${SUDO_USER}" git clone -b release \
+        "${from}/prettier/vim-prettier.git" \
+        "${to}/vim-prettier"
 
     sudo -u "${SUDO_USER}" rm -rf "${colors_dir}"
     sudo -u "${SUDO_USER}" mkdir -p "${colors_dir}"
@@ -390,6 +393,9 @@ install_node() {
     # one-liners called serve-this-directory and share-this-directory.
     sudo npm i -g http-server
     sudo npm i -g ngrok
+
+    # prettier will be used by the vim-prettier plugin
+    sudo npm i -g prettier
 }
 
 
