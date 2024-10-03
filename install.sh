@@ -123,7 +123,7 @@ request_additional_software_list() {
         "vscode" "Visual Studio Code" OFF \
         "docker" "Docker" OFF \
         "libreoffice" "Full LibreOffice" ON \
-        "tex" "TeX Live (full) + Gummy" OFF \
+        "tex" "LaTeX + Gummy" OFF \
         "darktable" "Darktable" ON \
         "gimp" "GIMP" ON \
         "krita" "Krita" OFF \
@@ -449,9 +449,8 @@ install_libreoffice() {
 #   None
 #######################################
 install_tex() {
-    # We install texlive-full to get the ability to open every *.tex document
-    # and it will be compiled. We don't need to think. It just works.
-    sudo apt-get install -y texlive-full
+    sudo apt-get install -y texlive-base
+    sudo apt-get install -y texlive-lang-cyrillic
     sudo apt-get install -y gummi
 }
 

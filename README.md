@@ -11,7 +11,7 @@ Before you start:
 
 ### WARNINGS
 
-1. These scripts can install a lot of packages, texlive-full included, so you will need around 25G to install everything. It's not a problem for modern SSD, but remember about that if you want to install this configuration on some old laptop. You'll be able to choose the programs to install.
+1. These scripts can install a lot of packages, so you will need around 20-25G to install everything. It's not a problem for modern SSD, but remember about that if you want to install this configuration on some old laptop. You'll be able to choose the programs to install.
 
 2. **BACKUP YOUR DATA**. These scripts were designed for usage inside the fresh system without any modifications of it. They don't have protections from your thoughtless actions.
 
@@ -60,7 +60,7 @@ You'll be able to choose the additional software from the list:
     - Docker
 - Writing tools:
     - LibreOffice
-    - Gummi + full LaTeX
+    - Gummi + LaTeX
 - Tools for creators:
     - Darktable
     - GIMP
