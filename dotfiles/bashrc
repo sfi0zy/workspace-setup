@@ -164,6 +164,7 @@ alias ....='cd ../../../'
 
 alias ls='ls --color=auto'
 alias ll='ls -lAhF'
+alias ldir='du -a -h --max-depth=1 | sort -hr'
 alias cp='cp -i'
 alias mv='mv -i'
 alias mkdir='mkdir -pv'
