@@ -2,9 +2,6 @@
 
 These scripts install different software, clean up in the launcher, configure the vim as a frontend ide, and add visual settings for the terminal.
 
-![](./screenshot.jpg)
-
-
 ## Install
 
 Before you start:
