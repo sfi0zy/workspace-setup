@@ -124,7 +124,6 @@ request_additional_software_list() {
         "tex" "LaTeX + Gummy" OFF \
         "darktable" "Darktable" ON \
         "gimp" "GIMP" ON \
-        "krita" "Krita" OFF \
         "inkscape" "Inkscape" ON \
         "simple-scan" "Simple Scan" OFF \
         "obs" "OBS" OFF \
@@ -456,16 +455,6 @@ install_gimp() {
 
 
 #######################################
-# Install Krita
-# Arguments:
-#   None
-#######################################
-install_krita() {
-    sudo apt-get install -y krita
-}
-
-
-#######################################
 # Install Inkscape
 # Arguments:
 #   None
@@ -602,7 +591,6 @@ install_software() {
             "tex") install_tex ;;
             "darktable") install_darktable ;;
             "gimp") install_gimp ;;
-            "krita") install_krita ;;
             "inkscape") install_inkscape ;;
             "simple-scan") install_simple_scan ;;
             "obs") install_obs ;;

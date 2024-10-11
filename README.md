@@ -62,7 +62,6 @@ You'll be able to choose the additional software from the list:
 - Tools for creators:
     - Darktable
     - GIMP
-    - Krita
     - Inkscape
     - SimpleScan
     - OBS
