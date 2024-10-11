@@ -52,7 +52,6 @@ You'll be able to choose the additional software from the list:
     - Mozilla Firefox
     - Microsoft Edge (dev)
     - Telegram
-    - Discord
 - Development:
     - Visual Studio Code
     - Ruby

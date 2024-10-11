@@ -117,7 +117,6 @@ request_additional_software_list() {
         "firefox" "Firefox browser" OFF \
         "edge" "Microsoft Edge (dev)" OFF \
         "telegram" "Telegram" ON \
-        "discord" "Discord" OFF \
         "ruby" "Ruby language (ruby-full + ruby-bundler)" ON \
         "vscode" "Visual Studio Code" OFF \
         "docker" "Docker" OFF \
@@ -259,21 +258,6 @@ install_telegram() {
     echo "x-scheme-handler/tg=${desktop_file}" \
         | sudo -u "${SUDO_USER}" \
             tee -a "${USER_HOME}/${applications}/mimeapps.list"
-}
-
-
-#######################################
-# Install Discord
-# Arguments:
-#   None
-#######################################
-install_discord() {
-    # It doesn't have a direct link to the *.deb
-    local url="https://discord.com/api/download?platform=linux&format=deb"
-    local package="discord.deb"
-
-    wget -q -O "./$package" "${url}"
-    sudo apt-get install -y "./$package"
 }
 
 
@@ -609,7 +593,6 @@ install_software() {
             "firefox") install_firefox ;;
             "edge") install_edge ;;
             "telegram") install_telegram ;;
-            "discord") install_discord ;;
             "vim") install_vim ;;
             "node") install_node ;;
             "ruby") install_ruby ;;
