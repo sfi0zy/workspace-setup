@@ -116,7 +116,6 @@ request_additional_software_list() {
         40 100 27 \
         "firefox" "Firefox browser" OFF \
         "edge" "Microsoft Edge (dev)" OFF \
-        "skype" "Skype" OFF \
         "telegram" "Telegram" ON \
         "discord" "Discord" OFF \
         "ruby" "Ruby language (ruby-full + ruby-bundler)" ON \
@@ -223,20 +222,6 @@ install_edge() {
     sudo sh -c "echo \"${info}\" > ${sources_list_file}"
     sudo apt-get update
     sudo apt-get install -y microsoft-edge-dev
-}
-
-
-#######################################
-# Install Skype
-# Arguments:
-#   None
-#######################################
-install_skype() {
-    local url="https://go.skype.com"
-    local package="skypeforlinux-64.deb"
-
-    wget -q "${url}/${package}"
-    sudo apt-get install -y "./${package}"
 }
 
 
@@ -623,7 +608,6 @@ install_software() {
             "google-chrome") install_google_chrome ;;
             "firefox") install_firefox ;;
             "edge") install_edge ;;
-            "skype") install_skype ;;
             "telegram") install_telegram ;;
             "discord") install_discord ;;
             "vim") install_vim ;;
