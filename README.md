@@ -53,7 +53,6 @@ You'll be able to choose the additional software from the list:
     - Microsoft Edge (dev)
     - Telegram
 - Development:
-    - Visual Studio Code
     - Ruby
     - Docker
 - Writing tools:

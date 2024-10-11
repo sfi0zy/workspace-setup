@@ -118,7 +118,6 @@ request_additional_software_list() {
         "edge" "Microsoft Edge (dev)" OFF \
         "telegram" "Telegram" ON \
         "ruby" "Ruby language (ruby-full + ruby-bundler)" ON \
-        "vscode" "Visual Studio Code" OFF \
         "docker" "Docker" OFF \
         "libreoffice" "Full LibreOffice" ON \
         "tex" "LaTeX + Gummy" OFF \
@@ -379,16 +378,6 @@ install_ruby() {
 
 
 #######################################
-# Install Visual Studio Code
-# Arguments:
-#   None
-#######################################
-install_vscode() {
-    sudo snap install --classic code
-}
-
-
-#######################################
 # Install Docker
 # Arguments:
 #   None
@@ -585,7 +574,6 @@ install_software() {
             "vim") install_vim ;;
             "node") install_node ;;
             "ruby") install_ruby ;;
-            "vscode") install_vscode ;;
             "docker") install_docker ;;
             "libreoffice") install_libreoffice ;;
             "tex") install_tex ;;
