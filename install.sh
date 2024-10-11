@@ -129,7 +129,6 @@ request_additional_software_list() {
         "blender" "Blender" OFF \
         "musescore" "Musescore" OFF \
         "audacity" "Audacity" OFF \
-        "steam" "Steam" OFF \
         "transmission" "Transmission" ON \
         "vlc" "VLC" ON \
         "openssh-server" "SSH server" OFF \
@@ -512,20 +511,6 @@ install_audacity() {
 
 
 #######################################
-# Install Steam + required i386 architecture
-# Arguments:
-#   None
-#######################################
-install_steam() {
-    # Steam requires another architecture. So we are going to multiverse.
-    yes | sudo dpkg --add-architecture i386
-    sudo add-apt-repository -y multiverse
-    sudo apt-get update
-    sudo apt-get install -y steam
-}
-
-
-#######################################
 # Install Transmission
 # Arguments:
 #   None
@@ -585,7 +570,6 @@ install_software() {
             "blender") install_blender ;;
             "musescore") install_musescore ;;
             "audacity") install_audacity ;;
-            "steam") install_steam ;;
             "transmission") install_transmission ;;
             "vlc") install_vlc ;;
             "openssh-server") install_ssh_server ;;

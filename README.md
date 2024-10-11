@@ -67,8 +67,6 @@ You'll be able to choose the additional software from the list:
     - Blender
     - MuseScore
     - Audacity
-- Games:
-    - Steam
 - Others:
     - Transmission
     - VLC
