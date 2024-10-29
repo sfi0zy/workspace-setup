@@ -117,7 +117,6 @@ request_additional_software_list() {
         "firefox" "Firefox browser" OFF \
         "edge" "Microsoft Edge (dev)" OFF \
         "telegram" "Telegram" ON \
-        "ruby" "Ruby language (ruby-full + ruby-bundler)" ON \
         "docker" "Docker" OFF \
         "libreoffice" "Full LibreOffice" ON \
         "tex" "LaTeX + Gummy" OFF \
@@ -366,17 +365,6 @@ install_node() {
 
 
 #######################################
-# Install Ruby
-# Arguments:
-#   None
-#######################################
-install_ruby() {
-    sudo apt-get install -y ruby-full
-    sudo apt-get install -y ruby-bundler
-}
-
-
-#######################################
 # Install Docker
 # Arguments:
 #   None
@@ -558,7 +546,6 @@ install_software() {
             "telegram") install_telegram ;;
             "vim") install_vim ;;
             "node") install_node ;;
-            "ruby") install_ruby ;;
             "docker") install_docker ;;
             "libreoffice") install_libreoffice ;;
             "tex") install_tex ;;
