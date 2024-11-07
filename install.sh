@@ -115,7 +115,6 @@ request_additional_software_list() {
         --checklist "Use the space to select multiple items." \
         40 100 27 \
         "firefox" "Firefox browser" OFF \
-        "edge" "Microsoft Edge (dev)" OFF \
         "telegram" "Telegram" ON \
         "docker" "Docker" OFF \
         "libreoffice" "Full LibreOffice" ON \
@@ -196,27 +195,6 @@ install_google_chrome() {
 #######################################
 install_firefox() {
     sudo apt-get install -y firefox
-}
-
-
-#######################################
-# Install Microsoft Edge
-# Arguments:
-#   None
-#######################################
-install_edge() {
-    local repo="https://packages.microsoft.com/repos/edge"
-    local key_url="https://packages.microsoft.com/keys/microsoft.asc"
-    local key="microsoft.gpg"
-    local kpath="/usr/share/keyrings"
-    local info="deb [arch=amd64 signed-by=${kpath}/${key}] ${repo} stable main"
-    local sources_list_file="/etc/apt/sources.list.d/microsoft-edge-dev.list"
-
-    curl -s $key_url | gpg --dearmor > $key
-    sudo install -o root -g root -m 644 $key $kpath
-    sudo sh -c "echo \"${info}\" > ${sources_list_file}"
-    sudo apt-get update
-    sudo apt-get install -y microsoft-edge-dev
 }
 
 
@@ -542,7 +520,6 @@ install_software() {
             "git") install_git ;;
             "google-chrome") install_google_chrome ;;
             "firefox") install_firefox ;;
-            "edge") install_edge ;;
             "telegram") install_telegram ;;
             "vim") install_vim ;;
             "node") install_node ;;

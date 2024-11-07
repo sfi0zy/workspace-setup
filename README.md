@@ -47,7 +47,6 @@ You'll be able to choose the additional software from the list:
 
 - Web:
     - Mozilla Firefox
-    - Microsoft Edge (dev)
     - Telegram
 - Development:
     - Docker
