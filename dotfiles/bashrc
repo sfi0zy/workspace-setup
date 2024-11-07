@@ -195,6 +195,18 @@ alias search-for='grep -R --exclude-dir={node_modules,\.git} -B 2 -A 2 --ignore-
 ###############################################################################
 
 #######################################
+# Update everything
+# Arguments:
+#   None
+#######################################
+update-everything() {
+    sudo apt update
+    sudo apt upgrade
+    flatpak update --user
+    sudo flatpak update --system
+}
+
+#######################################
 # Create new front-end sketch
 # Arguments:
 #   Name (directory name)
