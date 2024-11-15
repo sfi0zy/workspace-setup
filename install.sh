@@ -289,12 +289,6 @@ install_vim() {
         "${from}/groenewege/vim-less.git" \
         "${to}/vim-less"
     sudo -u "${SUDO_USER}" git clone \
-        "${from}/digitaltoad/vim-pug.git" \
-        "${to}/vim-pug"
-    sudo -u "${SUDO_USER}" git clone \
-        "${from}/tpope/vim-liquid.git" \
-        "${to}/vim-liquid"
-    sudo -u "${SUDO_USER}" git clone \
         "${from}/tikhomirov/vim-glsl.git" \
         "${to}/vim-glsl"
     sudo -u "${SUDO_USER}" git clone \
