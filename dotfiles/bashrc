@@ -173,13 +173,6 @@ alias top='htop'
 
 alias reload-bash='source ~/.bashrc'
 
-alias npm-list-global-packages='npm list -g --depth=0'
-alias npm-list-global-updates='npm outdated -g --depth=0'
-alias npm-update-globals='sudo npm update -g'
-
-alias apt-update-all='sudo apt update && sudo apt upgrade'
-alias apt-remove-unused='sudo apt autoremove'
-
 alias check-internet-connection='ping 8.8.8.8 -c 5'
 
 alias serve-this-directory='http-server -c-1'
@@ -202,8 +195,15 @@ alias search-for='grep -R --exclude-dir={node_modules,\.git} -B 2 -A 2 --ignore-
 update-everything() {
     sudo apt update
     sudo apt upgrade
+    sudo apt autoremove
+
     flatpak update --user
     sudo flatpak update --system
+
+    npm list -g
+    sudo npm update --location=global
+
+    (cd ~/.vim/bundle && for d in */; do cd "$d" && pwd && git pull && cd .. ; done)
 }
 
 #######################################
