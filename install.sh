@@ -248,6 +248,7 @@ install_vim() {
     local to="${USER_HOME}/.vim/bundle"
     local raw_from="https://raw.githubusercontent.com"
     local colors_dir="${USER_HOME}/.vim/colors"
+    local coc_config_dir="${USER_HOME}/.config/coc"
     local theme="atlantic-dark"
 
     sudo apt-get install -y vim
@@ -311,8 +312,10 @@ install_vim() {
         -P "${colors_dir}"
 
     sudo -u "${SUDO_USER}" cp ./dotfiles/vimrc "${USER_HOME}/.vimrc"
+
+    sudo -u "${SUDO_USER}" mkdir -p "${coc_config_dir}"
     sudo -u "${SUDO_USER}" cp ./dotfiles/coc-settings.json \
-        "${USER_HOME}/.vim/coc-settings.json"
+        "${coc_config_dir}/coc-settings.json"
 }
 
 
