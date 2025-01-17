@@ -118,6 +118,7 @@ request_additional_software_list() {
         "telegram" "Telegram" ON \
         "docker" "Docker" OFF \
         "libreoffice" "Full LibreOffice" ON \
+        "drawio" "draw.io" OFF \
         "tex" "LaTeX + Gummy" OFF \
         "darktable" "Darktable" ON \
         "gimp" "GIMP" ON \
@@ -361,6 +362,15 @@ install_libreoffice() {
         /usr/share/applications/libreoffice-startcenter.desktop
 }
 
+#######################################
+# Install draw.io
+# Arguments:
+#   None
+#######################################
+install_drawio() {
+    sudo snap install drawio
+}
+
 
 #######################################
 # Install TeX
@@ -522,6 +532,7 @@ install_software() {
             "node") install_node ;;
             "docker") install_docker ;;
             "libreoffice") install_libreoffice ;;
+            "drawio") install_drawio ;;
             "tex") install_tex ;;
             "darktable") install_darktable ;;
             "gimp") install_gimp ;;

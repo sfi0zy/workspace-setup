@@ -52,6 +52,7 @@ You'll be able to choose the additional software from the list:
     - Docker
 - Writing tools:
     - LibreOffice
+    - draw.io
     - Gummi + LaTeX
 - Tools for creators:
     - Darktable
