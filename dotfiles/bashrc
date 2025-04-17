@@ -188,21 +188,27 @@ alias search-for='grep -R --exclude-dir={node_modules,\.git} -B 2 -A 2 --ignore-
 ###############################################################################
 
 #######################################
-# Update everything
+# Update system
 # Arguments:
 #   None
 #######################################
-update-everything() {
+update-system() {
     sudo apt update
     sudo apt upgrade
-    sudo apt autoremove
 
     flatpak update --user
     sudo flatpak update --system
 
     npm list -g
     sudo npm update --location=global
+}
 
+#######################################
+# Update VIM plugins
+# Arguments:
+#   None
+#######################################
+update-vim-plugins() {
     (cd ~/.vim/bundle && for d in */; do cd "$d" && pwd && git pull && cd .. ; done)
 }
 
