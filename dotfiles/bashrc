@@ -235,6 +235,19 @@ new-sketch() {
 }
 
 #######################################
+# Download stream
+# Arguments:
+#   Url to m3u8
+#######################################
+download-stream() {
+    local t
+
+    t=$(date +"%Y%m%d-%H%M%S");
+
+    ffmpeg -i "$1" -c copy "stream-$t.mkv"
+}
+
+#######################################
 # Archive all documents, except node_modules, encrypt and split it
 # Arguments:
 #   None
