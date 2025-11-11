@@ -199,6 +199,9 @@ update-system() {
     flatpak update --user
     sudo flatpak update --system
 
+    sudo snap refresh
+    sudo snap refresh --hold=forever
+
     npm list -g
     sudo npm update --location=global
 }
