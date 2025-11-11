@@ -194,10 +194,10 @@ alias search-for='grep -R --exclude-dir={node_modules,\.git} -B 2 -A 2 --ignore-
 #######################################
 update-system() {
     sudo apt update
-    sudo apt upgrade
+    sudo apt upgrade -y
 
-    flatpak update --user
-    sudo flatpak update --system
+    flatpak update -y --user
+    sudo flatpak update -y --system
 
     sudo snap refresh
     sudo snap refresh --hold=forever
