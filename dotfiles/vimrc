@@ -18,15 +18,15 @@ call pathogen#helptags()
 autocmd vimenter * NERDTree
 let NERDTreeShowHidden = 1
 
-" set the current directory
+" set current directory
 
 set autochdir
 
-" activate the wildmenu
+" activate wildmenu
 
 set wildmenu
 
-" activate the filetype plugin for the future commands
+" activate filetype plugin for future commands
 
 filetype plugin on
 
@@ -35,36 +35,36 @@ filetype plugin on
 " Visual settings
 " -----------------------------------------------------------------------------
 
-" apply the colorscheme
+" apply colorscheme
 " https://github.com/sfi0zy/atlantic-dark.vim
 
 colorscheme atlantic-dark
 let g:airline_theme='term'
 
-" show the line numbers by default
+" show line numbers by default
 
 set nu
 
-" show 5 lines before/after the cursor if it's possible
+" show 5 lines before/after cursor if it's possible
 
 set scrolloff=5
 
-" set the color for the vertical lines (indentations)
+" set color for vertical lines (indentations)
 
 let g:indentLine_color_term = 236
 
-" fill the columns 80+
-" (`join` is not necessary, we're saving it here for the future tests)
+" fill columns 80+
+" (`join` is not necessary here, we're saving it for future tests)
 
 highlight ColorColumn ctermbg=232 guibg=#060606
 let &colorcolumn="80,".join(range(81,999),",")
 
-" highlight the search results
+" highlight search results
 
 set hlsearch
 set incsearch
 
-" highlight the parens
+" highlight parens
 
 set showmatch
 
@@ -73,8 +73,8 @@ set showmatch
 " Text editing
 " -----------------------------------------------------------------------------
 
-" set the fallback settings for the tabs and the line endings
-" (editorconfig will rewrite all these settings for the particular projects)
+" set fallback settings for tabs and line endings
+" (editorconfig can rewrite all these settings for the particular projects)
 
 set tabstop=4
 set shiftwidth=4
@@ -82,7 +82,7 @@ set expandtab
 autocmd BufWritePre * set ff=unix
 autocmd BufWritePre * %s/\s\+$//e
 
-" disable the auto comments
+" disable auto comments
 
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
@@ -91,28 +91,28 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 " Syntax highlighting
 " -----------------------------------------------------------------------------
 
-" enable the syntax highlighting by default
+" enable syntax highlighting by default
 
 syntax on
 
-" disable the highlighting on the long lines
-" (improves the performance, can cause wrong highlighting in the next lines)
+" disable highlighting for long lines
+" (improves performance, but can cause wrong highlighting in a next line)
 
 set synmaxcol=240
 
-" disable that crazy syntax highlighting for the json and markdown files
+" disable that crazy syntax highlighting for json and markdown files
 
 autocmd FileType json     setlocal syntax=off nospell
 autocmd FileType markdown setlocal syntax=off nospell
 
-" highlight the ES6 template strings
+" highlight ES6 template strings
 " (they're not highlighting properly by default)
 
 hi link javaScriptTemplateDelim  String
 hi link javaScriptTemplateVar    Text
 hi link javaScriptTemplateString String
 
-" now hyphens are the part of the identifiers (it helps with the highlighting)
+" now hyphens are parts of identifiers (helps with highlighting)
 
 au! FileType css,less,html setl iskeyword+=-
 
@@ -121,11 +121,11 @@ au! FileType css,less,html setl iskeyword+=-
 " Code completion
 " -----------------------------------------------------------------------------
 
-" set the emmet leader key
+" set emmet leader key
 
 let g:user_emmet_leader_key = '<C-Z>'
 
-" Set the default quote char for the emmet
+" Set default quote char for emmet
 
 let g:user_emmet_settings = {
     \  'html' : {
@@ -152,7 +152,7 @@ command CD CocDisable
 " Linters
 " -----------------------------------------------------------------------------
 
-" choose the linters
+" choose linters
 
 let g:ale_linters = {
 \   'sh': ['shellcheck'],
@@ -170,7 +170,7 @@ let g:ale_linters = {
 let g:ale_lint_on_enter = 1
 let g:ale_lint_on_save = 1
 
-" more visual settings for the ALE
+" more visual settings for ALE
 
 let g:ale_linters_explicit = 1
 let g:ale_echo_msg_error_str = 'error'

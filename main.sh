@@ -2,9 +2,7 @@
 
 ###############################################################################
 #
-# Re-create my workspace with the selected software.
-#
-# Created for the elementary OS 7
+# Re-create my workspace.
 #
 ###############################################################################
 
@@ -13,7 +11,7 @@ set -e
 
 
 #######################################
-# Set the visual setings for the terminal
+# Set visual setings for the terminal
 # Arguments:
 #   None
 #######################################
@@ -32,7 +30,7 @@ set_terminal_visual_settings() {
 
 
 #######################################
-# Run the installation
+# Run the main installation
 # Arguments:
 #   None
 #######################################

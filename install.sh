@@ -2,12 +2,10 @@
 
 ###############################################################################
 #
-# This is the installation script. It shows the UI, updates the packages,
-# installs the packages from the list and replaces the configuration files.
+# This is the installation script. It shows UI, updates packages,
+# installs packages from the list and replaces some configuration files.
 #
 # See also: ./main.sh
-#
-# Created for the elementary OS 7
 #
 ###############################################################################
 
@@ -23,7 +21,7 @@ readonly USER_HOME="/home/${SUDO_USER}"
 
 
 #######################################
-# Check for the available space
+# Check for available space
 # Arguments:
 #   None
 # Outputs:
@@ -48,7 +46,7 @@ is_space_available() {
 
 
 #######################################
-# Show UI: the welcome message
+# Show UI: welcome message
 # Arguments:
 #   None
 #######################################
@@ -57,27 +55,27 @@ say_welcome() {
         --title "Welcome to workspace setup!" \
         --msgbox \
         "This script will re-create my workspace.\n\n"`
-        `"You'll need a stable internet connection to download the software.\n\n"`
+        `"You'll need a stable internet connection to download software.\n\n"`
         `"Press OK to continue." \
         40 100 3>&1 1>&2 2>&3
 }
 
 
 #######################################
-# Show UI: yes/no option about the data backup
+# Show UI: yes/no option about backups
 # Arguments:
 #   None
 #######################################
 make_sure_backup_is_created() {
     whiptail \
         --title "Are you sure?" \
-        --yesno "Did you make the backup of your data?\n" \
+        --yesno "Did you make a backup of your data?\n" \
         40 100 3>&1 1>&2 2>&3
 }
 
 
 #######################################
-# Show UI: the message about the required software
+# Show UI: message about required software
 # Arguments:
 #   None
 #######################################
@@ -94,14 +92,14 @@ say_about_required_software() {
         `"Also:\n"`
         `".bashrc will be replaced (cool prompt + some alias and settings).\n"`
         `"Some 'wtf is this?' icons will be hidden from launcher.\n"`
-        `"Visual settings for the terminal will be changed.\n\n"`
-        `"You'll be able to select the additional software in the next step." \
+        `"Visual settings for terminal will be changed.\n\n"`
+        `"You'll be able to select additional software in the next step." \
         40 100 3>&1 1>&2 2>&3
 }
 
 
 #######################################
-# Show UI: the checkboxes for the additional software
+# Show UI: checkboxes for additional software
 # Arguments:
 #   None
 # Outputs:
@@ -111,8 +109,8 @@ request_additional_software_list() {
     local additional_software_list
 
     additional_software_list=$(whiptail \
-        --title "What else do you want to install?" \
-        --checklist "Use the space to select multiple items." \
+        --title "What else would you like to install?" \
+        --checklist "Use space to select multiple items." \
         40 100 27 \
         "firefox" "Firefox browser" OFF \
         "telegram" "Telegram" ON \
