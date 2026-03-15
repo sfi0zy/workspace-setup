@@ -455,7 +455,7 @@ install_obs() {
 #   None
 #######################################
 install_blender() {
-    sudo apt-get install -y blender
+    sudo snap install blender --classic
 }
 
 
