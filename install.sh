@@ -497,7 +497,7 @@ install_transmission() {
 #   None
 #######################################
 install_vlc() {
-  sudo apt-get install -y vlc
+    sudo apt-get install -y vlc
 }
 
 
@@ -507,7 +507,7 @@ install_vlc() {
 #   None
 #######################################
 install_ssh_server() {
-  sudo apt-get install -y openssh-server
+    sudo apt-get install -y openssh-server
 }
 
 #######################################
