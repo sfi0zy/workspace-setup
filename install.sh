@@ -114,7 +114,6 @@ request_additional_software_list() {
         40 100 27 \
         "firefox" "Firefox browser" OFF \
         "libreoffice" "Full LibreOffice" ON \
-        "drawio" "draw.io" OFF \
         "tex" "LaTeX + Gummy" OFF \
         "darktable" "Darktable" ON \
         "gimp" "GIMP" ON \
@@ -124,6 +123,7 @@ request_additional_software_list() {
         "blender" "Blender" OFF \
         "musescore" "Musescore" OFF \
         "audacity" "Audacity" OFF \
+        "drawio" "draw.io" OFF \
         "transmission" "Transmission" ON \
         "vlc" "VLC" ON \
         --separate-output \

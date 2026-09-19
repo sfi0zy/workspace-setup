@@ -1,6 +1,6 @@
 # Workspace setup for elementary OS 7
 
-These scripts install different software, clean up in the launcher, configure vim as a frontend IDE, and add some visual settings for terminal.
+These scripts install various software, clean up in the launcher, configure vim as a frontend IDE, and add some visual settings for terminal.
 
 ## Install
 
@@ -8,22 +8,15 @@ Before you start:
 
 ### WARNINGS
 
-1. These scripts can install a lot of packages, so you will need around 20-25G to install everything. It's not a problem for modern SSD, but remember that if you want to install this configuration on some old laptop. You'll be able to choose the programs to install.
+1. These scripts can install a lot of packages, so you'll need around 20-25G to install everything.
 
-2. **BACKUP YOUR DATA**. These scripts were designed for usage inside a fresh system without any modifications to it. They don't have protection from your thoughtless actions.
+2. **BACKUP YOUR DATA**.
 
 3. You'll need some time and a stable internet connection.
 
 ### How to use it
 
-It'll be a good idea to update everything in advance. A fresh system can have hundreds of outdated packages and this process will probably take some time. If you want to play with this setup in a virtual machine, you may also want to take a snapshot of its state after that.
-
-```sh
-sudo apt update
-sudo apt upgrade
-```
-
-Then download this repository as an archive, extract it and start the process.
+Download this repository as an archive, extract it and start the process.
 
 ```sh
 cd /tmp
@@ -49,7 +42,6 @@ You'll be able to choose additional software from the list:
     - Mozilla Firefox
 - Writing tools:
     - LibreOffice
-    - draw.io
     - Gummi + LaTeX
 - Tools for creators:
     - Darktable
@@ -61,12 +53,11 @@ You'll be able to choose additional software from the list:
     - MuseScore
     - Audacity
 - Others:
+    - draw.io
     - Transmission
     - VLC
 
-Additional packages required by different software will be installed without any additional questions.
-
-Installation takes some time. Then restart your computer, add SSH keys if needed, log in to your web accounts and you're ready.
+Installation takes some time. Then you'll need to restart your computer.
 
 
 ## Useful links
