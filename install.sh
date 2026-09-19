@@ -126,7 +126,6 @@ request_additional_software_list() {
         "audacity" "Audacity" OFF \
         "transmission" "Transmission" ON \
         "vlc" "VLC" ON \
-        "openssh-server" "SSH server" OFF \
         --separate-output \
         3>&1 1>&2 2>&3)
 
@@ -450,15 +449,6 @@ install_vlc() {
 
 
 #######################################
-# Install SSH server
-# Arguments:
-#   None
-#######################################
-install_ssh_server() {
-    sudo apt-get install -y openssh-server
-}
-
-#######################################
 # Install software based on the software list
 # Arguments:
 #   Software list, names, separated with spaces
@@ -488,7 +478,6 @@ install_software() {
             "audacity") install_audacity ;;
             "transmission") install_transmission ;;
             "vlc") install_vlc ;;
-            "openssh-server") install_ssh_server ;;
         esac
     done
 }

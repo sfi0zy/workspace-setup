@@ -63,8 +63,6 @@ You'll be able to choose additional software from the list:
 - Others:
     - Transmission
     - VLC
-- System:
-    - OpenSSH Server
 
 Additional packages required by different software will be installed without any additional questions.
 
