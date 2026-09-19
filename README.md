@@ -39,7 +39,7 @@ Some software will be installed by default:
 
 - Google Chrome
 - git, gitk
-- node.js, npm, n, http-server, ngrok
+- node.js, npm, n, http-server
 - vim (configured as a frontend IDE) + shellcheck
 - software-properties-common, curl, snapd, preload, inotify-tools, build-essential
 

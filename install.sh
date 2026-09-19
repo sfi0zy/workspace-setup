@@ -85,7 +85,7 @@ say_about_required_software() {
         --msgbox \
         "The following packages will be installed:\n\n"`
         `"Google Chrome\n"`
-        `"node.js, n, npm, http-server, ngrok\n"`
+        `"node.js, n, npm, http-server\n"`
         `"vim, shellcheck, some plugins to make it a frontend IDE\n"`
         `"git, gitk\n"`
         `"snapd, curl, build-essential, preload, software-properties-common, inotify-tools\n\n"`
@@ -328,10 +328,8 @@ install_node() {
     sudo npm install -g n
     sudo n latest
 
-    # http-server and ngrok are used in .bashrc to create the server
-    # one-liners called serve-this-directory and share-this-directory.
+    # http-server is used in .bashrc for a one-liner "serve-this-directory".
     sudo npm i -g http-server
-    sudo npm i -g ngrok
 
     # prettier will be used by the vim-prettier plugin
     sudo npm i -g prettier
