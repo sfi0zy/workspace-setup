@@ -113,7 +113,6 @@ request_additional_software_list() {
         --checklist "Use space to select multiple items." \
         40 100 27 \
         "firefox" "Firefox browser" OFF \
-        "telegram" "Telegram" ON \
         "docker" "Docker" OFF \
         "libreoffice" "Full LibreOffice" ON \
         "drawio" "draw.io" OFF \
@@ -194,43 +193,6 @@ install_google_chrome() {
 #######################################
 install_firefox() {
     sudo apt-get install -y firefox
-}
-
-
-#######################################
-# Install Telegram Desktop
-# Globals:
-#   SUDO_USER
-#   USER_HOME
-# Arguments:
-#   None
-#######################################
-install_telegram() {
-    local desktop_file="telegram-desktop_telegram-desktop.desktop"
-    local applications=".local/share/applications"
-
-    # There is a telegram-desktop package in the official repository,
-    # but is's almost always outdated and sometimes it works in strange ways.
-    # Snap package is much more stable.
-    sudo snap install telegram-desktop
-
-    # We change the desktop files to keep the icon in the dock
-    # after the automatic updates
-    sudo -u "${SUDO_USER}" \
-        cp "/var/lib/snapd/desktop/applications/${desktop_file}" \
-            "${USER_HOME}/${applications}/"
-    sudo -u "${SUDO_USER}" \
-        sed -i 's/telegram-desktop\/[0-9]\+\//telegram-desktop\/current\//g' \
-            "${USER_HOME}/${applications}/${desktop_file}"
-    sudo -u "${SUDO_USER}" touch "${USER_HOME}/${applications}/mimeapps.list"
-
-    echo "[Default Applications]" \
-        | sudo -u "${SUDO_USER}" \
-            tee -a "${USER_HOME}/${applications}/mimeapps.list"
-
-    echo "x-scheme-handler/tg=${desktop_file}" \
-        | sudo -u "${SUDO_USER}" \
-            tee -a "${USER_HOME}/${applications}/mimeapps.list"
 }
 
 
@@ -523,7 +485,6 @@ install_software() {
             "git") install_git ;;
             "google-chrome") install_google_chrome ;;
             "firefox") install_firefox ;;
-            "telegram") install_telegram ;;
             "vim") install_vim ;;
             "node") install_node ;;
             "docker") install_docker ;;

@@ -47,7 +47,6 @@ You'll be able to choose additional software from the list:
 
 - Web:
     - Mozilla Firefox
-    - Telegram
 - Development:
     - Docker
 - Writing tools:
