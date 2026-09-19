@@ -47,8 +47,6 @@ You'll be able to choose additional software from the list:
 
 - Web:
     - Mozilla Firefox
-- Development:
-    - Docker
 - Writing tools:
     - LibreOffice
     - draw.io

@@ -113,7 +113,6 @@ request_additional_software_list() {
         --checklist "Use space to select multiple items." \
         40 100 27 \
         "firefox" "Firefox browser" OFF \
-        "docker" "Docker" OFF \
         "libreoffice" "Full LibreOffice" ON \
         "drawio" "draw.io" OFF \
         "tex" "LaTeX + Gummy" OFF \
@@ -299,17 +298,6 @@ install_node() {
 
 
 #######################################
-# Install Docker
-# Arguments:
-#   None
-#######################################
-install_docker() {
-    curl -fsSL https://get.docker.com -o get-docker.sh
-    sudo sh get-docker.sh
-}
-
-
-#######################################
 # Install LibreOffice
 # Arguments:
 #   None
@@ -487,7 +475,6 @@ install_software() {
             "firefox") install_firefox ;;
             "vim") install_vim ;;
             "node") install_node ;;
-            "docker") install_docker ;;
             "libreoffice") install_libreoffice ;;
             "drawio") install_drawio ;;
             "tex") install_tex ;;
