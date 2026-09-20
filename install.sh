@@ -291,7 +291,7 @@ install_node() {
     # http-server is used in .bashrc for a one-liner "serve-this-directory".
     sudo npm i -g http-server
 
-    # prettier will be used by the vim-prettier plugin
+    # prettier is used by the vim-prettier plugin
     sudo npm i -g prettier
 }
 
@@ -335,8 +335,8 @@ install_tex() {
 #   None
 #######################################
 install_darktable() {
-    # The darktable version in the standard repository is really outdated.
-    # We install the latest possible version for the ubuntu 22.04.
+    # Darktable package in the standard repository is outdated.
+    # We install the latest possible version for ubuntu 22.04.
     local url="http://download.opensuse.org/repositories"
     local repo_url="${url}/graphics:/darktable/xUbuntu_22.04"
 
@@ -366,7 +366,7 @@ install_gimp() {
 #   None
 #######################################
 install_inkscape() {
-    # Inkscape package in the ubuntu repository is very outdated.
+    # Inkscape package in the standard repository is very outdated.
     # It's always better to have the newest one.
     sudo add-apt-repository -y ppa:inkscape.dev/stable
     sudo apt-get install -y inkscape

@@ -8,12 +8,12 @@
 " -----------------------------------------------------------------------------
 
 
-" start the pathogen
+" start pathogen
 
 execute pathogen#infect()
 call pathogen#helptags()
 
-" open the NERDTree automatically when the vim starts up
+" open NERDTree automatically when vim starts up
 
 autocmd vimenter * NERDTree
 let NERDTreeShowHidden = 1
@@ -54,7 +54,7 @@ set scrolloff=5
 let g:indentLine_color_term = 236
 
 " fill columns 80+
-" (`join` is not necessary here, we're saving it for future tests)
+" (`join` isn't necessary here, we're saving it for future tests)
 
 highlight ColorColumn ctermbg=232 guibg=#060606
 let &colorcolumn="80,".join(range(81,999),",")
@@ -74,7 +74,7 @@ set showmatch
 " -----------------------------------------------------------------------------
 
 " set fallback settings for tabs and line endings
-" (editorconfig can rewrite all these settings for the particular projects)
+" (editorconfig can rewrite all these settings)
 
 set tabstop=4
 set shiftwidth=4

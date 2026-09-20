@@ -93,4 +93,4 @@ npm run build
 
 MIT License
 
-Copyright (c) 2025 Ivan Bogachev sfi0zy@gmail.com
+Copyright (c) 2025-2026 Ivan Bogachev sfi0zy@gmail.com
