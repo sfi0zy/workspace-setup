@@ -124,7 +124,7 @@ PROMPT_COMMAND=set_bash_prompt
 # Environment
 ###############################################################################
 
-# use the vim as the default text editor
+# use vim as the default text editor
 
 export EDITOR=vim
 
@@ -236,7 +236,7 @@ backup-documents() {
     free_space=$(df --output=avail -B 1 . | tail -n 1)
     free_space_h=$(numfmt --to iec "${free_space}")
 
-    echo "Documents folder size: ${documents_folder_size_h}"
+    echo "~/Documents size: ${documents_folder_size_h}"
     echo "Space needed: ${space_needed_h}"
     echo "Free space: ${free_space_h}"
 
@@ -251,7 +251,7 @@ backup-documents() {
     read -r -s password_for_archive_copy
 
     if [[ "${password_for_archive}" != "${password_for_archive_copy}" ]]; then
-        echo "Two entered passwords are different. It'll be safer to try again."
+        echo "Two entered passwords don't match. Try again."
         return 1
     fi
 
@@ -268,7 +268,7 @@ backup-documents() {
     unzip -t "${archive_filename}.zip"
     echo "OK"
 
-    echo "Encrypting the archive (this may take some time)..."
+    echo "Encrypting (this may take some time)..."
     gpg --pinentry-mode=loopback --yes \
         --passphrase "${password_for_archive}" \
         --output "${archive_filename}.gpg" \
@@ -279,7 +279,7 @@ backup-documents() {
     rm "${archive_filename}.zip"
     echo "OK"
 
-    echo "Splitting the archive (this may take some time)..."
+    echo "Splitting (this may take some time)..."
     split --bytes=500M "${archive_filename}.gpg"
     mkdir -p "${archive_filename}"
     mv x* "${archive_filename}"
@@ -293,7 +293,6 @@ backup-documents() {
     echo "New archive has been created in ${archive_filename}. It's time to copy it."
     notify-send "New archive has been created in ${archive_filename}. It's time to copy it."
 }
-
 
 #######################################
 # Concat, decrypt and extract a backup created with backup-documents()
