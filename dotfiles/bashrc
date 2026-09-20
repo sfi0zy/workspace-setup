@@ -169,8 +169,6 @@ alias mkdir='mkdir -pv'
 alias grep='grep --color=auto'
 alias top='htop'
 
-alias reload-bash='source ~/.bashrc'
-
 alias check-internet-connection='ping 8.8.8.8 -c 5'
 
 alias serve-this-directory='http-server -c-1'
