@@ -234,7 +234,7 @@ backup-documents() {
     free_space=$(df --output=avail -B 1 . | tail -n 1)
     free_space_h=$(numfmt --to iec "${free_space}")
 
-    echo "~/Documents size: ${documents_folder_size_h}"
+    echo "$HOME/Documents size: ${documents_folder_size_h}"
     echo "Space needed: ${space_needed_h}"
     echo "Free space: ${free_space_h}"
 
