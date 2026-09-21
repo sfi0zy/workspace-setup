@@ -48,7 +48,6 @@ You'll be able to choose additional software from the list:
     - GIMP
     - Inkscape
     - SimpleScan
-    - OBS
     - Blender
     - MuseScore
     - Audacity

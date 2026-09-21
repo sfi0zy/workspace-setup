@@ -119,7 +119,6 @@ request_additional_software_list() {
         "gimp" "GIMP" ON \
         "inkscape" "Inkscape" ON \
         "simple-scan" "Simple Scan" OFF \
-        "obs" "OBS" OFF \
         "blender" "Blender" OFF \
         "musescore" "Musescore" OFF \
         "audacity" "Audacity" OFF \
@@ -384,19 +383,6 @@ install_simple_scan() {
 
 
 #######################################
-# Install OBS
-# Arguments:
-#   None
-#######################################
-install_obs() {
-    sudo apt-get install -y ffmpeg v4l2loopback-dkms
-    sudo add-apt-repository -y ppa:obsproject/obs-studio
-    sudo apt-get update
-    sudo apt-get install -y obs-studio
-}
-
-
-#######################################
 # Install Blender
 # Arguments:
 #   None
@@ -472,7 +458,6 @@ install_software() {
             "gimp") install_gimp ;;
             "inkscape") install_inkscape ;;
             "simple-scan") install_simple_scan ;;
-            "obs") install_obs ;;
             "blender") install_blender ;;
             "musescore") install_musescore ;;
             "audacity") install_audacity ;;
