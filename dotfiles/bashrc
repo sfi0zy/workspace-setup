@@ -331,3 +331,85 @@ extract-backup() {
 
     echo "Finished."
 }
+
+
+#######################################
+# Record a stream
+# Arguments:
+#   Url to m3u8
+#######################################
+vu-rec() {
+    local t
+
+    t=$(date +"%Y%m%d-%H%M%S");
+
+    ffmpeg -i "$1" -c copy "stream-$t.mkv"
+}
+
+
+#######################################
+# Record a screen
+# Arguments:
+#   None
+#######################################
+vu-screen() {
+    local t
+
+    t=$(date +"%Y%m%d-%H%M%S");
+
+    ffmpeg -use_wallclock_as_timestamps 1 -f x11grab -framerate 30 \
+        -video_size 1920x1080 -thread_queue_size 1024 -i :0.0 \
+        -c:v libx264 -preset ultrafast "screencast-$t.mkv"
+}
+
+
+#######################################
+# Show video properties
+# Arguments:
+#   Filename
+#######################################
+vu-info() {
+    ffprobe -v error -select_streams v:0 \
+        -show_entries stream=width,height,avg_frame_rate \
+        -of default=noprint_wrappers=1 "$1"
+}
+
+
+#######################################
+# Edit a video
+# Arguments:
+#   Filename
+#   From
+#   To
+#   X
+#   Y
+#   Width
+#   Height
+#   Output width
+#   Output height
+#   Framerate
+#   New filename
+#######################################
+vu-edit() {
+    local t
+
+    t=$(date +"%Y%m%d-%H%M%S");
+
+    ffmpeg -i "$1" -c:v libx264 -preset slow -c:a aac -ss "$2" -to "$3" \
+        -vf "crop=$6:$7:$4:$5,scale=$8:$9,fps=${10}" "${11}.mkv"
+}
+
+
+#######################################
+# Concat videos
+# Arguments:
+#   Filenames []
+#######################################
+vu-concat() {
+    local t
+
+    t=$(date +"%Y%m%d-%H%M%S");
+
+    ffmpeg -f concat -safe 0 -i <(printf "file $PWD/'%s'\n" "$@") \
+        -c:v libx264 -preset slow -c:a aac "out-$t.mkv"
+}
