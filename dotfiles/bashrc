@@ -157,16 +157,18 @@ export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 ###############################################################################
 
 alias ..='cd ..'
-alias ...='cd ../../'
-alias ....='cd ../../../'
 
 alias ls='ls --color=auto'
 alias ll='ls -lAhF'
 alias lsize='du -a -h --max-depth=1 | sort -hr'
+
+alias rm='rm --preserve-root'
 alias cp='cp -i'
 alias mv='mv -i'
 alias mkdir='mkdir -pv'
+
 alias grep='grep --color=auto'
+
 alias top='htop'
 
 alias check-internet-connection='ping 8.8.8.8 -c 5'
