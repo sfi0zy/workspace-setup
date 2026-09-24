@@ -204,7 +204,6 @@ install_firefox() {
 install_vim() {
     local from="https://github.com"
     local to="${USER_HOME}/.vim/bundle"
-    local raw_from="https://raw.githubusercontent.com"
     local colors_dir="${USER_HOME}/.vim/colors"
     local coc_config_dir="${USER_HOME}/.config/coc"
     local theme="atlantic-dark"
@@ -265,11 +264,11 @@ install_vim() {
 
     sudo -u "${SUDO_USER}" rm -rf "${colors_dir}"
     sudo -u "${SUDO_USER}" mkdir -p "${colors_dir}"
-    sudo -u "${SUDO_USER}" wget -q \
-        "${raw_from}/sfi0zy/${theme}.vim/master/colors/${theme}.vim" \
-        -P "${colors_dir}"
 
     sudo -u "${SUDO_USER}" cp ./dotfiles/vimrc "${USER_HOME}/.vimrc"
+
+    sudo -u "${SUDO_USER}" cp "./dotfiles/${theme}.vim" \
+        "${colors_dir}/${theme}.vim"
 
     sudo -u "${SUDO_USER}" mkdir -p "${coc_config_dir}"
     sudo -u "${SUDO_USER}" cp ./dotfiles/coc-settings.json \
